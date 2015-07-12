@@ -9,7 +9,7 @@
 || Version: 		0.01
 || * File information * 
 ||		-> au_config.php
-| 		-> // This file coördinates the database connection and the elemantary settings
+| 		-> // This file coordinates the database connection and the elementary settings
 || 		-> Last change: July, 2015
 */
 // 	We can't access this file, if not from index.php, so let's check
