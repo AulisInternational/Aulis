@@ -164,7 +164,7 @@
 		// If our request starts with au://, we have to load a file from the main directory
 			elseif(au_StartsWith($url, 'au://'))
 			{
-				$exploded = explode('pol://', $url);
+				$exploded = explode('au://', $url);
 				// Recursion is awesome!
 				$url = pUrl($exploded[1]);
 			}
@@ -178,7 +178,7 @@
 			{
 				$url = $aulis['absolute_path'].$url;
 			}
-		// If we are requested to redirect us to the give URL, we have to do that of course. 
+		// If we are requested to redirect us to the given URL, we have to do that of course. 
 			if($redirect)
 			{
 				return header("Location:".$url);
@@ -190,7 +190,7 @@
 			}
 	}
 
-// This function give the path to a file from the root.
+// This function gives the path to a file from the root.
 
 	function pFromRoot($url)
 	{
