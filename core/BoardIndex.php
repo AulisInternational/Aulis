@@ -8,12 +8,12 @@
 || License: 		MIT
 || Version: 		0.01
 || * File information * 
-||		-> index.php -> The empty file
-| 		-> // This file redirects users to the main page
+||		-> boardindex.php
+| 		-> // This file contains the logic for the boardindex
 || 		-> Last change: July, 2015
 */
-// We don't have to be here, bye
-header("Location: index.php");
 
-// This page is as dead as a doornail, just as old Marly.
-die();
+// We can't access this file, if not from index.php, so let's check
+if(!defined('aulis'))
+	header("Location: index.php");
+
