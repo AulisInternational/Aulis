@@ -17,6 +17,10 @@ a.icon{
 	background-size: 100%!important;
 }
 
+.notice a.icon.float-left{
+	margin-right: 4px;
+	margin-top: 3px;
+}
 .i-24{
 	width: 24px!important;
 	height: 21px!important;
@@ -26,6 +30,7 @@ a.icon{
 	width: 16px!important;
 	height: 14px!important;
 }
+
 
 /* icons */
 
@@ -39,4 +44,26 @@ a.icon{
 
 .i-mail{
 	background-image: url(../icons/mail.png);
+}
+
+.i-house{
+	background-image: url(../icons/house.png);
+}
+
+.i-warning{
+	background-image: url(../icons/warning.png);
+}
+
+.i-warning-red{
+	background-image: url(../icons/warning_red.png);
+}
+.i-accept-green{
+	background-image: url(../icons/accept_green.png);
+}
+.i-accept{
+	background-image: url(../icons/accept.png);
+}
+
+.i-spinner{
+	background-image: url(../icons/spinner.png);
 }

@@ -4,17 +4,68 @@
     <meta charset="utf-8">
     <title>Hannover</title>
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="../../library/css-assets/icons.css">
  	<link rel="shortcut icon" type="image/png" href="../../library/static/favicon.png" />
+ 	<script src="../../library/js-assets/jquery-1.11.3.min.js"></script>
+ 	<script src="scroll-header.js"></script>
   </head>
-  <body>
-  	<div class='top-stripe bg1'></div>
-  	<div class='logobar bg2'>
-  		<div class="iconstack float-left">
-  			<a class='icon i-menu i-24' href="javascript:void();"></a>
+  <body class="bg4">
+  	<header>
+  		<div class="top-stripe bg1"></div>
+  		<div class="logobar bg2">
+	  		<div class="iconstack float-left">
+	  			<a class='icon i-menu i-24' href="javascript:void();"></a>
+	  			<a class='icon i-house i-24' href="javascript:void();"></a>
+	  		</div> 
+	  		<img src="images/logo.png" />
   		</div>
-  		<img src="images/logo.png" />
+  		<div class="navbar bg3">
+	  		<div class="menustack float-left">
+	  			<a href="javascript:void();">Home</a>
+	  			<a href="javascript:void();">Forum</a>
+	  			<a href="javascript:void();">Log in</a>
+	  			<a href="javascript:void();">Sign up</a>
+  			</div>
+  		</div>
+  		<script>
+		 $('header').mouseenter(function(){
+		    $('.nav-up').removeClass('nav-up');
+		});
+		 $('header').mouseleave(function(){
+		 	if(wearedown){
+		 		$(this).addClass('nav-up');
+		 	}
+		});
+		</script>
+  	</header>
+  	<main>
+	  	<div class="wrapper bg4">
+		  	<div class="page white">
+
+		  		<div class="notice bg5 c5"><a class='icon i-warning-red i-16 float-left'></a> Something went wrong, please try again.</div>
+		  		<div class="notice bg6 c1"><a class='icon i-accept-green i-16 float-left'></a> Your request happened, all is okay!</div>
+		  		<div class="notice bg7 c7"><div class="loading"></div> We are looking for unicorns... still didn't find them...</div>
+		  		<img src="../../library/static/charlie.png" class="float-right" />
+		  		<h1>Heading 1</h1>
+		  		Quisque dui urna, cursus eget metus sed, sollicitudin scelerisque turpis. Cras non quam nisl. Curabitur imperdiet lorem arcu, sit amet eleifend turpis dapibus eu. Vivamus sed libero nisl. Quisque nulla lectus, mollis nec consectetur sit amet, consectetur eu nisi. Maecenas tempus lacinia orci. Morbi a orci eu quam laoreet aliquet. Vivamus rhoncus sem risus, sit amet interdum odio pellentesque vel. Etiam venenatis dapibus fringilla. Duis nec malesuada sem. Mauris vulputate vehicula nulla, et faucibus erat consequat ut. Donec cursus rhoncus leo. Vestibulum facilisis, ex at pulvinar vehicula, massa ex ultricies nulla, non tempus orci massa et arcu. Phasellus feugiat mi a augue elementum, sit amet suscipit lectus pellentesque. Phasellus laoreet iaculis magna vel interdum. Mauris consequat malesuada tincidunt.
+		  		<h2>Heading 2</h2>
+		  		Duis ultrices facilisis sollicitudin. Fusce sed purus nunc. Suspendisse quis lectus nec leo consequat ornare id eget nisl. Etiam quis odio ut eros imperdiet ornare porttitor in lacus. Nulla condimentum velit ante, sed feugiat libero pharetra ac. Nulla facilisi. Integer fringilla turpis gravida, molestie mi et, sagittis tellus. Nulla laoreet ligula ac convallis convallis. Vestibulum at porttitor augue. Suspendisse ante purus, dictum ac bibendum ut, tempor vitae augue. Praesent ultricies dignissim justo nec dapibus. In faucibus, quam vitae volutpat volutpat, nulla leo maximus felis, at vestibulum magna nisl quis elit.
+		  		<h3>Heading 3</h3>
+		  		Proin eleifend tincidunt maximus. Morbi fermentum dignissim arcu, a ornare nunc convallis non. Mauris vulputate ut purus ut tempus. Duis lobortis erat sed lorem imperdiet, in venenatis dui semper. Aenean tristique diam id consectetur tristique. Sed at pellentesque quam, ut vestibulum metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Curabitur consectetur sed elit nec ultricies. Nunc facilisis, nisi eget cursus aliquam, magna est dapibus quam, quis dictum odio elit vitae metus. Pellentesque semper nec velit sed sodales. Donec ac venenatis orci. Mauris commodo, nisi eu gravida dapibus, quam arcu vestibulum urna, a sollicitudin est mauris non lectus. Mauris varius, sem ac hendrerit posuere, justo tellus sodales lectus, eu laoreet nibh dui id erat. Nunc nec dapibus nunc, sed interdum nunc. Sed aliquet malesuada mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+		  		<h4>Heading 4</h4>
+		  		<ul>
+		  			<li>Item 1</li>
+		  			<li>Item 2</li>
+		  			<li>Item 3</li>
+		  		</ul>
+		  		<h5>Heading 5</h5>
+		  		<h6>Heading 6</h6>
+		  		<div class='top-stripe bg3'></div>
+		  	</div>
+	  	</div>
+  	</main>
+  	<div class="footer">
+  	powered by <img src="images/logo_footer.png" />
   	</div>
   	<br class="clear" />
   </body>
