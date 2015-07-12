@@ -23,7 +23,7 @@ if(!defined('aulis')){
 $db_driver = 'mysql'; // mysql, pgsql or sqlite
 
 //	Database prefix (Default: au_)
-$db_prefix = "au_";
+$db_prefix = "aulis_";
 
 // 	Setting up Database connection
 $db_host = 'localhost'; 
@@ -91,7 +91,7 @@ unset($db_password);
 
 /*
 ----------------------------------------------------------------------------
-	The Folowing part of this file will be used to define some basic functions.
+	The following part of this file will be used to define some basic functions.
 ----------------------------------------------------------------------------
 */
 
@@ -114,7 +114,7 @@ function au_LoadFunctions($module = null) {
 // Password hash function
 function au_Hash($password, $extradata = '') {
 
-	// The Salt (this is unique for every instalation and also quite tasty, because it's salt).
+	// The Salt (this is unique for every installation and also quite tasty, because it's salt).
 	$salt = md5("672kjaujnfu72ujnajfll91").sha1("aulis0.01");
 	
 	// Setting up the basic hash, we suppose this is safe.
@@ -159,7 +159,7 @@ function au_Url($url = '', $redirect = false) {
 	}
 	
 	// Normal internet URLs are welcome too
-	elseif(au_StartsWith($url, 'http://') or au_StartsWith($url, 'ftp://') or au_StartsWith($url, 'https://'), or au_StartsWith($url, 'mailto:'))
+	elseif(au_StartsWith($url, 'http://') or au_StartsWith($url, 'ftp://') or au_StartsWith($url, 'https://') or au_StartsWith($url, 'mailto:'))
 		$url = $url;
 	
 	// If the request is nothing from the above, we have to do with a request for something in the main directory, for example another file
