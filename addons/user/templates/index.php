@@ -12,8 +12,9 @@
 | 		-> // This file redirects users to the main page
 || 		-> Last change: July, 2015
 */
+
 // We don't have to be here, bye
-header("Location: index.php");
+header("Location: ../index.php");
 
 // This page is as dead as a doornail, just as old Marly.
 die();
