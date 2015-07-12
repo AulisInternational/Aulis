@@ -18,7 +18,7 @@ modules/*/
 module/forum/functions
 	bevat alle specifieke functies voor een module, ook in bestanden zoals topics.forum.php opgedeeld
 modules/forum/modifiers
-	bevat bestanden zoals Menu.php die invloed uitoefent op Menu.php in /core, menuitems toevoegd etc.
+	bevat bestanden zoals Menu.php die invloed uitoefent op Menu.php in /core, menuitems toevoegt etc.
 modules/forum/templates
 	bevat bestanden zoals boardindex.forum.php die de basis zijn voor de output van onderdelen van de module
 themes
