@@ -1,0 +1,42 @@
+/*
+-->> Theme for Aulis
+|| Theme name:		Hannover
+|| Theme date:		2015
+|| Theme info:		Aulis' default theme
+|| Developed by: 	Thomas de Roo 
+|| License: 		MIT
+|| File: 			icons.css
+|| Last change:		July, 2015
+*/
+
+a.icon{
+	width: 32px;
+	height: 28px;
+	border: none;
+	display: block;
+	background-size: 100%!important;
+}
+
+.i-24{
+	width: 24px!important;
+	height: 21px!important;
+}
+
+.i-16{
+	width: 16px!important;
+	height: 14px!important;
+}
+
+/* icons */
+
+.i-menu{
+	background-image: url(../icons/menu.png);
+}
+
+.i-search{
+	background-image: url(../icons/search.png);
+}
+
+.i-mail{
+	background-image: url(../icons/mail.png);
+}

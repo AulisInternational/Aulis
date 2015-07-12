@@ -1,0 +1,76 @@
+/*
+-->> Theme for Aulis
+|| Theme name:		Hannover
+|| Theme date:		2015
+|| Theme info:		Aulis' default theme
+|| Developed by: 	Thomas de Roo 
+|| License: 		MIT
+|| File: 			main.css
+|| Last change:		July, 2015
+*/
+
+/* Housestyle font "overpass" */
+@font-face {
+  font-family: 'OverPass';
+  src: url('./fonts/overpass.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/* Basic elements */
+
+html,body
+{
+	margin: 0;
+	padding: 0;
+	font-family: Calibri, Verdana, Tahoma,  Segoe!important;
+	background: white;
+}
+
+br.clear{
+	clear: both;
+}
+
+.float-left{
+	float: left;
+}
+
+.float-right{
+	float-right
+}
+/* Colours */
+
+.bg1{
+	background-color: #2ca05a;
+}
+
+.bg2{
+	background-color: #eee;
+}
+
+/* First layer of layout elements */
+
+.top-stripe{
+	min-height: 5px;
+	width: 100%;
+}
+
+.logobar{
+	min-height: 40px;
+	padding: 20px;
+	padding-left: 20%;
+	padding-right: 20%;
+}
+
+	.logobar img{
+		height: 60px;
+		width: auto;
+		margin: 0 auto;
+		display: block;
+	}
+
+	.logobar .iconstack
+	{
+		padding-top: 18px;
+	}
