@@ -166,7 +166,7 @@
 			{
 				$exploded = explode('au://', $url);
 				// Recursion is awesome!
-				$url = pUrl($exploded[1]);
+				$url = au_Url($exploded[1]);
 			}
 		// Normal internet URLs are welcome too
 			elseif(au_StartsWith($url, 'http://') or au_StartsWith($url, 'ftp://') or au_StartsWith($url, 'https://'), or au_StartsWith($url, 'mailto:'))
