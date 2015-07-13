@@ -47,6 +47,9 @@ au_error_box("There is nothing to see here as of now, please come back later.");
 // Now it's time to finalize our output and call in the theme's base template
 au_finalize_output();
 
+// Let's load the language files
+au_load_language(au_get_setting("language"));
+
 // Calling the theme...
 if(!au_load_theme(au_get_setting("theme")))
 	die("Fatal error: theme cannot be loaded.");
