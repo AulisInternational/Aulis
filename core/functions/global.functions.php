@@ -41,7 +41,7 @@ function au_url($url = '', $redirect = false) {
 		$exploded = explode('au://', $url);
 		
 		// Recursion is awesome!
-		$url = au_Url($exploded[1]);
+		$url = au_url($exploded[1]);
 	}
 	
 	// Normal internet URLs are welcome too
