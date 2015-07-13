@@ -9,6 +9,9 @@
 || Last change:		July, 2015
 */
 
+/* Color variables */
+
+
 ::-moz-selection { background: #d08b00; }
 ::selection { background: #d08b00; }
 
@@ -107,6 +110,13 @@ ul {
 /* Colours */
 .cwhite{
 	color: white;
+}
+
+.bg_board_on{
+	background-color: #2ca05a!important;
+}
+.bg_board_off{
+	background-color: #5fd38d!important;
 }
 
 .bg1{
@@ -221,7 +231,8 @@ main{
 		display: block;
 		padding-left: 0px;
 		padding-top: 7px;
-		height: 40px;
+		padding-bottom: -10px;
+		height: 33px;
 		float: left;
 		text-transform: uppercase;
 		font-weight: bold;
@@ -229,7 +240,17 @@ main{
 		font-family: overpass;
 		font-size: 15px;
 		color: white;
+		padding-left: 5px;
+		padding-right: 5px;
 		margin-right: 10px;
+	}
+
+	.navbar a:hover{
+		text-decoration: underline;
+	}
+
+	.navbar a.active{
+		background-color: #2ca05a;
 	}
 
 .wrapper{

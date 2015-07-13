@@ -33,6 +33,21 @@ a.icon{
 
 /* Different sizes */
 
+.i-256{
+	width: 256px!important;
+	height: 224px!important;
+}
+
+.i-128{
+	width: 128px!important;
+	height: 112px!important;
+}
+
+.i-64{
+	width: 64px!important;
+	height: 56px!important;
+}
+
 .i-24{
 	width: 24px!important;
 	height: 21px!important;
@@ -48,4 +63,12 @@ a.icon{
 .i-red{
 
 	background-color: #c83737!important;
+}
+
+.i-green{
+	background: #2ca05a!important;
+}
+
+.i-blue{
+
 }

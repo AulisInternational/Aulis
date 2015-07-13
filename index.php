@@ -44,11 +44,16 @@ au_setup_database();
 // Start sessions
 session_start();
 
+// Let's load the language files
+au_load_language(au_get_setting("language"));
+
 // The following part makes sure the right code is loaded
 
 // If there is no core request in the URL, we need to simulate one.
 if(empty($_GET))
 	$_GET[au_get_setting("default_core")] = '';
+
+// ^ we can do either that, or redirect via au_url("?" . au_get_setting("default_core"), true)
 
 // Get the cores from the database
 $cores = au_get_cores();
@@ -69,12 +74,8 @@ while($core = $cores->fetchObject()){
 
 }
 
-
 // Now it's time to finalize our output and call in the theme's base template
 au_finalize_output();
-
-// Let's load the language files
-au_load_language(au_get_setting("language"));
 
 // Calling the theme...
 if(!au_load_theme(au_get_setting("theme")))

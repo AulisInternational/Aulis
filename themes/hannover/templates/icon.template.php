@@ -8,7 +8,7 @@
 || License: 		MIT
 || Version: 		0.01
 || * File information * 
-||		-> output.functions.php
+||		-> icon.template.php
 | 		-> // This file handles how icons are outputted
 || 		-> Last change: July, 2015
 */

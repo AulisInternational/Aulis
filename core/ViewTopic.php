@@ -17,3 +17,4 @@
 if(!defined('aulis'))
 	header("Location: index.php");
 
+au_error_box("Nothing to see here.");

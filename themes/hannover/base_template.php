@@ -37,7 +37,7 @@ global $aulis; ?>
   		</div>
   		<div class="navbar bg3">
 	  		<div class="menustack float-left">
-	  			<a href="javascript:void();">Home</a>
+	  			<a href="javascript:void();" class="active">Home</a>
 	  			<a href="javascript:void();">Forum</a>
 	  			<a href="javascript:void();">Log in</a>
 	  			<a href="javascript:void();">Sign up</a>
