@@ -32,6 +32,7 @@ function au_setup_database(){
 		catch(PDOException $e){
 			die($e->getMessage());
 		}
+
 	// Or some database saved in files... who knows?
 	elseif($aulis['db_driver'] == 'sqlite')
 		try{
@@ -40,6 +41,8 @@ function au_setup_database(){
 		catch(PDOException $e){
 			die($e->getMessage());
 		}
+		
+	// Apparently someone didn't get the message.
 	else
 		die('Database type unknown.');
 
