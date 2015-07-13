@@ -1,0 +1,35 @@
+
+
+Sessies
+
+index.php
+	controleert op een bestaande sessie
+
+Controlefunctie: (bestaat in sessions.functions.php)
+	- kijk of er een cookie aulis_session aanwezig is,
+	- kijk of de hash in de database staat
+	- zo ja, haal de sessiedata op
+	- tel de session_length bij de session_date op en kijk of die datum verstreken is of niet
+		zo ja: verwijder de sessie en return false
+	- kijk of de useragent en het ip nog steeds kloppen
+		zo ja: niks aan de hand, de functie returnt true en we weten dat de sessie klopt
+		zo nee: verwijder de sessie en return false
+
+Vraagje: nu weten we dat de sessie klopt, maar hoe stellen we hem nu voor gebruik in? Of wacht... in principe zijn we ingelogd als de sessie klopt, dus als we de controlefunctie het userid laten returnen als het klopt, en false als het niet klopt dan kunnen we die functie gewoon gebruiken om te kijken of er iemand ingelogd is en wie dat dan is...
+
+session_start()
+	doordat de sessiefuncties aan aulis functies zijn gekoppeld, kunnen we de sessie in de db op gaan slaan
+	Ik heb geen idee hoe dat werkt (hebben de au_session_write enzovoorts ook )
+
+
+Sessie tabel in de database
+
+	session_id
+	session_useragent
+	session_ip
+	session_hash
+	session_userid
+	session_date
+	session_length
+
+Cookie bevat: session_hash, wat een sha1 (ofzo) is van userid + session_id (21_1, bij een userid 21 en sessie_id)
