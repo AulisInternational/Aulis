@@ -19,7 +19,8 @@ a.icon{
 	width: 32px;
 	height: 28px;
 	border: none;
-	display: block;
+	background-position: 0% 2%;
+	display: inline-block;
 	background-size: 100%!important;
    	mask-size: 100%;
    	-webkit-mask-size: 100%;
@@ -48,6 +49,11 @@ a.icon{
 	height: 56px!important;
 }
 
+.i-48{
+	width: 48px!important;
+	height: 42px!important;
+}
+
 .i-24{
 	width: 24px!important;
 	height: 21px!important;
@@ -56,6 +62,12 @@ a.icon{
 .i-16{
 	width: 16px!important;
 	height: 14px!important;
+}.i-12{
+	width: 12px!important;
+	height: 11px!important;
+}.i-8{
+	width: 8px!important;
+	height: 7px!important;
 }
 
 /* Different colors */

@@ -15,7 +15,7 @@
    id="svg5218"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="arrow_down.svg">
+   sodipodi:docname="board_rotated.svg">
   <defs
      id="defs5220" />
   <sodipodi:namedview
@@ -25,11 +25,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="44.8"
-     inkscape:cx="3.0240781"
-     inkscape:cy="2.848617"
+     inkscape:zoom="64"
+     inkscape:cx="3.5019673"
+     inkscape:cy="3.3491425"
      inkscape:document-units="px"
-     inkscape:current-layer="g6338"
+     inkscape:current-layer="svg5218"
      showgrid="false"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -52,33 +52,8 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <g
-     inkscape:label="Laag 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-41.782479,-640.28572)">
-    <g
-       id="g6338"
-       inkscape:export-filename="C:\xampp\htdocs\aulis\Aulis\library\icons\mail.png"
-       inkscape:export-xdpi="562.96002"
-       inkscape:export-ydpi="562.96002"
-       transform="matrix(2.0281712,0,0,2.3705107,-594.82975,-750.05401)">
-      <g
-         id="g7183"
-         transform="matrix(0,-0.8670259,-1.3213966,0,1092.8076,861.6392)">
-        <path
-           sodipodi:nodetypes="cc"
-           inkscape:connector-curvature="0"
-           id="path7179"
-           d="m 317.23899,588.00723 -2.80159,-7e-5"
-           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.456065px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-        <path
-           sodipodi:nodetypes="ccc"
-           inkscape:connector-curvature="0"
-           id="path7181"
-           d="m 315.20006,587.135 -0.90274,0.82563 0.71596,0.93883"
-           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.456065px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-      </g>
-    </g>
-  </g>
+  <path
+     style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="M 3.9550781 0.26367188 L 0.28320312 6.7480469 L 0.34570312 6.7324219 L 7.5800781 6.7167969 L 3.9550781 0.26367188 z M 3.9453125 1.5761719 L 6.0644531 5.4160156 L 1.8359375 5.4257812 L 1.7988281 5.4355469 L 3.9453125 1.5761719 z "
+     id="path8444" />
 </svg>

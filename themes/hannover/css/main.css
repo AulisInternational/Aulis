@@ -116,7 +116,7 @@ ul {
 	background-color: #2ca05a!important;
 }
 .bg_board_off{
-	background-color: #5fd38d!important;
+	background-color: #a3dfbc!important;
 }
 
 .bg1{
@@ -384,4 +384,8 @@ main{
 
 		table.boardindex tr:nth-child(odd) {
 		   background-color: #eee;
+		}
+
+		table.boardindex .subboards{
+			font-size: 14px;
 		}
