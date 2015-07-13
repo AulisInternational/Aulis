@@ -19,8 +19,6 @@ if(!defined('aulis'))
 	
 // Languages! Let's load one. Just one. Or perhaps two, if we're feeling up to it.
 function au_load_language($language = '') {
-
-	global $aulis;
 	
 	// So did we actually provide ourselves with a language?
 	if(empty($language))
