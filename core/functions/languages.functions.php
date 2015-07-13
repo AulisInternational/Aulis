@@ -29,9 +29,10 @@ function au_load_language($language = '') {
 		
 	// We did! Cool. Now, does it exist?
 	if(file_exists($language_path))
-		include $language_path;
+		return include_once $language_path;
 		
 	// Bugger. It doesn't. :'(
 	else
-		die('Language files not found.');
+		return die('Language files not found.');
+
 }

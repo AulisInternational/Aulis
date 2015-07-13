@@ -40,3 +40,11 @@ function au_session_destroy(){
 function au_session_clean(){
 
 }
+
+// This functions controls whether a session exists or not... it returns an user id if we are logged in, otherwise it's false
+function au_session_check(){
+
+	// This function needs to be written, but we have it return dummy content for now
+	return 1; // The first user is doomed to be logged in for ever and always untill this function is ready.
+
+}

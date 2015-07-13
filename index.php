@@ -45,7 +45,30 @@ au_setup_database();
 session_start();
 
 // The following part makes sure the right code is loaded
-au_error_box("There is nothing to see here as of now, please come back later.");
+
+// If there is no core request in the URL, we need to simulate one.
+if(empty($_GET))
+	$_GET[au_get_setting("default_core")] = '';
+
+// Get the cores from the database
+$cores = au_get_cores();
+
+// Go through the cores
+while($core = $cores->fetchObject()){
+
+	// if the request of this core has been given in the URL, we need to load it.
+	if(isset($_GET[$core->request])){
+
+		// loading the core...
+		au_load_core($core->core);
+
+		// escaping from this loop...
+		break;
+
+	}
+
+}
+
 
 // Now it's time to finalize our output and call in the theme's base template
 au_finalize_output();

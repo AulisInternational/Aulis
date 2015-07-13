@@ -17,7 +17,7 @@
 if(!defined('aulis'))
 	header("Location: index.php");
 
-function au_hash($password, $extradata = '') {
+function au_hash($password, $extra_data = '') {
 
 	// The Salt (this is unique for every installation and also quite tasty, because it's salt).
 	$salt = md5("672kjaujnfu72ujnajfll91").sha1("aulis0.01");
@@ -27,11 +27,12 @@ function au_hash($password, $extradata = '') {
 	
 	// If we want to add some extra data to the hash, such as user ID or what not, we can do that too.
 	if($extradata != '')
-		$hash = hash('ripemd160', sha1($hash.$salt.$extradata).$extradata.sha1($salt));
+		$hash = hash('ripemd160', sha1($hash.$salt.$extra_data).sha1($extra_data).sha1($salt));
 		
 	// For aesthetic effect, we do one final hash to make it a short sha1-string
 	$hash = sha1($hash);
 	
 	// Now we kindly return this hash.
 	return $hash;
+
 }

@@ -33,7 +33,7 @@ global $aulis; ?>
 	  			<a class='icon i-menu i-24' href="javascript:void();"></a>
 	  			<a class='icon i-house i-24' href="javascript:void();"></a>
 	  		</div> 
-	  		<img src="themes/hannover/images/logo.png" />
+	  		<img src="themes/hannover/images/logo.svg" />
   		</div>
   		<div class="navbar bg3">
 	  		<div class="menustack float-left">
@@ -66,7 +66,7 @@ global $aulis; ?>
 	  	</div>
   	</main>
   	<div class="footer">
-  	<img src="themes/hannover/images/logo_footer.png" />
+  	<img src="themes/hannover/images/logo_footer.svg" />
   	powered by <a href="http://germanics.org/aulis">Aulis  0.01</a>
   	</div>
   	<br class="clear" />

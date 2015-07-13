@@ -257,6 +257,8 @@ main{
 
 	.footer img{
 		float: right;
+		height: 15px;
+		width: auto;
 	}
 
 /* Second layer elements */

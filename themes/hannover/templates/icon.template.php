@@ -8,10 +8,10 @@
 || License: 		MIT
 || Version: 		0.01
 || * File information * 
-||		-> errorbox.template.php
-| 		-> // This file the template of the errorbox
+||		-> output.functions.php
+| 		-> // This file handles how icons are outputted
 || 		-> Last change: July, 2015
 */
 
 global $aulis;
-au_out("<div class='notice bg5 c5'><a class='icon i-warning i-red  i-16 float-left'></a> ".$aulis['transfer']."</div>");
+$aulis['icon_output'] = "<a class='icon i-".$aulis['icon_name']." i-".$aulis['icon_size']." i-".$aulis['icon_color']."'></a>";

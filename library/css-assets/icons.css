@@ -9,18 +9,30 @@
 || Last change:		July, 2015
 */
 
+/* Import the icon styles */
+
+@import url("icons_stylesheet.php");
+
+/* Base styles */
+
 a.icon{
 	width: 32px;
 	height: 28px;
 	border: none;
 	display: block;
 	background-size: 100%!important;
+   	mask-size: 100%;
+   	-webkit-mask-size: 100%;
+   	background-color: black;
 }
 
 .notice a.icon.float-left{
 	margin-right: 4px;
 	margin-top: 3px;
 }
+
+/* Different sizes */
+
 .i-24{
 	width: 24px!important;
 	height: 21px!important;
@@ -31,39 +43,9 @@ a.icon{
 	height: 14px!important;
 }
 
+/* Different colors */
 
-/* icons */
+.i-red{
 
-.i-menu{
-	background-image: url(../icons/menu.png);
-}
-
-.i-search{
-	background-image: url(../icons/search.png);
-}
-
-.i-mail{
-	background-image: url(../icons/mail.png);
-}
-
-.i-house{
-	background-image: url(../icons/house.png);
-}
-
-.i-warning{
-	background-image: url(../icons/warning.png);
-}
-
-.i-warning-red{
-	background-image: url(../icons/warning_red.png);
-}
-.i-accept-green{
-	background-image: url(../icons/accept_green.png);
-}
-.i-accept{
-	background-image: url(../icons/accept.png);
-}
-
-.i-spinner{
-	background-image: url(../icons/spinner.png);
+	background-color: #c83737!important;
 }
