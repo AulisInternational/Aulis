@@ -27,6 +27,9 @@ global $aulis;
 foreach (glob($aulis['root_path']."/core/functions/*.functions.php") as $filename)
 	include $filename;
 
+// The database will be set up below this line
+au_setup_database();
+
 // Make sure we're using database sessions rather than server-based sessions
 // GIVES ERROR, SO I DISABLED IT FOR NOW
 /* session_set_save_handler(

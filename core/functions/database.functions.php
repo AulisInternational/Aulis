@@ -17,6 +17,46 @@
 if(!defined('aulis'))
 	header("Location: index.php");
 
+
+// This function setups the database connection.
+function au_setup_database(){
+		global $aulis;
+		if($aulis['db_driver'] == 'mysql')
+		try
+		{
+			$db = new PDO('mysql:host='.$aulis['db_host'].';dbname='.$aulis['db_database'], $aulis['db_user'], $aulis['db_password']);
+		}
+		catch(PDOException $e)
+		{
+			echo $e->getMessage();
+			exit;
+		}
+	if($aulis['db_driver'] == 'pgsql')
+		try
+		{
+			$db = new PDO('pgsql:host='.$aulis['db_host'].';dbname='.$aulis['db_database'], $aulis['db_user'], $aulis['db_password']);
+		}
+		catch(PDOException $e)
+		{
+			echo $e->getMessage();
+			exit;
+		}
+	if($aulis['db_driver'] == 'sqlite')
+		try
+		{
+			$db = new PDO('sqlite:'.$aulis['db_database']);
+		}
+		catch(PDOException $e)
+		{
+			echo $e->getMessage();
+			exit;
+		}
+
+	// Transfer the connection to $aulis
+	return $aulis['db'] = $db;
+
+}
+
 function au_query($sql){
 	global $aulis;
 
