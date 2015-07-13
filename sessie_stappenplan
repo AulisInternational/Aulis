@@ -39,3 +39,10 @@ Sessie tabel in de database
 	eventueel meer of minder
 
 Cookie bevat: session_hash, wat een sha1 (ofzo) is van userid + session_id (21_1, bij een userid 21 en sessie_id)
+
+
+
+
+Volgens mij hoeven we niet eens sessies zelf te gebruiken dan als het niet werkt kan dat ook kunstimatig..
+... dat een sessie gewoon gelijk na het inloggen met alle useragent data 
+aan de database wordt toegevoegd en een cookie met die hash
