@@ -24,30 +24,24 @@ function au_setup_database(){
 	// This thing is important, it contains the database settings
 	global $aulis;
 
-	// Let's see if we maybe need mysql
-	if($aulis['db_driver'] == 'mysql')
+	// Let's see if we maybe need MySQL or PSQL
+	if($aulis['db_driver'] == 'mysql' || $aulis['db_driver'] == 'psql')
 		try{
-			$db = new PDO('mysql:host='.$aulis['db_host'].';dbname='.$aulis['db_database'], $aulis['db_user'], $aulis['db_password']);
-		}
-		catch(PDOException $e){
-			die($e->getMessage());
-		}
-	// Maybe we have to do with a flying horse's SQL
-	if($aulis['db_driver'] == 'pgsql')
-		try{
-			$db = new PDO('pgsql:host='.$aulis['db_host'].';dbname='.$aulis['db_database'], $aulis['db_user'], $aulis['db_password']);
+			$db = new PDO($aulis['db_driver'] . ':host='.$aulis['db_host'].';dbname='.$aulis['db_database'], $aulis['db_user'], $aulis['db_password']);
 		}
 		catch(PDOException $e){
 			die($e->getMessage());
 		}
 	// Or some database saved in files... who knows?
-	if($aulis['db_driver'] == 'sqlite')
+	elseif($aulis['db_driver'] == 'sqlite')
 		try{
 			$db = new PDO('sqlite:'.$aulis['db_database']);
 		}
 		catch(PDOException $e){
 			die($e->getMessage());
 		}
+	else
+		die('Database type unknown.');
 
 	// Transfer the connection to $aulis
 	return $aulis['db'] = $db;
