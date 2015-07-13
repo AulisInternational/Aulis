@@ -80,7 +80,7 @@ $aulis['db_prefix'] = $db_prefix;
 
 // Important paths!
 $aulis['root_path'] = dirname(__FILE__);
-$aulis['absolute_path'] = "http://localhost/aulis/Aulis";
+$aulis['absolute_path'] = "http://localhost/Aulis";
 
 // Unsetting the from here onwards unused database variables
 unset($db);
