@@ -17,34 +17,18 @@
 if(!defined('aulis'))
 	header("Location: index.php");
 
-function au_session_open(){
+//  Let's add a session to the database
+function au_set_session($data = array()) {
 
-}
-
-function au_session_close(){
-
-}
-
-function au_session_read(){
-
-}
-
-function au_session_write(){
-
-}
-
-function au_session_destroy(){
-
-}
-
-function au_session_clean(){
-
+	// This should actually be an array
+	if(is_array($data))
+		return false;
 }
 
 // This functions controls whether a session exists or not... it returns an user id if we are logged in, otherwise it's false
 function au_session_check(){
 
 	// This function needs to be written, but we have it return dummy content for now
-	return 1; // The first user is doomed to be logged in for ever and always untill this function is ready.
+	return 1; // The first user is doomed to be logged in for ever and always until this function is ready.
 
 }

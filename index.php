@@ -24,25 +24,17 @@ include 'au_config.php';
 global $aulis;
 
 // It's not like that's all, we need our functions to be loaded too
-foreach (glob($aulis['root_path']."/core/functions/*.functions.php") as $filename)
+foreach(glob($aulis['root_path'] . '/core/functions/*.functions.php') as $filename)
 	include $filename;
 
 // The database will be set up below this line
 au_setup_database();
-
-// Make sure we're using database sessions rather than server-based sessions
-// GIVES ERROR, SO I DISABLED IT FOR NOW
-/* session_set_save_handler(
-	'au_session_open',
-	'au_session_close',
-	'au_session_read',
-	'au_session_write',
-	'au_session_destroy',
-	'au_session_cleaner'
-); */
 	
 // Start sessions
 session_start();
+
+// Get the user information
+au_load_user();
 
 // Let's load the language files
 au_load_language(au_get_setting("language"));

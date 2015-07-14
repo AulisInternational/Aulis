@@ -22,3 +22,7 @@
 // We can't access this file, if not from index.php, so let's check
 if(!defined('aulis'))
 	header("Location: index.php");
+	
+// Some basic information about the language itself
+define('LANGUAGE_NAME', 'English (US)');
+define('LANGUAGE_CODE', 'en');
