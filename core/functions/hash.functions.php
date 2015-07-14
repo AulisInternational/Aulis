@@ -26,7 +26,7 @@ function au_hash($password, $extra_data = '') {
 	$hash = hash('ripemd160', md5(sha1(sha1(md5(sha1(md5($salt).$salt.$password).$password).md5(strlen($password)).$salt.md5($password)))));
 	
 	// If we want to add some extra data to the hash, such as user ID or what not, we can do that too.
-	if($extradata != '')
+	if($extra_data != '')
 		$hash = hash('ripemd160', sha1($hash.$salt.$extra_data).sha1($extra_data).sha1($salt));
 		
 	// For aesthetic effect, we do one final hash to make it a short sha1-string

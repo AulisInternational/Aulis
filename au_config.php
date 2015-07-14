@@ -22,6 +22,7 @@ global $aulis;
 $aulis = array();
 $aulis['file'] = 'index.php'; // You may change this, if you decide to move all functionality to another file
 $aulis['settings'] = array();
+$aulis['user'] = null;
 
 //	Database Driver (which type of database are we using?)
 $aulis['db_driver'] = 'mysql'; // mysql, pgsql or sqlite

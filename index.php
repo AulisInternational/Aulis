@@ -21,6 +21,7 @@ else
 	
 // Important files we need to load before doing anything else.
 include 'au_config.php';
+// The big $aulis is our friend, he needs te be by our side.
 global $aulis;
 
 // It's not like that's all, we need our functions to be loaded too
@@ -33,7 +34,7 @@ au_setup_database();
 // Start sessions
 session_start();
 
-// Get the user information
+// Load the user information into $aulis
 au_load_user();
 
 // Let's load the language files
