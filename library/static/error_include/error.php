@@ -42,6 +42,10 @@ switch ((int)$aulis['error_code']) {
     break;
 }
 
+// IT'S VERY IMPORTANT THAT WE NEUTRALIZE THE DATABASE USERNAME AND PASSWORD
+$aulis['db_user'] = "*******";
+$aulis['db_password'] = "*******";
+
 // Well, it's time for the template, simple to find in this static folder
 include_once "template.php"; 
 
