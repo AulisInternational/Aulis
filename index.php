@@ -71,7 +71,7 @@ while($core = $cores->fetchObject()){
 au_finalize_output();
 
 // Calling the theme...
-au_load_theme(au_get_setting("thehme"));
+au_load_theme(au_get_setting("theme"));
 
 // In the end, there is nothing left but star dust.
 die();
