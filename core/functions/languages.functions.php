@@ -33,6 +33,6 @@ function au_load_language($language = '') {
 		
 	// Bugger. It doesn't. :'(
 	else
-		return die('Language files not found.');
+		return au_fatal_error(4, "Language file '" . $language_path . "' was not found.");
 
 }

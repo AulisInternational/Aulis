@@ -28,6 +28,24 @@ function au_string_ends_with($haystack, $needle) {
     return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
 }
 
+// This function regulates the interal display for fatal errors
+function au_fatal_error($error_code, $error_message){
+
+	// These need to be global
+	global $aulis;
+
+	// Transfer error information
+	$aulis['error_code'] = $error_code;
+	$aulis['error_message'] = $error_message;
+
+	// Time to include the error template
+	include_once au_get_path_from_root("library/static/error_include/error.php");
+
+	// To stardust
+	return die();
+
+}
+
 // This function is used for urls and paths
 function au_url($url = '', $redirect = false) {
 	global $aulis;

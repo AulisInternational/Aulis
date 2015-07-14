@@ -20,19 +20,27 @@ if(!defined('aulis'))
 // This function will try to load the theme and returns whether or not that succeeded. 
 function au_load_theme($theme){
 
+	// We need this one to know whether we have to display a fatal error
+	$return_false = false;
+
 	// Do we have a theme, like, at all?
 	if(empty($theme))
-		exit;
+		$return_false = true;
 
 	// Let's put our path to base_template.php in a beautiful variable
 	$filename = au_get_path_from_root("themes/".$theme."/base_template.php");
 
 	// Does our theme have a base_template, if it doesn't we don't even have to try.
 	if(!file_exists($filename))
-		exit;
+		$return_false = true;
+
+	// Do we have to tell the bad news?
+	if($return_false)
+		au_fatal_error(2, "The value '" . au_get_setting("themea") . "' was assumed as theme.");
 
 	// Apparently all is right, so let's get that party started...
-	return include_once $filename;
+	else
+		return include_once $filename;
 
 }
 
@@ -51,6 +59,6 @@ function au_load_template($template){
 		return include_once $filename_hannover;
 
 	// Otherwise... this is the end
-		return die("Fatal template error");
+		return au_fatal_error(3, "Template '" . $filename . "' was not found.");
 		
 }
