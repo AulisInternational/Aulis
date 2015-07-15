@@ -70,9 +70,6 @@ while($core = $cores->fetchObject()){
 // Now it's time to finalize our output and call in the theme's base template
 au_finalize_output();
 
-//
-die(au_hash_password("unicorn", "Charlie", "2015-07-15 01:01:39"));
-
 // Calling the theme...
 au_load_theme(au_get_setting("theme"));
 
