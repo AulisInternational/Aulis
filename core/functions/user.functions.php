@@ -77,7 +77,7 @@ function au_get_user_by_name($user_name)
 		return false;
 
 	// Get the user
-	$user = au_query("SELECT * FROM users WHERE user_username = " . $user_username . " LIMIT 1;");
+	$user = au_query("SELECT * FROM users WHERE user_username = " . $user_name . " LIMIT 1;");
 
 	// If this potential user exists, it's all right, return it
 	if($user->rowCount() === 1)
