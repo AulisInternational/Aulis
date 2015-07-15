@@ -41,8 +41,11 @@ function au_fatal_error($error_code, $error_message){
 	// Time to include the error template
 	include_once au_get_path_from_root("library/static/error_include/error.php");
 
-	// To stardust
-	return die();
+	// Stardust
+	die();
+
+	// An error is never good news
+	return false;
 
 }
 

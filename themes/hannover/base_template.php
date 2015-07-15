@@ -9,7 +9,7 @@
 || File: 			base_template.php
 || Last change:		July, 2015
 */
-global $aulis; ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
