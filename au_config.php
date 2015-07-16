@@ -20,6 +20,11 @@ if(!defined('aulis'))
 // Making a global array
 global $aulis;
 $aulis = array();
+
+// The current software version
+$aulis['version'] = '0.01 Alpha 1';
+
+// Some general stuff
 $aulis['file'] = 'index.php'; // You may change this, if you decide to move all functionality to another file
 $aulis['settings'] = array();
 $aulis['user'] = null;

@@ -9,15 +9,13 @@
 || File: 			base_template.php
 || Last change:		July, 2015
 */
-?>
-<!DOCTYPE html>
+
+echo '<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>
-	<?php
-  		echo $aulis['page']['title']." - ".au_get_setting("site_title");
-  	?>
+		' . $aulis['page']['title'] . ' - ' . au_get_setting("site_title") . '
     </title>
     <link rel="stylesheet" href="themes/hannover/css/main.css">
     <link rel="stylesheet" href="library/css-assets/icons.css">
@@ -30,8 +28,8 @@
   		<div class="top-stripe bg1"></div>
   		<div class="logobar bg2">
 	  		<div class="iconstack float-left">
-	  			<a class='icon i-menu i-24' href="javascript:void();"></a>
-	  			<a class='icon i-house i-24' href="javascript:void();"></a>
+	  			<a class="icon i-menu i-24" href="javascript:void();"></a>
+	  			<a class="icon i-house i-24" href="javascript:void();"></a>
 	  		</div> 
 	  		<img src="themes/hannover/images/logo.svg" />
   		</div>
@@ -46,12 +44,12 @@
   			</div>
   		</div>
   		<script>
-		 $('header').mouseenter(function(){
-		    $('.nav-up').removeClass('nav-up');
+		 $(\'header\').mouseenter(function(){
+		    $(\'.nav-up\').removeClass(\'nav-up\');
 		});
-		 $('header').mouseleave(function(){
+		 $(\'header\').mouseleave(function(){
 		 	if(wearedown){
-		 		$(this).addClass('nav-up');
+		 		$(this).addClass(\'nav-up\');
 		 	}
 		});
 		</script>
@@ -59,16 +57,14 @@
   	<main>
 	  	<div class="wrapper bg4">
 		  	<div class="page white">
-		  	<?php
-		  		echo $aulis['page']['final_content'];
-		  	?>
+				' . $aulis['page']['final_content'] . '
 		  	</div>
 	  	</div>
   	</main>
   	<div class="footer">
   	<img src="themes/hannover/images/logo_footer.svg" />
-  	powered by <a href="http://germanics.org/aulis">Aulis  0.01</a>
+		' . $aulis['copyright'] . '
   	</div>
   	<br class="clear" />
   </body>
-</html>
+</html>';
