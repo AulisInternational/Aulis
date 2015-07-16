@@ -41,69 +41,39 @@ session_start();
 // Load the user information into $aulis
 au_load_user();
 
-// Let's load the language files
+// Let's load the language files, I mean, we want to communicate with them, right?
 au_load_language(au_get_setting("language"));
 
-// What apps do we have and can we load?
-$apps = array(
-	'frontpage' => array(
-		'core' => 'Frontpage.php',
-		'function' => 'au_load_frontpage',
-		'maintenance' => false,
-		'load_file' => true,
-		'load_function' => true,
-		'title' => '',
-	),
-);
+// Information about apps and their cores are listed and added to $aulis in /core/_CoreArray.php
+include au_get_path_from_root('core/_CoreArray.php');
 
-	// Verify the user's input
-	if(!empty($_GET['app']) && array_key_exists($_GET['app'], $apps))
-		$current_app = $_GET['app'];
+// Verify the user's input
+if(!empty($_GET['app']) && array_key_exists($_GET['app'], $aulis['apps']))
+	$current_app = $_GET['app'];
+
+// Okay, the requested page doesn't exist
+elseif(empty($_GET['app']) || !array_key_exists($_GET['app'], $aulis['apps']))
+	$current_app = 'frontpage';
 	
-	// Okay, the requested page doesn't exist
-	elseif(empty($_GET['app']) || !array_key_exists($_GET['app'], $apps))
-		$current_app = 'frontpage';
-		
-	// Things are fine the way they are
-	else
-		$current_app = $_GET['app'];
-		
-	// Do we need to load an extra file?
-	if($apps[$current_app]['load_file'] == true)
-		require $aulis['root_path'] . '/core/' . $apps[$current_app]['core'];
-		
-	// We need a page title. Let's create one.
-	$aulis['page_title'] = (!empty($apps[$current_app]['title']) ? $apps[$current_app]['title'] . ' | ' : '') . au_get_setting('site_title') . (!empty(au_get_setting('site_slogan')) ? ' | ' . au_get_setting('site_slogan') : '');
-
-	// Let's load the function, if we need to
-	if($apps[$current_app]['load_function'] == true)
-		$apps[$current_app]['function']();
+// Things are fine the way they are
+else
+	$current_app = $_GET['app'];
 	
-// ^ we can do either that, or redirect via au_url("?" . au_get_setting("default_core"), true)
+// Do we need to load an extra file?
+if($aulis['apps'][$current_app]['load_file'] == true)
+	require $aulis['root_path'] . '/core/' . $aulis['apps'][$current_app]['core'];
+	
+// We need a page title. Let's create one.
+$aulis['page_title'] = (!empty($aulis['apps'][$current_app]['title']) ? $aulis['apps'][$current_app]['title'] . ' | ' : '') . au_get_setting('site_title') . (!empty(au_get_setting('site_slogan')) ? ' | ' . au_get_setting('site_slogan') : '');
 
-// Get the cores from the database
-$cores = au_get_cores();
-
-// Go through the cores
-while($core = $cores->fetchObject()){
-
-	// if the request of this core has been given in the URL, we need to load it.
-	if(isset($_GET[$core->request])){
-
-		// loading the core...
-		au_load_core($core->core);
-
-		// escaping from this loop...
-		break;
-
-	}
-
-}
-
+// Let's load the function, if we need to
+if($aulis['apps'][$current_app]['load_function'] == true)
+	$aulis['apps'][$current_app]['function']();
+	
 // Now it's time to finalize our output and call in the theme's base template
 au_finalize_output();
 
-// Calling the theme...
+// Calling the theme..., let's hope it responds our call.
 au_load_theme(au_get_setting("theme"));
 
 // In the end, there is nothing left but star dust.
