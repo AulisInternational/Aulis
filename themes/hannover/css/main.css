@@ -107,7 +107,7 @@ ul {
    list-style-image: url('../images/bullet.png');
 }
 
-/* Colours */
+/* Colors */
 .cwhite{
 	color: white;
 }
@@ -271,6 +271,7 @@ main{
 	margin-left: 10%;
 	margin-right: 10%;
 	font-size: 11px;
+	font-family: Verdana, Calibri, Arial;
 	padding: 10px;
 	text-align: center;
 

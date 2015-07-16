@@ -62,8 +62,8 @@ echo '<!DOCTYPE html>
 	  	</div>
   	</main>
   	<div class="footer">
-  	<img src="themes/hannover/images/logo_footer.svg" />
-		' . $aulis['copyright'] . '
+		<div class="float-left">' . $aulis['copyright'] . '</div>
+		<div class="float-right"><strong>' . FOOTER_LANGUAGE . '</strong>' . LANGUAGE_NAME . '</div>
   	</div>
   	<br class="clear" />
   </body>

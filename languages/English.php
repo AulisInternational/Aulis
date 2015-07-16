@@ -26,3 +26,6 @@ if(!defined('aulis'))
 // Some basic information about the language itself
 define('LANGUAGE_NAME', 'English (US)');
 define('LANGUAGE_CODE', 'en');
+
+// Strings that are used pretty much everywhere
+define('FOOTER_LANGUAGE', 'Language: ');
