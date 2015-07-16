@@ -44,12 +44,41 @@ au_load_user();
 // Let's load the language files
 au_load_language(au_get_setting("language"));
 
-// The following part makes sure the right code is loaded
+// What apps do we have and can we load?
+$apps = array(
+	'frontpage' => array(
+		'core' => 'Frontpage.php',
+		'function' => 'au_load_frontpage',
+		'maintenance' => false,
+		'load_file' => true,
+		'load_function' => true,
+		'title' => '',
+	),
+);
 
-// If there is no core request in the URL, we need to simulate one.
-if(empty($_GET))
-	$_GET[au_get_setting("default_core")] = '';
+	// Verify the user's input
+	if(!empty($_GET['app']) && array_key_exists($_GET['app'], $apps))
+		$current_app = $_GET['app'];
+	
+	// Okay, the requested page doesn't exist
+	elseif(empty($_GET['app']) || !array_key_exists($_GET['app'], $apps))
+		$current_app = 'frontpage';
+		
+	// Things are fine the way they are
+	else
+		$current_app = $_GET['app'];
+		
+	// Do we need to load an extra file?
+	if($apps[$current_app]['load_file'] == true)
+		require $aulis['root_path'] . '/core/' . $apps[$current_app]['core'];
+		
+	// We need a page title. Let's create one.
+	$aulis['page_title'] = (!empty($apps[$current_app]['title']) ? $apps[$current_app]['title'] . ' | ' : '') . au_get_setting('site_title') . (!empty(au_get_setting('site_slogan')) ? ' | ' . au_get_setting('site_slogan') : '');
 
+	// Let's load the function, if we need to
+	if($apps[$current_app]['load_function'] == true)
+		$apps[$current_app]['function']();
+	
 // ^ we can do either that, or redirect via au_url("?" . au_get_setting("default_core"), true)
 
 // Get the cores from the database

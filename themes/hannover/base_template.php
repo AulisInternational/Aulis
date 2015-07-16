@@ -15,7 +15,7 @@ echo '<!DOCTYPE html>
   <head>
     <meta charset="utf-8">
     <title>
-		' . $aulis['page']['title'] . ' - ' . au_get_setting("site_title") . '
+		' . $aulis['page_title']. '
     </title>
     <link rel="stylesheet" href="themes/hannover/css/main.css">
     <link rel="stylesheet" href="library/css-assets/icons.css">

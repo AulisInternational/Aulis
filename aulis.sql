@@ -113,7 +113,9 @@ INSERT INTO `aulis_settings` (`id_setting`, `setting_name`, `setting_value`) VAL
 (1,	'theme',	'hannover'),
 (2,	'site_title',	'Aulis'),
 (3,	'language',	'English'),
-(4,	'default_core',	'blogindex');
+(4,	'default_core',	'blogindex'),
+(5, 'site_slogan', 'Hello'),
+(6, 'enable_maintenance', 0);
 
 CREATE TABLE `aulis_users` (
   `user_id` int(11) NOT NULL,
