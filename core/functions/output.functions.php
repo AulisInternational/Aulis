@@ -82,3 +82,11 @@ function au_error_box($error){
 	return au_load_template("errorbox");
 
 }
+
+// This function parses the output for blog entries
+function au_parse_blog($content){
+
+	// DUMMY FUNCTION
+	return nl2br($content);
+
+}

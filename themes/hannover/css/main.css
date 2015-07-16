@@ -397,8 +397,7 @@ main{
 
 /* BLOG STUFF */
 .blog_preview_wrapper{
-	background-color: rgba(230,230,230,0.005);
-	padding: 10px;
+	background-color: rgba(230,230,230,0.0009);
 }
 
 .blog_preview_wrapper h1{

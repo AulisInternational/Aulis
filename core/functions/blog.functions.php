@@ -50,7 +50,7 @@ function au_get_blog_category_name($category_id){
 	$category = au_query("SELECT category_name FROM blog_categories WHERE id  = {$category_id} LIMIT 1;");
 
 	// It has to exist
-	if($category->rowCount === 0)
+	if($category->rowCount() === 0)
 		return false;
 
 	// Fetch the object

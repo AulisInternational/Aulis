@@ -53,4 +53,4 @@ $aulis['page']['transfer'] = '';
 
 // Important paths!
 $aulis['root_path'] = dirname(__FILE__);
-$aulis['absolute_path'] = "http://localhost/Aulis";
+$aulis['absolute_path'] = "http://localhost/Aulis/";

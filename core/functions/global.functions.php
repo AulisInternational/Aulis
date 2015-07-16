@@ -105,19 +105,19 @@ function au_date($time_stamp, $show_time = true, $show_seconds = false, $timezon
 	// Is it today? 
 	if(date('d/m/Y') == date('d/m/Y', strtotime($time_stamp)))
 	{
-		$e .= "<b>".DATE_TODAY."</b>";
+		$e .= DATE_TODAY;
 	}
 
 	// ... yesterday maybe?
 	elseif(date("d/m/Y",mktime(0,0,0,date("m") ,date("d")-1,date("Y"))) == date('d/m/Y', strtotime($time_stamp)))
 	{
-		$e .= "<b>".DATE_YESTERDAY."</b>";
+		$e .= DATE_YESTERDAY;
 	}
 
 	// Tomorrow then?
 	elseif(date("d/m/Y",mktime(0,0,0,date("m") ,date("d")+1,date("Y"))) == date('d/m/Y', strtotime($time_stamp)))
 	{
-		$e .= "<b>".DATE_TOMORROW."</b>";
+		$e .= DATE_TOMORROW;
 	}
 
 	// This week? We just show the name of the day then

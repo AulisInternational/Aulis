@@ -29,4 +29,4 @@ define('BLOG_ENTRIES', "entries");
 define('BLOG_NO_ENTRIES_FOUND', "No entries have been found.");
 
 // Blog information
-define('BLOG_POSTED_IN', "Posted in %S");
+define('BLOG_POSTED_IN', "Posted in %s");
