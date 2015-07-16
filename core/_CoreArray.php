@@ -8,8 +8,8 @@
 || License: 		MIT
 || Version: 		0.01
 || * File information * 
-||		-> blogindex.php
-| 		-> // This file contains the logic for the blog index
+||		-> _CoreArray.php
+| 		-> // This file contains the information about all actions our main index.php can preform. 
 || 		-> Last change: July, 2015
 */
 
@@ -33,6 +33,14 @@ $aulis['apps'] = array(
 	'boardindex' => array(
 		'core' => 'BoardIndex.php',
 		'function' => 'au_show_boardindex',
+		'maintenance' => false,
+		'load_file' => true,
+		'execute_function' => true,
+		'title' => '',
+	),
+	'blogindex' => array(
+		'core' => 'BlogIndex.php',
+		'function' => 'au_show_blogindex',
 		'maintenance' => false,
 		'load_file' => true,
 		'execute_function' => true,

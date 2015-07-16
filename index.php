@@ -51,7 +51,7 @@ include au_get_path_from_root('core/_CoreArray.php');
 if(!empty($_GET['app']) && array_key_exists($_GET['app'], $aulis['apps']))
 	$current_app = $_GET['app'];
 
-// Okay, the requested page doesn't exist
+// Okay, the requested app doesn't exist
 elseif(empty($_GET['app']) || !array_key_exists($_GET['app'], $aulis['apps']))
 	$current_app = 'frontpage';
 	
@@ -66,9 +66,9 @@ if($aulis['apps'][$current_app]['load_file'] == true)
 // We need a page title. Let's create one.
 $aulis['page_title'] = (!empty($aulis['apps'][$current_app]['title']) ? $aulis['apps'][$current_app]['title'] . ' | ' : '') . au_get_setting('site_title') . (!empty(au_get_setting('site_slogan')) ? ' | ' . au_get_setting('site_slogan') : '');
 
-// Let's load the function, if we need to
-if($aulis['apps'][$current_app]['load_function'] == true)
-	$aulis['apps'][$current_app]['function']();
+// Let's execute the function, if we need to
+if($aulis['apps'][$current_app]['execute_function'] == true)
+	call_user_func($aulis['apps'][$current_app]['function']);
 	
 // Now it's time to finalize our output and call in the theme's base template
 au_finalize_output();

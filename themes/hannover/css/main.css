@@ -140,7 +140,7 @@ ul {
 }
 
 .c5{
-	color: #c83737;
+	color: #c83737!important;
 }.bg6{
 	background-color: #9ae3b7;
 }
@@ -235,22 +235,26 @@ main{
 		height: 33px;
 		float: left;
 		text-transform: uppercase;
-		font-weight: bold;
 		text-decoration: none;
+		font-weight: bold;
 		font-family: overpass;
 		font-size: 15px;
 		color: white;
 		padding-left: 5px;
 		padding-right: 5px;
 		margin-right: 10px;
+		transition-delay: 0s;
+		transition-duration: 0.5s;
+		transition-property: color;
+		transition-timing-function: linear;
 	}
 
 	.navbar a:hover{
-		text-decoration: underline;
+		color: #2ca05a!important;
 	}
 
 	.navbar a.active{
-		background-color: #2ca05a;
+		color: #2ca05a!important;
 	}
 
 .wrapper{
@@ -390,3 +394,13 @@ main{
 		table.boardindex .subboards{
 			font-size: 14px;
 		}
+
+/* BLOG STUFF */
+.blog_preview_wrapper{
+	background-color: rgba(230,230,230,0.005);
+	padding: 10px;
+}
+
+.blog_preview_wrapper h1{
+	margin-bottom: -10px;
+}

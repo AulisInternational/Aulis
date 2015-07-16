@@ -17,4 +17,44 @@
 if(!defined('aulis'))
 	header("Location: index.php");
 
-au_error_box("Nothing to see here.");
+
+// This core has some requirments for the big $aulis
+$aulis['blog'] = array();
+
+
+function au_show_blogindex(){
+
+	// $aulis might come in handy here
+	global $aulis;
+
+	// Did our lovely user specify a page?
+	if(isset($_GET['page']) && is_numeric($_GET['page']))
+		$page = $_GET['page'];
+	else
+		$page = 1;
+
+	// Let's load all blog entries that are activated and are not in the queue
+	$entries = au_parse_pagination("SELECT * FROM blog_entries WHERE blog_activated = 1 and blog_in_queue = 0 ORDER BY blog_date DESC;", $page, 10);
+
+	// If there are no entries, there is no need to even continue
+	if($entries->rowCount() === 0)
+		return au_error_box(BLOG_NO_ENTRIES_FOUND);
+
+	// For each blog item, we want to show its preview
+	while($entry = $entries->fetchObject())
+		au_show_blog_preview($entry);
+	
+}
+
+function au_show_blog_preview($entry){
+
+	// Oh big $aulis, hear my prayer
+	global $aulis;
+
+	// Transfer the entry
+	$aulis['blog']['entry'] = $entry;
+
+	// Load the preview template
+	return au_load_template("blog_preview");
+
+}

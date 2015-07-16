@@ -39,3 +39,24 @@ function au_get_blog_entry($entry_id){
 	return au_query("SELECT * FROM blog_entries WHERE id = " . $entry_id . " LIMIT 1;");
 
 }
+
+
+// Category functions below:
+
+// This function gets the name of a category
+function au_get_blog_category_name($category_id){
+
+	// Let's get the category in question form the database
+	$category = au_query("SELECT category_name FROM blog_categories WHERE id  = {$category_id} LIMIT 1;");
+
+	// It has to exist
+	if($category->rowCount === 0)
+		return false;
+
+	// Fetch the object
+	$obtained_category = $category->fetchObject();
+
+	// And return the name
+	return $obtained_category->category_name;
+
+}
