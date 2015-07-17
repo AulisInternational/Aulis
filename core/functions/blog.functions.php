@@ -99,12 +99,12 @@ function au_blog_url($input, $header = false)
 function au_encrypt_blog_id($id){
 
 	// return the encrypted blog_id
-	return $id * 8273 + 100;
+	return $id * 10007 + 821;
 
 }
 
 function au_decrypt_blog_id($id){
 
-	return ($id - 100) / 8273;
+	return ($id - 821) / 10007;
 
 }

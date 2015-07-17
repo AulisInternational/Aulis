@@ -8,6 +8,10 @@
 || License: 		MIT
 || File: 			base_template.php
 || Last change:		July, 2015
+
+
+<script src="' . $aulis['absolute_path'] . 'themes/hannover/scroll-header.js"></script>
+
 */
 
 echo '<!DOCTYPE html>
@@ -21,7 +25,7 @@ echo '<!DOCTYPE html>
     <link rel="stylesheet" href="' . $aulis['absolute_path'] . '/library/css-assets/icons.css">
  	<link rel="shortcut icon" type="image/png" href="' . $aulis['absolute_path'] . 'library/static/favicon.png" />
  	<script src="' . $aulis['absolute_path'] . 'library/js-assets/jquery-1.11.3.min.js"></script>
- 	<script src="' . $aulis['absolute_path'] . 'themes/hannover/scroll-header.js"></script>
+ 	
   </head>
   <body class="bg4">
   	<header>
@@ -62,7 +66,7 @@ echo '<!DOCTYPE html>
 	  	</div>
   	</main>
   	<div class="footer">
-		<div class="float-left">' . $aulis['copyright'] . '<br /><img src="' . $aulis['absolute_path'] . 'themes/hannover/images/logo_footer.svg" /></div>
+		<div class="float-left"><a href="http://germanics.org/aulis" target="_blank">' . $aulis['copyright'] . '</a><br /><img src="' . $aulis['absolute_path'] . 'themes/hannover/images/logo_footer.svg" /></div>
 		<div class="float-right"><strong>' . FOOTER_LANGUAGE . '</strong>' . LANGUAGE_NAME . '</div>
   	</div>
   	<br class="clear" />

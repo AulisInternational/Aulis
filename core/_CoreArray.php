@@ -54,4 +54,12 @@ $aulis['apps'] = array(
 		'execute_function' => true,
 		'title' => '',
 	),
+	'blogactions' => array(
+		'core' => '',
+		'function' => 'au_preform_blog_actions',
+		'maintenance' => false,
+		'load_file' => false,
+		'execute_function' => true,
+		'title' => '',
+	),
 );

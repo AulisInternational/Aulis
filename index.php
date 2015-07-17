@@ -26,7 +26,7 @@ include 'au_config.php';
 global $aulis;
 
 // Ok, we need a copyright line. We might as well create it here
-$aulis['copyright'] = '<a href="http://germanics.org/aulis" target="_blank">Powered by Aulis, version ' . $aulis['version'] . '</a>';
+$aulis['copyright'] = 'Powered by Aulis, version ' . $aulis['version'];
 
 // It's not like that's all, we need our functions to be loaded too
 foreach(glob($aulis['root_path'] . '/core/functions/*.functions.php') as $filename)

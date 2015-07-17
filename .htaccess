@@ -1,0 +1,14 @@
+ErrorDocument 404 index.php?404
+
+RewriteEngine On
+
+
+# Blog rewrites
+	RewriteRule ^blog$ index.php/?app=blogindex
+
+	# website.com/entries/6810181/een-jaar-naar-zweden
+	RewriteRule ^entries/([0-9]+)/([^/]*)$ index.php/?app=blogentry&id=$1
+
+	# website.com/entry/2015/07/18/een-jaar-naar-zweden
+	# RewriteRule ^entry/([0-9]{4})/([0-9]{2})/([0-9]{2})/([^/]*)$ index.php/?app=blogentry&id=$1
+

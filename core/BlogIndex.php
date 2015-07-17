@@ -37,11 +37,11 @@ function au_show_blogindex(){
 	$entries = au_parse_pagination("SELECT * FROM blog_entries WHERE blog_activated = 1 and blog_in_queue = 0 ORDER BY blog_date DESC;", $page, 10);
 
 	// If there are no entries, there is no need to even continue
-	if($entries->rowCount() === 0)
+	if($entries['paged']->rowCount() === 0)
 		return au_error_box(BLOG_NO_ENTRIES_FOUND);
 
 	// For each blog item, we want to show its preview
-	while($entry = $entries->fetchObject())
+	while($entry = $entries['paged']->fetchObject())
 		au_show_blog_preview($entry);
 	
 }
