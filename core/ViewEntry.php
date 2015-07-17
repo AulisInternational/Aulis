@@ -13,8 +13,44 @@
 || 		-> Last change: July, 2015
 */
 
-// We can't access this file, if not from index.php, so let's check
-if(!defined('aulis'))
-	header("Location: index.php");
+function au_show_entry(){
 
-au_error_box("Nothing to see here.");
+	// Praise the big $aulis
+	global $aulis;
+
+	// We can't access this file, if not from index.php, so let's check
+	if(!defined('aulis'))
+		header("Location: index.php");
+
+	// We need to decrypt the blog id, if numeric
+	if(isset($_GET['id']) and is_numeric($_GET['id']))
+		$entry_id = au_decrypt_blog_id($_GET['id']);
+	// No id...
+	else
+		$entry_id = 0;
+
+	// This if is needed to check whether our blog entry exists
+	if(au_exist_blog_entry($entry_id)){
+
+		// Obtain the entry from the big (or small, it all depends) database
+		$aulis['blog']['entry'] = au_get_blog_entry($entry_id);
+		
+		// Prepare some url inputs
+		$aulis['blog']['url_input'] = array(
+			"app" => "blogentry",
+			"id" => $aulis['blog']['entry']->id,
+			"title" => $aulis['blog']['entry']->blog_name
+		);
+
+		// Load the template
+		au_load_template("blog_entry");
+
+	}
+
+	// Bummer... we have to dissappoint them :'(
+	else
+		au_error_box(BLOG_NOT_FOUND);
+
+}
+
+

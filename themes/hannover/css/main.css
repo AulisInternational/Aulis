@@ -282,9 +282,9 @@ main{
 }
 
 	.footer img{
-		float: right;
 		height: 15px;
 		width: auto;
+		float: left;
 	}
 
 /* Second layer elements */
@@ -400,6 +400,19 @@ main{
 	background-color: rgba(230,230,230,0.0009);
 }
 
-.blog_preview_wrapper h1{
-	margin-bottom: -10px;
+	.blog_preview_wrapper h1{
+		margin-bottom: -10px;
+	}
+
+.blog_full_wrapper{
+	background-color: rgba(230,230,230,0.0009);
+
 }
+
+	.blog_full_wrapper h1{
+		margin-bottom: -10px;
+	}
+	.blog_full_wrapper p{
+		font-family: playfair;
+		font-size: 16px;
+	}

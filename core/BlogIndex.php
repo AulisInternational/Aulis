@@ -51,6 +51,13 @@ function au_show_blog_preview($entry){
 	// Oh big $aulis, hear my prayer
 	global $aulis;
 
+	// The au_blog_url input for this entry
+	$aulis['blog']['url_input'] = array(
+		"app" => "blogentry",
+		"id" => $entry->id,
+		"title" => $entry->blog_name
+	);
+
 	// Transfer the entry
 	$aulis['blog']['entry'] = $entry;
 

@@ -27,6 +27,7 @@ if(!defined('aulis'))
 define('BLOG_ENTRY', "entry");
 define('BLOG_ENTRIES', "entries");
 define('BLOG_NO_ENTRIES_FOUND', "No entries have been found.");
+define('BLOG_NOT_FOUND', "The requested blog entry has not been found, we are sorry.");
 
 // Blog information
 define('BLOG_POSTED_IN', "Posted in %s");

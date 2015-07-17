@@ -17,11 +17,11 @@ echo '<!DOCTYPE html>
     <title>
 		' . $aulis['page_title']. '
     </title>
-    <link rel="stylesheet" href="themes/hannover/css/main.css">
-    <link rel="stylesheet" href="library/css-assets/icons.css">
- 	<link rel="shortcut icon" type="image/png" href="library/static/favicon.png" />
- 	<script src="library/js-assets/jquery-1.11.3.min.js"></script>
- 	<script src="themes/hannover/scroll-header.js"></script>
+    <link rel="stylesheet" href="' . $aulis['absolute_path'] . '/themes/hannover/css/main.css">
+    <link rel="stylesheet" href="' . $aulis['absolute_path'] . '/library/css-assets/icons.css">
+ 	<link rel="shortcut icon" type="image/png" href="' . $aulis['absolute_path'] . 'library/static/favicon.png" />
+ 	<script src="' . $aulis['absolute_path'] . 'library/js-assets/jquery-1.11.3.min.js"></script>
+ 	<script src="' . $aulis['absolute_path'] . 'themes/hannover/scroll-header.js"></script>
   </head>
   <body class="bg4">
   	<header>
@@ -31,7 +31,7 @@ echo '<!DOCTYPE html>
 	  			<a class="icon i-menu i-24" href="javascript:void();"></a>
 	  			<a class="icon i-house i-24" href="javascript:void();"></a>
 	  		</div> 
-	  		<img src="themes/hannover/images/logo.svg" />
+	  		<img src="' . $aulis['absolute_path'] . 'themes/hannover/images/logo.svg" />
   		</div>
   		<div class="navbar bg3">
 	  		<div class="menustack float-left">
@@ -62,7 +62,7 @@ echo '<!DOCTYPE html>
 	  	</div>
   	</main>
   	<div class="footer">
-		<div class="float-left">' . $aulis['copyright'] . '</div>
+		<div class="float-left">' . $aulis['copyright'] . '<br /><img src="' . $aulis['absolute_path'] . 'themes/hannover/images/logo_footer.svg" /></div>
 		<div class="float-right"><strong>' . FOOTER_LANGUAGE . '</strong>' . LANGUAGE_NAME . '</div>
   	</div>
   	<br class="clear" />

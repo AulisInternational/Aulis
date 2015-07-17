@@ -46,7 +46,7 @@ $aulis['apps'] = array(
 		'execute_function' => true,
 		'title' => '',
 	),
-	'entry' => array(
+	'blogentry' => array(
 		'core' => 'ViewEntry.php',
 		'function' => 'au_show_entry',
 		'maintenance' => false,

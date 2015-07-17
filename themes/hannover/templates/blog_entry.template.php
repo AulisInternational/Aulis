@@ -8,8 +8,8 @@
 || License: 		MIT
 || Version: 		0.01
 || * File information * 
-||		-> blog_preview.template.php
-| 		-> // This file the template of the preview of entries in the blog index
+||		-> blog_entry.template.php
+| 		-> // This file is the template of the full view of blog entries
 || 		-> Last change: July, 2015
 */
 
@@ -20,7 +20,7 @@ $e = $aulis['blog']['entry'];
 $href = au_blog_url($aulis['blog']['url_input']);
 
 // The wrapper
-au_out("<div class='blog_preview_wrapper'>");
+au_out("<div class='blog_full_wrapper'>");
 
 // The heading
 au_out("<h1><a href='" . $href . "'>" . $e->blog_name . "</a></h1>");
@@ -30,7 +30,7 @@ au_out("<span class='sub'><a class='icon i-category i-12'></a> " . sprintf(BLOG_
 	 <a class='icon i-clock i-12'></a> " . au_date($e->blog_date) . "</span>");
 
 // The content
-au_out("<p>" . au_parse_blog($e->blog_intro) . "</p>");
+au_out("<p>" . au_parse_blog($e->blog_content) . "</p>");
 
 // Ending the wrapper
 au_out("</div>");
