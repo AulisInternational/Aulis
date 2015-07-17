@@ -44,7 +44,7 @@ echo '<!DOCTYPE html>
 	  			<a href="javascript:void();">Log in</a>
 	  			<a href="javascript:void();">Sign up</a>
 	  			<a href="javascript:void();" class="c7">Admin panel</a>
-	  			<a href="javascript:void();" class="c5">Moderate (11)</a>
+	  			<a href="javascript:void();" class="c1">Moderate (11)</a>
   			</div>
   		</div>
   		<script>

@@ -12,8 +12,8 @@
 /* Color variables */
 
 
-::-moz-selection { background: #d08b00; }
-::selection { background: #d08b00; }
+::-moz-selection { background: #2ca05a; }
+::selection { background: #2ca05a; }
 
 /* Let's get this party started */
 ::-webkit-scrollbar {
@@ -225,6 +225,9 @@ main{
 	min-height: 40px;
 	padding-left: 10%;
 	padding-right: 10%;
+	background: url('../images/woodback2.jpeg');
+	border-bottom: 4px solid #000;
+	border-top: 1px solid #241f1c;
 }
 	.navbar a
 	{
@@ -254,7 +257,9 @@ main{
 	}
 
 	.navbar a.active{
-		color: #2ca05a!important;
+		background-repeat: no-repeat;
+		background-image: url(../images/arrow_down.png);
+		background-position: bottom center;
 	}
 
 .wrapper{

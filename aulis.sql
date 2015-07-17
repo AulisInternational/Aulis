@@ -11,6 +11,8 @@ CREATE TABLE `aulis_blog_categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `aulis_blog_categories` (`id`, `category_name`) VALUES
+(1, 'General entries');
 
 CREATE TABLE `aulis_blog_comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -35,9 +37,12 @@ CREATE TABLE `aulis_blog_entries` (
   `blog_featured` int(11) NOT NULL,
   `blog_in_queue` int(11) NOT NULL,
   `blog_can_comment` int(11) NOT NULL,
+  `blog_category` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `aulis_blog_entries` (`id`, `blog_name`, `blog_intro`, `blog_content`, `blog_date`, `blog_poster`, `blog_activated`, `blog_featured`, `blog_in_queue`, `blog_can_comment`, `blog_category`) VALUES
+(1, 'Rainy Day',  'The day is cold, and dark, and dreary; \nIt rains, and the wind is never weary; \nThe vine still clings to the mouldering wall, \nBut at every gust more dead leaves fall, \n   And the day is dark and dreary.\n\nMy life is cold and dark and dreary; \nIt rains and the wind is never weary; \nMy thoughts still cling to the mouldering Past, \nAnd youth\'s fond hopes fall thick in the blast, \n   And my life is dark and dreary.\n\nBe still, sad heart! and cease repining; \nBehind the clouds is the sun still shining; \nThy fate is the common fate of all, \nInto each life some rain must fall, \n   Some days must be dark and dreary.',  'The poem you read in the introduction of this entry is written by Henry Wadsworth Longfellow in 1842\n\nThe day is cold, and dark, and dreary; \nIt rains, and the wind is never weary; \nThe vine still clings to the mouldering wall, \nBut at every gust more dead leaves fall, \n   And the day is dark and dreary.\n\nMy life is cold and dark and dreary; \nIt rains and the wind is never weary; \nMy thoughts still cling to the mouldering Past, \nAnd youth\'s fond hopes fall thick in the blast, \n   And my life is dark and dreary.\n\nBe still, sad heart! and cease repining; \nBehind the clouds is the sun still shining; \nThy fate is the common fate of all, \nInto each life some rain must fall, \n   Some days must be dark and dreary.',  '2015-07-17 00:40:05',  1,  1,  1,  0,  1,  1);
 
 CREATE TABLE `aulis_blog_queue` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -72,10 +77,10 @@ CREATE TABLE `aulis_core` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `aulis_core` (`id`, `request`, `core`) VALUES
-(1,	'blog',	'ViewBlog'),
-(2,	'topic',	'ViewTopic'),
-(3,	'blogindex',	'BlogIndex'),
-(4,	'board',	'ViewBoard');
+(1, 'entry',  'ViewEntry'),
+(2, 'topic',  'ViewTopic'),
+(3, 'blogindex',  'BlogIndex'),
+(4, 'board',  'ViewBoard');
 
 CREATE TABLE `aulis_questions` (
   `question_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -110,19 +115,21 @@ CREATE TABLE `aulis_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `aulis_settings` (`id_setting`, `setting_name`, `setting_value`) VALUES
-(1,	'theme',	'hannover'),
-(2,	'site_title',	'Aulis'),
-(3,	'language',	'English'),
-(4,	'default_core',	'blogindex'),
-(5, 'site_slogan', 'Hello'),
-(6, 'enable_maintenance', 0);
+(1, 'theme',  'hannover'),
+(2, 'site_title', 'Aulis'),
+(3, 'language', 'English'),
+(4, 'default_core', 'blogindex'),
+(5, 'site_slogan',  'Hello'),
+(6, 'enable_maintenance', '0'),
+(7, 'enable_blog_url_rewriting',  '1');
 
 CREATE TABLE `aulis_users` (
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_username` tinytext NOT NULL,
   `user_password` text NOT NULL,
   `user_email` tinytext NOT NULL,
-  `user_birthdate` tinytext NOT NULL,
+  `user_birthdate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `user_regdate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `user_gender` int(11) NOT NULL,
   `user_group` int(11) NOT NULL,
   `user_include_groups` mediumtext NOT NULL,
@@ -133,8 +140,11 @@ CREATE TABLE `aulis_users` (
   `user_theme` tinytext NOT NULL,
   `user_ban` smallint(6) NOT NULL,
   `user_activated` int(11) NOT NULL,
-  `user_actcode` text NOT NULL
+  `user_actcode` text NOT NULL,
+  PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `aulis_users` (`user_id`, `user_username`, `user_password`, `user_email`, `user_birthdate`, `user_regdate`, `user_gender`, `user_group`, `user_include_groups`, `user_avatar`, `user_signature`, `user_ip`, `user_language`, `user_theme`, `user_ban`, `user_activated`, `user_actcode`) VALUES
+(1, 'Charlie',  '3d1623a30d2f71f14a1104a855230f03bfdfee0d', 'charlie@germanics.org',  '2015-07-12 00:00:00',  '2015-07-15 01:01:39',  0,  0,  '', '', '', '', '1',  '', 0,  1,  '');
 
--- 2015-07-13 18:48:12
+-- 2015-07-18 00:27:00
