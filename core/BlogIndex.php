@@ -33,8 +33,19 @@ function au_show_blogindex(){
 	else
 		$page = 1;
 
+	// Do we have to add parameters to the query?
+	if((isset($_GET['search']) and $_GET['search'] != "" and !isset($_GET['category'], $_GET['tag']) and $extra = "REGEXP '[[:<:]]".htmlentities(trim($_GET['search']))."[[:>:]]'") || (isset($_GET['category']) and is_numeric($_GET['category'])) and !isset($_GET['search'], $_GET['tag']))
+		$extra_parameters = " AND ".(isset($_GET['search']) ? "(blog_content {$extra} OR blog_intro {$extra} OR blog_name {$extra})" : '').
+		(isset($_GET['category']) ? "blog_category = {$_GET['category']}" : '');
+	// ... aparantly not
+	else
+		$extra_parameters = '';
+
+	// Let's build the query
+	$query = "SELECT * FROM blog_entries WHERE blog_activated = 1 and blog_in_queue = 0 {$extra_parameters} ORDER BY blog_date DESC;";
+
 	// Let's load all blog entries that are activated and are not in the queue
-	$entries = au_parse_pagination("SELECT * FROM blog_entries WHERE blog_activated = 1 and blog_in_queue = 0 ORDER BY blog_date DESC;", $page, 10);
+	$entries = au_parse_pagination($query, $page, 10);
 
 	// If there are no entries, there is no need to even continue
 	if($entries['paged']->rowCount() === 0)
