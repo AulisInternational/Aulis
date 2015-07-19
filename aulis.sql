@@ -121,7 +121,8 @@ INSERT INTO `aulis_settings` (`id_setting`, `setting_name`, `setting_value`) VAL
 (4, 'default_core', 'blogindex'),
 (5, 'site_slogan',  'Hello'),
 (6, 'enable_maintenance', '0'),
-(7, 'enable_blog_url_rewriting',  '1');
+(7, 'enable_blog_url_rewriting',  '1'),
+(8, 'minimum_age', '13');
 
 CREATE TABLE `aulis_users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
