@@ -37,6 +37,9 @@ $load_functions = array('blog', 'core', 'database', 'global', 'hash', 'languages
 
 // The database will be set up below this line
 au_setup_database();
+
+// Get the settings
+$setting = au_get_settings();
 	
 // Start sessions
 session_start();
@@ -70,7 +73,7 @@ if($aulis['apps'][$current_app]['load_file'] == true)
 $aulis['active'] = $aulis['apps'][$current_app]['section'];
 	
 // We need a page title. Let's create one.
-$aulis['page_title'] = (!empty($aulis['apps'][$current_app]['title']) ? $aulis['apps'][$current_app]['title'] . ' | ' : '') . au_get_setting('site_title') . (!empty(au_get_setting('site_slogan')) ? ' | ' . au_get_setting('site_slogan') : '');
+$aulis['page_title'] = (!empty($aulis['apps'][$current_app]['title']) ? $aulis['apps'][$current_app]['title'] . ' | ' : '') . $setting['site_title'] . (!empty($setting['site_slogan']) ? ' | ' . $setting['site_slogan'] : '');
 
 // Let's execute the function, if we need to
 if($aulis['apps'][$current_app]['execute_function'] == true)

@@ -16,6 +16,28 @@
 // We can't access this file, if not from index.php, so let's check
 if(!defined('aulis'))
 	header("Location: index.php");
+	
+// Load the settings from the database
+function au_get_settings() {
+
+	global $aulis;
+	
+	// Create a temporal array for the settings
+	$temp_settings = array();
+	
+	// Let's take the database out for a drink
+	$result = au_query("
+		SELECT setting_name, setting_value
+			FROM settings
+	");
+	
+	// Now, let's add them to the array
+	foreach($result as $tempsetting)
+		$temp_settings[$tempsetting['setting_name']] = $tempsetting['setting_value'];
+	
+	// Let's return the array
+	return $temp_settings;
+}
 
 function au_get_setting($setting){
 	global $aulis;
