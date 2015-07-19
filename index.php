@@ -20,7 +20,7 @@ else
 	exit;
 	
 // Important files we need to load before doing anything else.
-include 'au_config.php';
+require_once 'au_config.php';
 
 // The big $aulis is our friend, he needs te be by our side.
 global $aulis;
@@ -33,7 +33,7 @@ $load_functions = array('blog', 'core', 'database', 'global', 'hash', 'languages
 
 	// It's not like that's all, we need our functions to be loaded too
 	foreach($load_functions as $filename)
-		include $aulis['root_path'] . '/core/functions/' . $filename . '.functions.php';
+		require_once $aulis['root_path'] . '/core/functions/' . $filename . '.functions.php';
 
 // The database will be set up below this line
 au_setup_database();
@@ -48,10 +48,10 @@ session_start();
 au_load_user();
 
 // Let's load the language files, I mean, we want to communicate with them, right?
-au_load_language(au_get_setting("language"));
+au_load_language($setting['language']);
 
 // Information about apps and their cores are listed and added to $aulis in /core/_CoreArray.php
-include au_get_path_from_root('core/_CoreArray.php');
+require_once au_get_path_from_root('core/_CoreArray.php');
 
 // Verify the user's input
 if(!empty($_GET['app']) && array_key_exists($_GET['app'], $aulis['apps']))
@@ -67,7 +67,7 @@ else
 	
 // Do we need to load an extra file?
 if($aulis['apps'][$current_app]['load_file'] == true)
-	require $aulis['root_path'] . '/core/' . $aulis['apps'][$current_app]['core'];
+	require_once $aulis['root_path'] . '/core/' . $aulis['apps'][$current_app]['core'];
 	
 // So where are we now?
 $aulis['active'] = $aulis['apps'][$current_app]['section'];
@@ -75,15 +75,20 @@ $aulis['active'] = $aulis['apps'][$current_app]['section'];
 // We need a page title. Let's create one.
 $aulis['page_title'] = (!empty($aulis['apps'][$current_app]['title']) ? $aulis['apps'][$current_app]['title'] . ' | ' : '') . $setting['site_title'] . (!empty($setting['site_slogan']) ? ' | ' . $setting['site_slogan'] : '');
 
-// Let's execute the function, if we need to
+// Let's execute the function, if we need to. 
 if($aulis['apps'][$current_app]['execute_function'] == true)
-	call_user_func($aulis['apps'][$current_app]['function']);
+	// Let's check if the function even exists
+	if(function_exists($aulis['apps'][$current_app]['function']))
+		call_user_func($aulis['apps'][$current_app]['function']);
+	// Ohoh, a fatal error it is then.
+	else
+		return au_fatal_error(6, "Core '$current_app' wanted to excecute the function '{$aulis['apps'][$current_app]['function']}();'.");
 	
 // Now it's time to finalize our output and call in the theme's base template
 au_finalize_output();
 
 // Calling the theme..., let's hope it responds our call.
-au_load_theme(au_get_setting("theme"));
+au_load_theme($setting['theme']);
 
 // In the end, there is nothing left but star dust.
 die();

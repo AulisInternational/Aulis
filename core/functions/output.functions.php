@@ -18,7 +18,7 @@ if(!defined('aulis'))
 	header("Location: index.php");
 
 // This function adds output to the big $aulis variable.
-function au_out($output, $allowed = true){
+function au_out($output, $allowed = true, $aulis_key = 'content'){
 	
 	// This is important.
 	global $aulis;
@@ -28,7 +28,7 @@ function au_out($output, $allowed = true){
 	// Are we allowed to do this?
 	if($allowed)
 		// Add the desired output to the big haystack
-		return $aulis['page']['content'][] = $output;
+		return $aulis['page'][$aulis_key][] = $output;
 
 	// ... no we are not, bye
 	else
@@ -53,6 +53,9 @@ function au_finalize_output(){
 
 function au_icon($icon_name, $icon_size = 24, $icon_color = "black"){
 
+	// This is important.
+	global $aulis;
+
 	// The size needs to be known by the icons.css file
 	if(!in_array($icon_size, array(8, 12, 16, 24, 32, 48, 64, 128, 256)))
 		return false;
@@ -72,7 +75,7 @@ function au_icon($icon_name, $icon_size = 24, $icon_color = "black"){
 	$svg = str_replace("#000000", $icon_color, file_get_contents(au_get_path_from_root('library/icons/' . $icon_name . '.svg')));
 
 	// return the icon output by the template
-	return sprintf(AU_ICON_DISPLAY, $icon_size, $svg);
+	return sprintf($aulis['icon_display'], $icon_size, $svg);
 
 }
 

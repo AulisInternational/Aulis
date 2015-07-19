@@ -36,18 +36,16 @@ switch ((int)$aulis['error_code']) {
     break;
   case 5:
     $aulis['error_display'] = "Database type is unknown.";
+    break;
+  case 6:
+    $aulis['error_display'] = "Core function could not be excecuted, because it does not exist.";
     break; 
   default:
     $aulis['error_display'] = "Unknown error.";
     break;
 }
 
-// IT'S VERY IMPORTANT THAT WE NEUTRALIZE THE DATABASE USERNAME AND PASSWORD
-$aulis['db_user'] = "*******";
-$aulis['db_password'] = "*******";
-
 // Well, it's time for the template, simple to find in this static folder
-include_once "template.php"; 
-
+require_once "template.php"; 
 
 ?>

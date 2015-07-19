@@ -33,7 +33,7 @@ function au_string_is_hex($color){
 	return preg_match('/^#[a-f0-9]{6}$/i', $color);
 }
 
-// This function regulates the interal display for fatal errors
+// This function regulates the internal display for fatal errors
 function au_fatal_error($error_code, $error_message){
 
 	// These need to be global

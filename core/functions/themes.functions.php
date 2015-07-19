@@ -43,7 +43,7 @@ function au_load_theme($theme){
 
 	// Apparently all is right, so let's get that party started...
 	else
-		return include_once $filename;
+		return require_once $filename;
 
 }
 
@@ -53,18 +53,26 @@ function au_load_template($template){
 	$filename = au_get_path_from_root("themes/".au_get_setting("theme")."/templates/".$template.".template.php");
 	$filename_hannover = au_get_path_from_root("themes/hannover/templates/".$template.".template.php");
 
-	// Our template file needs access to $aulis too.
-	global $aulis;
-
 	// If it exists, all is right, return the include
 	if(file_exists($filename))
-		return include_once $filename;
+		require_once $filename;
 
 	// If it does not exist, we will have to call the file from the hannover theme
 	elseif(file_exists($filename_hannover))
-		return include_once $filename_hannover;
+		require_once $filename_hannover;
 
 	// Otherwise... this is the end, show an error and return false.
+	else
 		return au_fatal_error(3, "Template '" . $filename . "' was not found.");
+
+	// The name of the template's main function
+	$function = 'au_template_' . $template;
+
+	// We need to know whether we can exectute the template's main function
+	if(!function_exists($function))
+		return au_fatal_error(3, "The template '$template' ('" . $filename . "') should have a function called '$function();', this function was not found.");
+	
+	// We can execute our function, hooray	
+		return call_user_func($function);
 		
 }

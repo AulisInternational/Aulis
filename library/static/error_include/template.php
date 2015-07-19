@@ -64,7 +64,7 @@ if(!defined('aulis'))
   		We are sorry. Aulis failed in preforming your request, details are shown below.<br />
   		<div class="details">
   			<strong>Error code <?php echo $aulis['error_code'] ?></strong><br/><br/>
-  			<em><?php echo $aulis['error_display'] . " " . $aulis['error_message']; ?></em>
+  			<em><?php echo $aulis['error_display'] . " <br /> <br />" . $aulis['error_message']; ?></em>
   		</div>
   	</div>
   </body>

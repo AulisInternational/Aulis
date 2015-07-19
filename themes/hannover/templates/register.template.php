@@ -12,3 +12,9 @@
 | 		-> // This file is the template of the full view of blog entries
 || 		-> Last change: July, 2015
 */
+function au_template_register(){
+
+	// Our template needs the big $aulis
+	global $aulis;
+
+}

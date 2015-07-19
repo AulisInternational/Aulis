@@ -72,15 +72,19 @@ function au_get_blog_category_name($category_id){
 
 
 // This function is used to rewrite urls for the blog core, if enabled though
-function au_blog_url($input, $header = false)
+function au_blog_url($input = '', $header = false)
 {
 
 	// Global the big $aulis
 	global $aulis;
 
-	// The input needs to be an array
-	if(!is_array($input) and array_key_exists("app", $input))
-		return au_url("?", $header);
+	// The input needs to be an array otherwise we will redirect to the blogindex
+	if(!(is_array($input) and $input != ''))
+		return au_url(((au_get_setting("enable_blog_url_rewriting") == "1") ? 'blog' : '?'), $header);
+
+	// If we are an array, we have to have the app value
+	if(!array_key_exists("app", $input))
+		return au_url(((au_get_setting("enable_blog_url_rewriting") == "1") ? 'blog' : '?'), $header);
 
 	// Is blog rewriting enabled?
 	if(au_get_setting("enable_blog_url_rewriting") == "1"){

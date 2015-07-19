@@ -54,7 +54,9 @@ function au_show_blogindex(){
 	// For each blog item, we want to show its preview
 	while($entry = $entries['paged']->fetchObject())
 		au_show_blog_preview($entry);
-	
+
+	// This will load the wrapper! :)
+		return au_load_template('blog_index');	
 }
 
 function au_show_blog_preview($entry){

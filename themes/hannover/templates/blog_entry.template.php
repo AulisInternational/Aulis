@@ -13,27 +13,34 @@
 || 		-> Last change: July, 2015
 */
 
-// Let's make this thing shorter
-$e = $aulis['blog']['entry'];
+function au_template_blog_entry(){
 
-// The href to the blog entry page
-$href = au_blog_url($aulis['blog']['url_input']);
+	// Our template needs the big $aulis
+	global $aulis;
 
-// The wrapper
-au_out("<div class='blog_full_wrapper'>");
+	// Let's make this thing shorter
+	$e = $aulis['blog']['entry'];
 
-// The heading
-au_out("<h1><a href='" . $href . "'>" . $e->blog_name . "</a></h1>");
+	// The href to the blog entry page
+	$href = au_blog_url($aulis['blog']['url_input']);
 
-// The sub heading with time and catergory
-au_out("<span class='sub'><a class='icon i-category i-12'></a> " . sprintf(BLOG_POSTED_IN, "<a href='" . au_url("?app=blogindex&category=" . $e->blog_category) . "'>" . au_get_blog_category_name($e->blog_category) . "</a>") . "
-	 <a class='icon i-clock i-12'></a> " . au_date($e->blog_date) . "</span>");
+	// The wrapper
+	au_out("<div class='blog_full_wrapper'>");
 
-// The content
-au_out("<p>" . au_parse_blog($e->blog_content) . "</p>");
+	// The heading
+	au_out("<h1><a href='" . $href . "'>" . $e->blog_name . "</a></h1>");
 
-// Ending the wrapper
-au_out("</div>");
+	// The sub heading with time and catergory
+	au_out("<span class='sub'><a class='icon i-category i-12'></a> " . sprintf(BLOG_POSTED_IN, "<a href='" . au_url("?app=blogindex&category=" . $e->blog_category) . "'>" . au_get_blog_category_name($e->blog_category) . "</a>") . "
+		 <a class='icon i-clock i-12'></a> " . au_date($e->blog_date) . "</span>");
 
-// Ready for the next one
-unset($aulis['blog']['entry']);
+	// The content
+	au_out("<p>" . au_parse_blog($e->blog_content) . "</p>");
+
+	// Ending the wrapper
+	au_out("</div>");
+
+	// Ready for the next one
+	unset($aulis['blog']['entry']);
+
+}

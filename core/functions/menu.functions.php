@@ -26,7 +26,7 @@ function au_menu() {
 	$aulis['menu'] = array(
 		'index' => array(
 			'text' => MENU_INDEX,
-			'link' => $aulis['file'],
+			'link' => au_url(),
 			'visible' => true,
 			'active' => ($aulis['active'] == 'frontpage' ? 1 : 0),
 			'target' => '_self',
@@ -34,7 +34,7 @@ function au_menu() {
 		),
 		'blog' => array(
 			'text' => MENU_BLOG,
-			'link' => $aulis['file'] . '?app=blogindex',
+			'link' => au_blog_url(),
 			'visible' => true,
 			'active' => ($aulis['active'] == 'blog' ? 1 : 0),
 			'target' => '_self',
@@ -42,7 +42,7 @@ function au_menu() {
 		),
 		'forum' => array(
 			'text' => MENU_FORUM,
-			'link' => $aulis['file'] . '?app=boardindex',
+			'link' => au_url('?app=boardindex'),
 			'visible' => true,
 			'active' => ($aulis['active'] == 'forum' ? 1 : 0),
 			'target' => '_self',
@@ -50,7 +50,7 @@ function au_menu() {
 		),
 		'register' => array(
 			'text' => MENU_REGISTER,
-			'link' => $aulis['file'] . '?app=register',
+			'link' => au_url('?app=register'),
 			'visible' => true,
 			'active' => ($aulis['active'] == 'register' ? 1 : 0),
 			'target' => '_self',
@@ -58,7 +58,7 @@ function au_menu() {
 		),
 		'admincp' => array(
 			'text' => MENU_ADMIN,
-			'link' => $aulis['file'] . '?app=admincp',
+			'link' => au_url('?app=admincp'),
 			'visible' => true,
 			'active' => ($aulis['active'] == 'admincp' ? 1 : 0),
 			'target' => '_self',
@@ -66,7 +66,7 @@ function au_menu() {
 		),
 		'moderation' => array(
 			'text' => MENU_MOD,
-			'link' => $aulis['file'] . '?app=modcp',
+			'link' => au_url('?app=modcp'),
 			'visible' => true,
 			'active' => ($aulis['active'] == 'moderation' ? 1 : 0),
 			'target' => '_self',

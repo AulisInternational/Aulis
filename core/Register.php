@@ -17,7 +17,7 @@ if(!defined('aulis'))
 	header("Location: index.php");
 
 // The main registration function
-function aulis_register() {
+function au_register(){
 
 	global $aulis, $setting, $language;
 	

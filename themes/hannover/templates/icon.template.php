@@ -14,5 +14,12 @@
 */
 
 // The only thing this template does is defining a constant that is used for icon display
+function au_template_icon(){
 
-define('AU_ICON_DISPLAY', '<span class="icon i-%s">%s</span>');
+	// Our template needs the big $aulis
+	global $aulis;
+
+	// This defines the icon display, handled by the au_icon function
+	$aulis['icon_display'] = '<span class="icon i-%s">%s</span>';
+
+}
