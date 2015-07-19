@@ -13,8 +13,6 @@
 || 		-> Last change: July, 2015
 */
 
-global $aulis;
+// The only thing this template does is defining a constant that is used for icon display
 
-$aulis['icon_output'] = "<span class='icon'>" . file_get_contents(au_get_path_from_root('library/icons/' . $aulis['icon_name'] . '.svg')) . "</span>";
-
-//$aulis['icon_output'] = "<svg viewBox='0 0 16 16' width='16' height='16'><use xlink:href='" . au_url('library/icons/' . $aulis['icon_name'] . '.svg') . "'></use></svg>";
+define('AU_ICON_DISPLAY', '<span class="icon i-%s">%s</span>');

@@ -14,70 +14,55 @@
 
 /* Base styles */
 
-svg.icon{
-	width: 32px;
-	height: 28px;
-	border: none;
-	background-position: 0% 2%;
+span.icon{
 	display: inline-block;
-	background-size: 100%!important;
 }
 
-.notice svg.icon.float-left{
+.notice span.icon{
 	margin-right: 4px;
-	margin-top: 3px;
+	margin-top: 1px;
+	float: left;
 }
 
 /* Different sizes */
 
-.i-256{
+span.icon.i-256 svg{
 	width: 256px!important;
 	height: 224px!important;
 }
 
-.i-128{
+span.icon.i-128 svg{
 	width: 128px!important;
 	height: 112px!important;
 }
 
-.i-64{
+span.icon.i-64 svg{
 	width: 64px!important;
 	height: 56px!important;
 }
 
-.i-48{
+span.icon.i-48 svg{
 	width: 48px!important;
 	height: 42px!important;
 }
 
-.i-24{
+span.icon.i-24 svg{
 	width: 24px!important;
 	height: 21px!important;
 }
 
-.i-16{
+span.icon.i-16 svg{
 	width: 16px!important;
 	height: 14px!important;
-}.i-12{
+}
+
+span.icon.i-12 svg{
 	width: 12px!important;
 	height: 10px!important;
 	margin-top: 7px;
-}.i-8{
+}
+
+span.icon.i-8 svg{
 	width: 8px!important;
 	height: 7px!important;
-}
-
-/* Different colors */
-
-.i-red{
-
-	fill: #c83737!important;
-}
-
-.i-green{
-	fill: #2ca05a!important;
-}
-
-.i-blue{
-
 }

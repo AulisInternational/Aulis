@@ -32,8 +32,8 @@ echo '<!DOCTYPE html>
   		<div class="top-stripe bg1"></div>
   		<div class="logobar bg2">
 	  		<div class="iconstack float-left">
-	  			<a class="icon i-menu i-24" href="javascript:void();"></a>
-	  			<a class="icon i-house i-24" href="javascript:void();"></a>
+	  			<a href="javascript:void();">' . au_icon('menu', 24, 'black') . '</a>
+	  			<a href="javascript:void();">' . au_icon('house', 24, 'black') . '</a>
 	  		</div> 
 	  		<img src="' . $aulis['absolute_path'] . 'themes/hannover/images/logo.svg" />
   		</div>

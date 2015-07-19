@@ -53,19 +53,26 @@ function au_finalize_output(){
 
 function au_icon($icon_name, $icon_size = 24, $icon_color = "black"){
 
-	// For this task we need $aulis...
-	global $aulis;
+	// The size needs to be known by the icons.css file
+	if(!in_array($icon_size, array(8, 12, 16, 24, 32, 48, 64, 128, 256)))
+		return false;
 
-	// Transfer all icon information to $aulis
-	$aulis['icon_name'] = $icon_name;
-	$aulis['icon_size'] = $icon_size;
-	$aulis['icon_color'] = $icon_color;
+	// The color mode can either be black, red, blue or green if it does not start with a # and is a hex
+	if(!(au_string_is_hex($icon_color) || in_array($icon_color, array('black', 'white', 'green', 'red', 'blue'))))
+		return false;
 
-	// Load the icon template
+	// If we are hex, all is fine already, otherwise we need to change the color mode to a hex
+	if(!au_string_is_hex($icon_color))
+		$icon_color = str_replace(array('black', 'white', 'green', 'red', 'blue'), array('#000000', '#FFFFFF', '#2CA05A', '#C83737', '#2C89A0'), $icon_color);
+
+	// Load the icon template, this makes the constant AU_ICON_DISPLAY avaible.
 	au_load_template("icon");
 
+	// Let's load the svg, with the correct color
+	$svg = str_replace("#000000", $icon_color, file_get_contents(au_get_path_from_root('library/icons/' . $icon_name . '.svg')));
+
 	// return the icon output by the template
-	return $aulis['icon_output'];
+	return sprintf(AU_ICON_DISPLAY, $icon_size, $svg);
 
 }
 

@@ -28,6 +28,11 @@ function au_string_ends_with($haystack, $needle) {
     return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
 }
 
+// This function checks if a string is a hex colour or not
+function au_string_is_hex($color){
+	return preg_match('/^#[a-f0-9]{6}$/i', $color);
+}
+
 // This function regulates the interal display for fatal errors
 function au_fatal_error($error_code, $error_message){
 
