@@ -13,4 +13,4 @@
 || 		-> Last change: July, 2015
 */
 
-au_out("<div class='notice bg5 c5'>".au_icon('warning', 16, 'red')." ".$aulis['transfer']."</div>");
+au_out("<div class='notice bg5 c5'>".au_icon('warning30', 16, 'red')." ".$aulis['transfer']."</div>");

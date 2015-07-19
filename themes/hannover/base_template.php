@@ -72,8 +72,9 @@ echo '<!DOCTYPE html>
 	  	</div>
   	</main>
   	<div class="footer">
-		<div class="float-left"><a href="http://germanics.org/aulis" target="_blank">' . $aulis['copyright'] . '</a><br /><img src="' . $aulis['absolute_path'] . 'themes/hannover/images/logo_footer.svg" /></div>
 		<div class="float-right"><strong>' . FOOTER_LANGUAGE . '</strong>' . LANGUAGE_NAME . '</div>
+		<div class="float-left"><img src="' . $aulis['absolute_path'] . 'themes/hannover/images/logo_footer.svg" /> 
+		  <a href="http://germanics.org/aulis" target="_blank">' . $aulis['copyright'] . '</a></div>
   	</div>
   	<br class="clear" />
   </body>
