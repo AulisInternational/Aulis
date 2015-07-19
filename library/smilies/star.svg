@@ -9,11 +9,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="2.2192864mm"
+   height="1.9784118mm"
    viewBox="0 0 7.8636134 7.0101205"
    id="svg5218"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="menu.svg">
+   sodipodi:docname="star.svg">
   <defs
      id="defs5220" />
   <sodipodi:namedview
@@ -23,11 +25,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="63.356768"
-     inkscape:cx="2.7298341"
-     inkscape:cy="3.5694152"
+     inkscape:zoom="59.31239"
+     inkscape:cx="5.4700678"
+     inkscape:cy="2.4004017"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g6338"
      showgrid="false"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -56,23 +58,29 @@
      id="layer1"
      transform="translate(-41.782479,-640.28572)">
     <g
-       id="g6378"
-       transform="matrix(1.2251083,0,0,1.0996866,-10.285052,-64.183258)">
+       id="g6338"
+       inkscape:export-filename="C:\xampp\htdocs\aulis\Aulis\library\icons\mail.png"
+       inkscape:export-xdpi="562.96002"
+       inkscape:export-ydpi="562.96002"
+       transform="matrix(2.0281712,0,0,2.3705107,-594.82975,-750.05401)">
       <path
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.25785959;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m 42.628448,641.30175 6.153464,0"
-         id="path6280"
-         inkscape:connector-curvature="0" />
-      <path
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.25785959;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m 42.628448,643.6211 6.153464,0"
-         id="path6280-6"
-         inkscape:connector-curvature="0" />
-      <path
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.25785959;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m 42.611728,646.21886 6.153464,0"
-         id="path6280-6-3"
-         inkscape:connector-curvature="0" />
+         sodipodi:type="star"
+         style="opacity:1;fill:#ffe680;fill-opacity:1;stroke:none;stroke-width:0.30000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path8051"
+         sodipodi:sides="5"
+         sodipodi:cx="1.6094347"
+         sodipodi:cy="0.84658188"
+         sodipodi:r1="0.67746305"
+         sodipodi:r2="1.2545612"
+         sodipodi:arg1="0.066568164"
+         sodipodi:arg2="0.69488669"
+         inkscape:flatsided="false"
+         inkscape:rounded="0"
+         inkscape:randomized="0"
+         d="M 2.2853973,0.89164605 2.5730961,1.6498754 1.7754601,1.5033861 1.1432449,2.0113097 1.0360815,1.207445 0.35765219,0.76312971 1.0890576,0.41280336 1.3019804,-0.36972219 1.8611772,0.21762885 2.6712,0.17831678 Z"
+         transform="matrix(1.3684356,0.29165399,-0.33698625,1.1574281,313.90969,586.68687)"
+         inkscape:transform-center-x="-0.48534495"
+         inkscape:transform-center-y="-0.065324068" />
     </g>
   </g>
 </svg>

@@ -38,7 +38,7 @@
 /* Housestyle font "overpass" */
 @font-face {
   font-family: 'OverPass';
-  src: url('./fonts/overpass.ttf');
+  src: url('../fonts/overpass.ttf');
   font-weight: normal;
   font-style: normal;
 }
@@ -178,10 +178,6 @@ ul {
 
 header{
 	width: 100%;
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    left: 0;
     transition: top 0.5s ease-in-out;
 }
 
@@ -190,7 +186,7 @@ header{
 }
 
 main{
-	margin-top: 128px;
+
 }
 
 .main-up{

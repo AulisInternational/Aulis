@@ -11,23 +11,19 @@
 
 /* Import the icon styles */
 
-@import url("icons_stylesheet.php");
 
 /* Base styles */
 
-a.icon{
+svg.icon{
 	width: 32px;
 	height: 28px;
 	border: none;
 	background-position: 0% 2%;
 	display: inline-block;
 	background-size: 100%!important;
-   	mask-size: 100%;
-   	-webkit-mask-size: 100%;
-   	background-color: black;
 }
 
-.notice a.icon.float-left{
+.notice svg.icon.float-left{
 	margin-right: 4px;
 	margin-top: 3px;
 }
@@ -75,11 +71,11 @@ a.icon{
 
 .i-red{
 
-	background-color: #c83737!important;
+	fill: #c83737!important;
 }
 
 .i-green{
-	background: #2ca05a!important;
+	fill: #2ca05a!important;
 }
 
 .i-blue{
