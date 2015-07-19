@@ -28,6 +28,7 @@ $aulis['apps'] = array(
 		'maintenance' => false,
 		'load_file' => true,
 		'execute_function' => true,
+		'section' => 'frontpage',
 		'title' => '',
 	),
 	'boardindex' => array(
@@ -36,6 +37,7 @@ $aulis['apps'] = array(
 		'maintenance' => false,
 		'load_file' => true,
 		'execute_function' => true,
+		'section' => 'forum',
 		'title' => '',
 	),
 	'blogindex' => array(
@@ -44,6 +46,7 @@ $aulis['apps'] = array(
 		'maintenance' => false,
 		'load_file' => true,
 		'execute_function' => true,
+		'section' => 'blog',
 		'title' => '',
 	),
 	'blogentry' => array(
@@ -52,6 +55,7 @@ $aulis['apps'] = array(
 		'maintenance' => false,
 		'load_file' => true,
 		'execute_function' => true,
+		'section' => 'blog',
 		'title' => '',
 	),
 	'blogactions' => array(
@@ -60,6 +64,16 @@ $aulis['apps'] = array(
 		'maintenance' => false,
 		'load_file' => false,
 		'execute_function' => true,
+		'section' => 'blog',
+		'title' => '',
+	),
+	'register' => array(
+		'core' => 'Register.php',
+		'function' => 'au_register',
+		'maintenance' => false,
+		'load_file' => false,
+		'execute_function' => true,
+		'section' => 'register',
 		'title' => '',
 	),
 );

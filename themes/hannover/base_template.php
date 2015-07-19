@@ -38,13 +38,19 @@ echo '<!DOCTYPE html>
 	  		<img src="' . $aulis['absolute_path'] . 'themes/hannover/images/logo.svg" />
   		</div>
   		<div class="navbar bg3">
-	  		<div class="menustack float-left">
-	  			<a href="javascript:void();" class="active">Home</a>
-	  			<a href="javascript:void();">Forum</a>
-	  			<a href="javascript:void();">Log in</a>
-	  			<a href="javascript:void();">Sign up</a>
-	  			<a href="javascript:void();" class="c7">Admin panel</a>
-	  			<a href="javascript:void();" class="c1">Moderate (11)</a>
+	  		<div class="menustack float-left">';
+			
+			
+	// Load the main menu
+	$menu_tabs = au_menu();
+		
+	// Show the tabs
+	foreach($menu_tabs as $tab)
+		if($tab['visible'] == true)
+			echo '
+				<a href="' . $tab['link'] . '"' . (($tab['active'] == 1 || $tab['type'] != 1) ? ' class="' . ($tab['active'] == 1 ? 'active' : '') . ($tab['type'] != 1 ? ($tab['active'] == 1 ? ' ' : '') . $tab['type'] : '') . '"' : '') . ' target="' . $tab['target'] . '">' . $tab['text'] . '</a>';
+			
+		echo '
   			</div>
   		</div>
   		<script>

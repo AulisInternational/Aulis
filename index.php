@@ -66,6 +66,9 @@ else
 if($aulis['apps'][$current_app]['load_file'] == true)
 	require $aulis['root_path'] . '/core/' . $aulis['apps'][$current_app]['core'];
 	
+// So where are we now?
+$aulis['active'] = $aulis['apps'][$current_app]['section'];
+	
 // We need a page title. Let's create one.
 $aulis['page_title'] = (!empty($aulis['apps'][$current_app]['title']) ? $aulis['apps'][$current_app]['title'] . ' | ' : '') . au_get_setting('site_title') . (!empty(au_get_setting('site_slogan')) ? ' | ' . au_get_setting('site_slogan') : '');
 

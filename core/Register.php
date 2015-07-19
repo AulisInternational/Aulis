@@ -8,7 +8,7 @@
 || License: 		MIT
 || Version: 		0.01
 || * File information * 
-||		-> register.functions.php
+||		-> Register.php
 | 		-> // This file contains the functions that handle the user registration process
 || 		-> Last change: July, 2015
 */
