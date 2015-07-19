@@ -26,9 +26,9 @@ require_once 'au_config.php';
 global $aulis;
 
 // Ok, we need a copyright line. We might as well create it here
-$aulis['copyright'] = 'Powered by Aulis, version ' . $aulis['version'];
+$aulis['copyright'] = 'Powered by Aulis ' . $aulis['version'];
 
-// What files do we need?
+// What function files do we need?
 $load_functions = array('blog', 'core', 'database', 'global', 'hash', 'languages', 'menu', 'output', 'pagination', 'sessions', 'settings', 'themes', 'user');
 
 	// It's not like that's all, we need our functions to be loaded too
@@ -53,36 +53,36 @@ au_load_language($setting['language']);
 // Information about apps and their cores are listed and added to $aulis in /core/_CoreArray.php
 require_once au_get_path_from_root('core/_CoreArray.php');
 
-// Verify the user's input
-if(!empty($_GET['app']) && array_key_exists($_GET['app'], $aulis['apps']))
-	$current_app = $_GET['app'];
+	// Verify the user's input
+	if(!empty($_GET['app']) && array_key_exists($_GET['app'], $aulis['apps']))
+		$current_app = $_GET['app'];
 
-// Okay, the requested app doesn't exist
-elseif(empty($_GET['app']) || !array_key_exists($_GET['app'], $aulis['apps']))
-	$current_app = 'frontpage';
-	
-// Things are fine the way they are
-else
-	$current_app = $_GET['app'];
-	
-// Do we need to load an extra file?
-if($aulis['apps'][$current_app]['load_file'] == true)
-	require_once $aulis['root_path'] . '/core/' . $aulis['apps'][$current_app]['core'];
-	
-// So where are we now?
-$aulis['active'] = $aulis['apps'][$current_app]['section'];
-	
-// We need a page title. Let's create one.
-$aulis['page_title'] = (!empty($aulis['apps'][$current_app]['title']) ? $aulis['apps'][$current_app]['title'] . ' | ' : '') . $setting['site_title'] . (!empty($setting['site_slogan']) ? ' | ' . $setting['site_slogan'] : '');
-
-// Let's execute the function, if we need to. 
-if($aulis['apps'][$current_app]['execute_function'] == true)
-	// Let's check if the function even exists
-	if(function_exists($aulis['apps'][$current_app]['function']))
-		call_user_func($aulis['apps'][$current_app]['function']);
-	// Ohoh, a fatal error it is then.
+	// Okay, the requested app doesn't exist
+	elseif(empty($_GET['app']) || !array_key_exists($_GET['app'], $aulis['apps']))
+		$current_app = 'frontpage';
+		
+	// Things are fine the way they are
 	else
-		return au_fatal_error(6, "Core '$current_app' wanted to excecute the function '{$aulis['apps'][$current_app]['function']}();'.");
+		$current_app = $_GET['app'];
+		
+	// Do we need to load an extra file?
+	if($aulis['apps'][$current_app]['load_file'] == true)
+		require_once $aulis['root_path'] . '/core/' . $aulis['apps'][$current_app]['core'];
+		
+	// So where are we now?
+	$aulis['active'] = $aulis['apps'][$current_app]['section'];
+		
+	// We need a page title. Let's create one.
+	$aulis['page_title'] = (!empty($aulis['apps'][$current_app]['title']) ? $aulis['apps'][$current_app]['title'] . ' | ' : '') . $setting['site_title'] . (!empty($setting['site_slogan']) ? ' | ' . $setting['site_slogan'] : '');
+
+	// Let's execute the function, if we need to. 
+	if($aulis['apps'][$current_app]['execute_function'] == true)
+		// Let's check if the function even exists
+		if(function_exists($aulis['apps'][$current_app]['function']))
+			call_user_func($aulis['apps'][$current_app]['function']);
+		// Oh oh, a fatal error it is then. :'(
+		else
+			return au_fatal_error(6, "Core '$current_app' wanted to excecute the function '{$aulis['apps'][$current_app]['function']}();'.");
 	
 // Now it's time to finalize our output and call in the theme's base template
 au_finalize_output();

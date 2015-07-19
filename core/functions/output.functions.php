@@ -51,10 +51,24 @@ function au_finalize_output(){
 
 }
 
+
+// This functions formats a number according to the rules of the language we are dealing with
+function au_format_number($number, $decimals = LANGUAGE_NUMBER_DECIMALS){
+
+	// Return formatted number
+	return number_format($number, $decimals, LANGUAGE_NUMBER_DECIMALS_SEPARATOR, LANGUAGE_NUMBER_THOUSANDS_SEPARATOR);
+
+}
+
+// This function loads an icon, according to templates, uses Aulis' built  in svg's
 function au_icon($icon_name, $icon_size = 24, $icon_color = "black"){
 
 	// This is important.
 	global $aulis;
+
+	// We need to see whether or not our icon exists.
+	if(!file_exists(au_get_path_from_root('library/icons/' . $icon_name . '.svg')))
+		return false;
 
 	// The size needs to be known by the icons.css file
 	if(!in_array($icon_size, array(8, 12, 16, 24, 32, 48, 64, 128, 256)))
@@ -72,24 +86,58 @@ function au_icon($icon_name, $icon_size = 24, $icon_color = "black"){
 	au_load_template("global_icon");
 
 	// Let's load the svg, with the correct color
-	$svg = str_replace("#000000", $icon_color, file_get_contents(au_get_path_from_root('library/icons/' . $icon_name . '.svg')));
+	$svg = str_replace(array('#000', '#000000'), $icon_color, file_get_contents(au_get_path_from_root('library/icons/' . $icon_name . '.svg')));
 
 	// return the icon output by the template
 	return sprintf($aulis['icon_display'], $icon_size, $svg);
 
 }
 
+
+function au_smiley($smiley_name, $smiley_code = '', $smiley_size = 24){
+
+	// This is important.
+	global $aulis;
+
+	// We need to see whether or not our smiley exists.
+	if(!file_exists(au_get_path_from_root('library/smilies/' . $smiley_name . '.svg')))
+		return false;
+
+	// The size needs to be known by the icons.css file
+	if(!in_array($smiley_size, array(16, 24, 32, 48, 64)))
+		return false;
+
+	// Load the icon template, this makes the variable $aulis['smiley_display'] avaible.
+	au_load_template("global_smiley");
+
+	// The url of the smiley
+	$smiley = au_url('library/smilies/' . $smiley_name . '.svg');
+
+	// return the icon output by the template
+	return sprintf($aulis['smiley_display'], $smiley_size, $smiley);
+
+}
+
 // This function loads the error box templates for the specified error
-function au_error_box($error){
+function au_error_box($error, $output){
 
 	// Hello there, $aulis...
 	global $aulis;
 
 	// Transfer the error via the $aulis variable
-	$aulis['transfer'] = $error;
+	$aulis['error_box_contents'] = $error;
+	$aulis['error_box_output'] = $output;
 
 	// Load the error box template
 	return au_load_template("global_error_box");
+
+}
+
+
+// This function wraps tags around a keyword to highlight it.
+function au_highlight($needle, $haystack, $before, $after){
+
+	return preg_replace('/' . preg_quote($needle) . '/i', $before . '$0' . $after, $haystack);
 
 }
 

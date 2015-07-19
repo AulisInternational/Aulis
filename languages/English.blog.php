@@ -31,3 +31,9 @@ define('BLOG_NOT_FOUND', "The requested blog entry has not been found, we are so
 
 // Blog information
 define('BLOG_POSTED_IN', "Posted in %s");
+
+// Search results
+define('BLOG_SEARCH_TITLE', 'Search results for %s');
+define('BLOG_SEARCH_FOUND_HITS', 'Your search query returned %s %s.');
+define('BLOG_SEARCH_FOUND_HITS_PLURAL', 'results');
+define('BLOG_SEARCH_FOUND_HITS_SINGULAR', 'result');

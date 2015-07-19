@@ -61,6 +61,6 @@ function au_parse_pagination($query, $only_offset = false, $position = 1, $items
 		$modifier = 1;
 
 	// Return an array with in it the next offset, previous offset and of course the paged database object
-	return array("paged" => $paged, "next_position" => $position + $modifier,"previous_position" => $position - $modifier);
+	return array("unpaged_count" => $unpaged->rowCount(), "paged" => $paged, "next_position" => $position + $modifier,"previous_position" => $position - $modifier);
 
 }

@@ -28,6 +28,26 @@ function au_string_ends_with($haystack, $needle) {
     return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
 }
 
+// This function cleans a string for clean url usage
+function au_string_clean($string){
+
+	// We want it lowercase
+	$string = strtolower($string);
+
+	// Clean up by removing unwanted characters
+	$string = ereg_replace("[^ 0-9a-zA-Z]", " ", $string);
+
+	// Trim the string
+	$string = trim($string);
+
+	// We want little plus signs in stead of spaces
+	$string = str_replace(" ", "+", $string);
+
+	// Return the whole thing
+	return $string;
+
+}
+
 // This function checks if a string is a hex colour or not
 function au_string_is_hex($color){
 	return preg_match('/^#[a-f0-9]{6}$/i', $color);

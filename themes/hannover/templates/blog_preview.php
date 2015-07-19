@@ -8,7 +8,7 @@
 || License: 		MIT
 || Version: 		0.01
 || * File information * 
-||		-> blog_preview.template.php
+||		-> blog_preview.php
 | 		-> // This file the template of the preview of entries in the blog index
 || 		-> Last change: July, 2015
 */
@@ -20,11 +20,18 @@ function au_template_blog_preview(){
 	// Let's make this thing shorter
 	$e = $aulis['blog']['entry'];
 
+	// We might have to highlight stuff
+	if(isset($_GET['search']))
+	{
+		$exploded_search = explode(' ', $aulis['blog_search']);
+		foreach ($exploded_search as $keyword) {
+			$e->blog_name = au_highlight($keyword, $e->blog_name, "<span class='highlight'>", "</span>");
+			$e->blog_intro = au_highlight($keyword, $e->blog_intro, "<span class='highlight'>", "</span>");
+		}
+	}
+
 	// The href to the blog entry page
 	$href = au_blog_url($aulis['blog']['url_input']);
-
-	// The wrapper
-	au_out("<div class='blog_preview_wrapper'>", true, 'blog_entries');
 
 	// The heading
 	au_out("<h1><a href='" . $href . "'>" . $e->blog_name . "</a></h1>", true, 'blog_entries');
@@ -35,9 +42,6 @@ function au_template_blog_preview(){
 
 	// The content
 	au_out("<p>" . au_parse_blog($e->blog_intro) . "</p>", true, 'blog_entries');
-
-	// Ending the wrapper
-	au_out("</div>", true, 'blog_entries');
 
 	// Ready for the next one
 	unset($aulis['blog']['entry']);

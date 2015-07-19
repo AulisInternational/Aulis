@@ -66,6 +66,10 @@ function au_get_blog_category_name($category_id){
 
 }
 
+// This function gets an database object containing all categories
+function au_get_blog_categories(){
+	return au_query("SELECT * FROM blog_categories ORDER BY category_order ASC;");
+}
 
 
 // Blog url functions:
@@ -103,12 +107,12 @@ function au_blog_url($input = '', $header = false)
 function au_encrypt_blog_id($id){
 
 	// return the encrypted blog_id
-	return $id * 10007 + 821;
+	return (($id * 97) + 821) * 10;
 
 }
 
 function au_decrypt_blog_id($id){
 
-	return ($id - 821) / 10007;
+	return (($id / 10) - 821) / 97;
 
 }

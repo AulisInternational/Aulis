@@ -22,7 +22,7 @@ global $aulis;
 $aulis = array();
 
 // The current software version
-$aulis['version'] = '0.01';
+$aulis['version'] = '1.1 (alpha 1)';
 
 // Some general stuff
 $aulis['file'] = 'index.php'; // You may change this, if you decide to move all functionality to another file

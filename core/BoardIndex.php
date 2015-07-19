@@ -18,6 +18,14 @@ if(!defined('aulis'))
 	header("Location: index.php");
 
 function au_show_boardindex(){
-	au_error_box("Nothing to see here.");
+
+	global $aulis; 
+
+	// Dummy content
+	au_out("This is dummy content, we will show the smilies here, because they need to be tested anyway.<br /><br/>");
+
+	foreach (glob($aulis['root_path'] . '/library/smilies/*.svg') as $smiley)
+		au_out(au_smiley(basename($smiley,'.svg')) . ' ');
+
 }
 

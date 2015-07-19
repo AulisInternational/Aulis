@@ -28,6 +28,9 @@ global $setting;
 // Some basic information about the language itself
 define('LANGUAGE_NAME', 'English (US)');
 define('LANGUAGE_CODE', 'en');
+define('LANGUAGE_NUMBER_DECIMALS_SEPARATOR', '.');
+define('LANGUAGE_NUMBER_DECIMALS', 2);
+define('LANGUAGE_NUMBER_THOUSANDS_SEPARATOR', ',');
 
 // Strings that are used pretty much everywhere
 define('FOOTER_LANGUAGE', 'Language: ');

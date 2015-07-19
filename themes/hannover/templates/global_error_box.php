@@ -8,8 +8,8 @@
 || License: 		MIT
 || Version: 		0.01
 || * File information * 
-||		-> errorbox.template.php
-| 		-> // This file the template of the errorbox
+||		-> global_error_box.php
+| 		-> // This file is the template of the errorbox
 || 		-> Last change: July, 2015
 */
 function au_template_global_error_box(){
@@ -18,6 +18,6 @@ function au_template_global_error_box(){
 	global $aulis;
 
 	// This will output an errorbox in hannover style
-	au_out("<div class='notice bg5 c5'>".au_icon('warning', 16, 'red')." ".$aulis['transfer']."</div>");
+	au_out("<div class='notice bg5 c5'>".au_icon('warning', 16, 'red')." ".$aulis['error_box_contents']."</div>", true, $aulis['error_box_output']);
 
 }

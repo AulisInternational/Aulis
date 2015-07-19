@@ -66,3 +66,41 @@ span.icon.i-8 svg{
 	width: 8px!important;
 	height: 7px!important;
 }
+
+/* Base styles for smilies */
+
+img.smiley{
+	display: inline-block;
+}
+
+.notice img.smiley{
+	margin-right: 5px;
+	margin-top: 1px;
+}
+
+/* Size styles for smilies */
+
+img.smiley.s-16{
+	width: 16px!important;
+	height: 14px!important;
+}
+
+img.smiley.s-24{
+	width: 24px!important;
+	height: 21px!important;
+}
+
+img.smiley.s-32{
+	width: 32px!important;
+	height: 18px!important;
+}
+
+img.smiley.s-48{
+	width: 48px!important;
+	height: 42px!important;
+}
+
+img.smiley.s-64{
+	width: 64px!important;
+	height: 56px!important;
+}

@@ -8,7 +8,7 @@
 || License: 		MIT
 || Version: 		0.01
 || * File information * 
-||		-> blog_entry.template.php
+||		-> blog_entry.php
 | 		-> // This file is the template of the full view of blog entries
 || 		-> Last change: July, 2015
 */

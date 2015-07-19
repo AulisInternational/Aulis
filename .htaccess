@@ -8,13 +8,9 @@ RewriteEngine On
 	RewriteRule ^blog/$ index.php/?app=blogindex
 
 	# website.com/blog/search/een-jaar-naar-zweden
-	RewriteRule ^blog/search/([^/]*)$ index.php/?app=blogindex&search=$1
-	RewriteRule ^blog/search/([^/]*)/$ index.php/?app=blogindex&search=$1
+	RewriteRule ^blog/search/([^/]*)$ index.php/?app=blogindex&search=$1&rewrite
+	RewriteRule ^blog/search/([^/]*)/$ index.php/?app=blogindex&search=$1&rewrite
 
 	# website.com/entries/6810181/een-jaar-naar-zweden
 	RewriteRule ^entries/([0-9]+)/([^/]*)$ index.php/?app=blogentry&id=$1
 	RewriteRule ^entries/([0-9]+)/([^/]*)/$ index.php/?app=blogentry&id=$1
-
-	# website.com/entry/2015/07/18/een-jaar-naar-zweden
-	# RewriteRule ^entry/([0-9]{4})/([0-9]{2})/([0-9]{2})/([^/]*)$ index.php/?app=blogentry&id=$1
-
