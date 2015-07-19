@@ -28,9 +28,12 @@ global $aulis;
 // Ok, we need a copyright line. We might as well create it here
 $aulis['copyright'] = 'Powered by Aulis, version ' . $aulis['version'];
 
-// It's not like that's all, we need our functions to be loaded too
-foreach(glob($aulis['root_path'] . '/core/functions/*.functions.php') as $filename)
-	include $filename;
+// What files do we need?
+$load_functions = array('blog', 'core', 'database', 'global', 'hash', 'languages', 'menu', 'output', 'pagination', 'sessions', 'settings', 'themes', 'user');
+
+	// It's not like that's all, we need our functions to be loaded too
+	foreach($load_functions as $filename)
+		include $aulis['root_path'] . '/core/functions/' . $filename . '.functions.php';
 
 // The database will be set up below this line
 au_setup_database();
