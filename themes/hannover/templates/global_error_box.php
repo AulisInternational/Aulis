@@ -12,7 +12,7 @@
 | 		-> // This file the template of the errorbox
 || 		-> Last change: July, 2015
 */
-function au_template_errorbox(){
+function au_template_global_error_box(){
 
 	// Our template needs the big $aulis
 	global $aulis;

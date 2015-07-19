@@ -50,8 +50,8 @@ function au_load_theme($theme){
 function au_load_template($template){
 
 	// Which is the file we want?
-	$filename = au_get_path_from_root("themes/".au_get_setting("theme")."/templates/".$template.".template.php");
-	$filename_hannover = au_get_path_from_root("themes/hannover/templates/".$template.".template.php");
+	$filename = au_get_path_from_root("themes/".au_get_setting("theme")."/templates/".$template.".php");
+	$filename_hannover = au_get_path_from_root("themes/hannover/templates/".$template.".php");
 
 	// If it exists, all is right, return the include
 	if(file_exists($filename))

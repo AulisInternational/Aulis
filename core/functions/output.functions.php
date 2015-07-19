@@ -68,8 +68,8 @@ function au_icon($icon_name, $icon_size = 24, $icon_color = "black"){
 	if(!au_string_is_hex($icon_color))
 		$icon_color = str_replace(array('black', 'white', 'green', 'red', 'blue'), array('#000000', '#FFFFFF', '#2CA05A', '#C83737', '#2C89A0'), $icon_color);
 
-	// Load the icon template, this makes the constant AU_ICON_DISPLAY avaible.
-	au_load_template("icon");
+	// Load the icon template, this makes the variable $aulis['icon_display'] avaible.
+	au_load_template("global_icon");
 
 	// Let's load the svg, with the correct color
 	$svg = str_replace("#000000", $icon_color, file_get_contents(au_get_path_from_root('library/icons/' . $icon_name . '.svg')));
@@ -89,7 +89,7 @@ function au_error_box($error){
 	$aulis['transfer'] = $error;
 
 	// Load the error box template
-	return au_load_template("errorbox");
+	return au_load_template("global_error_box");
 
 }
 
