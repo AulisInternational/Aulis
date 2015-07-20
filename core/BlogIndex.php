@@ -28,10 +28,10 @@ function au_show_blogindex(){
 	global $aulis, $setting;
 
 	// Did our lovely user specify a page?
-	if(isset($_GET['page']) && is_numeric($_GET['page']))
-		$page = $_GET['page'];
+	if(isset($_GET['offset']) && is_numeric($_GET['ofset']))
+		$offset = $_GET['offset'];
 	else
-		$page = 1;
+		$offset = 1;
 
 	// Extra parameters
 	$extra_parameters = '';
@@ -87,26 +87,24 @@ function au_show_blogindex(){
 	}
 
 	// Do we have to add parameters for category and tag to the query?
-	if((isset($_GET['category']) && is_numeric($_GET['category'])) && !isset($_GET['search'], $_GET['tag']))
+	if((isset($_GET['category']) && is_numeric($_GET['category'])) && !isset($_GET['search'], $_GET['tag']) && $aulis['blog_category'] = $_GET['category'])
 		$extra_parameters .= ' AND '.(isset($_GET['category']) ? "blog_category = {$_GET['category']}" : '');
 
 	// Let's build the query
 	$query = "SELECT * FROM blog_entries WHERE blog_activated = 1 and blog_in_queue = 0 {$extra_parameters} ORDER BY blog_date DESC;";
 
 	// Let's load all blog entries that are activated and are not in the queue
-	$entries = au_parse_pagination($query, $page, 10);
+	$entries = au_parse_pagination($query, true, $offset, 1);
 
-	// If there are no entries, there is no need to even continue
-	if($entries['paged']->rowCount() == 0)
-		au_error_box(BLOG_NO_ENTRIES_FOUND, 'blog_entries');
-	else{
-		// For each blog item, we want to show its preview
-		while($entry = $entries['paged']->fetchObject())
-			au_show_blog_preview($entry);
-	}
+	// For each blog item, we want to show its preview
+	while($entry = $entries['paged']->fetchObject())
+		au_show_blog_preview($entry);
 
-	// We might want to know the count of articles parsed
+	// We might want to know the count of articles (unpaged) and we might want to transfer the offset
 	$aulis['blog_count'] = $entries['unpaged_count'];
+	$aulis['blog_offset'] = $offset;
+	$aulis['next_offset'] = $entries['next_position'];
+	$aulis['previous_offset'] = $entries['previous_position'];
 
 	// This will load the wrapper! :)
 	return au_load_template('blog_index');	

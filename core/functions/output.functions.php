@@ -119,7 +119,7 @@ function au_smiley($smiley_name, $smiley_code = '', $smiley_size = 24){
 }
 
 // This function loads the error box templates for the specified error
-function au_error_box($error, $output){
+function au_error_box($error, $output = 'content'){
 
 	// Hello there, $aulis...
 	global $aulis;

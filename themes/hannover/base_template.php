@@ -71,12 +71,12 @@ echo '<!DOCTYPE html>
 		  	</div>
 	  	</div>
   	</main>
-  	<div class="footer">
+  	<footer>
 		<div class="float-right"><strong>' . FOOTER_LANGUAGE . '</strong>' . LANGUAGE_NAME . '</div>
 		<div class="float-left">
 		  <a href="http://germanics.org/aulis" target="_blank">' . $aulis['copyright'] . '</a><br /> 
 		</div>
-  	</div>
+  	</footer>
   	<br class="clear" />
   </body>
 </html>';
