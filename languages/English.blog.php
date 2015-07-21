@@ -30,6 +30,7 @@ define('BLOG_NO_ENTRIES_FOUND', "No entries have been found.");
 define('BLOG_NOT_FOUND', "The requested blog entry has not been found, we are sorry.");
 define('BLOG_EMPTY', "The requested blog entry is empty and cannot be shown.");
 define('BLOG_ABOUT', "About this blog");
+define('BLOG_READMORE', "Read more...");
 
 // Blog information
 define('BLOG_POSTED_IN', "Posted in %s");
@@ -57,3 +58,8 @@ define('BLOG_CATEGORY_NO_ENTRIES', 'This category is empty.');
 define('BLOG_FOUND_HITS', 'Displaying %s %s');
 define('BLOG_FOUND_HITS_SINGULAR', BLOG_ENTRY);
 define('BLOG_FOUND_HITS_PLURAL', BLOG_ENTRIES);
+
+// Comments
+define('BLOG_COMMENT', 'Comment');
+define('BLOG_COMMENTS', 'Comments');
+define('BLOG_NO_COMMENTS', 'No comments yet');

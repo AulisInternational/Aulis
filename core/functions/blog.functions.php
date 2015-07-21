@@ -45,6 +45,27 @@ function au_get_blog_entry($entry_id){
 
 }
 
+// Comment functions
+
+function au_exists_blog_comment($comment_id){
+
+	// Try to get the comment from the database
+	$entry = au_query("SELECT id FROM blog_comments WHERE id = " . $comment_id . " LIMIT 1;");
+
+	// This function was quick, we are done already
+	return ($entry->rowCount() === 1);
+
+}
+
+function au_count_blog_comments($entry_id){
+
+	// Try to get the comments from the database
+	$entry = au_query("SELECT id FROM blog_comments WHERE blog_id = " . $entry_id . " LIMIT 1;");
+
+	// This function was quick, we are done already
+	return ($entry->rowCount() === 1);
+
+}
 
 // Category functions below:
 

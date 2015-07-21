@@ -127,14 +127,17 @@ function au_show_blog_preview($entry){
 	global $aulis;
 
 	// The au_blog_url input for this entry
-	$aulis['blog']['url_input'] = array(
+	$aulis['blog_url_input'] = array(
 		"app" => "blogentry",
 		"id" => $entry->id,
 		"title" => $entry->blog_name
 	);
 
 	// Transfer the entry
-	$aulis['blog']['entry'] = $entry;
+	$aulis['blog_entry'] = $entry;
+
+	// We need to know how many comments we have though
+	$aulis['blog_comment_count'] = (int)au_count_blog_comments($entry->id);
 
 	// Load the preview template
 	return au_load_template("blog_preview");

@@ -48,14 +48,14 @@ echo '<!DOCTYPE html>
 	  		<div class="menustack float-left">';
 			
 			
-	// Load the main menu
-	$menu_tabs = au_menu();
-		
-	// Show the tabs
-	foreach($menu_tabs as $tab)
-		if($tab['visible'] == true)
-			echo '
-				<a href="' . $tab['link'] . '"' . (($tab['active'] == 1 || $tab['type'] != 1) ? ' class="' . ($tab['active'] == 1 ? 'active' : '') . ($tab['type'] != 1 ? ($tab['active'] == 1 ? ' ' : '') . $tab['type'] : '') . '"' : '') . ' target="' . $tab['target'] . '">' . $tab['text'] . '</a>';
+		// Load the main menu
+		$menu_tabs = au_menu();
+			
+		// Show the tabs
+		foreach($menu_tabs as $tab)
+			if($tab['visible'] == true)
+				echo '
+					<a href="' . $tab['link'] . '"' . (($tab['active'] == 1 || $tab['type'] != 1) ? ' class="' . ($tab['active'] == 1 ? 'active' : '') . ($tab['type'] != 1 ? ($tab['active'] == 1 ? ' ' : '') . $tab['type'] : '') . '"' : '') . ' target="' . $tab['target'] . '">' . $tab['text'] . '</a>';
 			
 		echo '
   			</div>

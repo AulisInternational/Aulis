@@ -18,7 +18,7 @@ function au_template_blog_preview(){
 	global $aulis;
 	
 	// Let's make this thing shorter
-	$e = $aulis['blog']['entry'];
+	$e = $aulis['blog_entry'];
 
 	// If our blog has no seperate intro text, it is the same as the whole blog
 	if($e->blog_intro == '' and $e->blog_content != '')
@@ -42,7 +42,7 @@ function au_template_blog_preview(){
 	}
 	
 	// The href to the blog entry page
-	$href = au_blog_url($aulis['blog']['url_input']);
+	$href = au_blog_url($aulis['blog_url_input']);
 	
 	// The heading
 	au_out("<h1><a href='" . $href . "'>" . $e->blog_name . "</a></h1>", true, 'blog_entries');
@@ -55,6 +55,10 @@ function au_template_blog_preview(){
 	// The content
 	au_out("<p>" . au_parse_blog($e->blog_intro) . "</p>", true, 'blog_entries');
 
+	// Comments bar!
+	au_out('<div class="comments_bar"><a href="' . $href . '#comments">' . au_icon('comment', 12) . ' ' . (($aulis['blog_comment_count'] == 0) ? BLOG_NO_COMMENTS : $aulis['blog_comment_count'] . ' ' .(($aulis['blog_comment_count'] > 1) ? BLOG_COMMENTS : BLOG_COMMENT)) . '</a> | <a href="' . $href . '">'.au_icon('lamp', 12) . ' ' . BLOG_READMORE . '</a></div>', ($e->blog_can_comment == 1), 'blog_entries');
+
+	// We need this for the output
 	$blog_preview = '';
 
 	// Finish the output into $aulis['page']['blog_preview']
