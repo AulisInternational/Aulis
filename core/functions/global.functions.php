@@ -29,7 +29,7 @@ function au_string_ends_with($haystack, $needle) {
 }
 
 // This function cleans a string for clean url usage
-function au_string_clean($string){
+function au_string_clean($string, $plus = '+'){
 
 	// We want it lowercase
 	$string = strtolower($string);
@@ -41,7 +41,7 @@ function au_string_clean($string){
 	$string = trim($string);
 
 	// We want little plus signs in stead of spaces
-	$string = str_replace(" ", "+", $string);
+	$string = str_replace(" ", $plus, $string);
 
 	// Return the whole thing
 	return $string;

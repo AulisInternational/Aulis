@@ -48,6 +48,11 @@ function au_get_blog_entry($entry_id){
 
 // Category functions below:
 
+// Function the check whether a certain category exists
+function au_exists_blog_category($id){
+
+}
+
 // This function gets the name of a category
 function au_get_blog_category_name($category_id){
 
@@ -92,8 +97,28 @@ function au_blog_url($input = '', $header = false)
 
 	// Is blog rewriting enabled?
 	if(au_get_setting("enable_blog_url_rewriting") == "1"){
+		
+		// entries/number/entry-name
 		if($input['app'] == "blogentry")
 			return au_url("entries/" . au_encrypt_blog_id($input['id']) . "/" . strtolower(str_replace(array(" ", "?", "!", "&"), array("-", "","",""), $input['title'])), $header);
+		
+		// blog/?/offset/?
+		else if($input['app'] == "blogindex" && array_key_exists('offset', $input))
+			if(array_key_exists('search', $input))
+				return au_url('blog/search/' . $input['search'] . '/offset/' . $input['offset']);
+			else if(array_key_exists('category', $input) && array_key_exists('category_name', $input))
+				return au_url('blog/category/' . $input['category'] . '/' . au_string_clean($input['category_name']) . '/offset/' . $input['offset']);
+			else
+				return au_url('blog/offset/' . $input['offset']);
+		
+		// blog/category/?
+		elseif($input['app'] == 'blogindex' && array_key_exists('category', $input) && array_key_exists('category_name', $input))
+			return au_url('blog/category/' . $input['category'] . '/' . au_string_clean($input['category_name'], '_'));
+
+		// blog?
+		else if($input['app'] == 'blogindex' && count($input) == 1)
+			return au_url('/blog');
+
 		// Place holder
 		else
 			return au_url("?".http_build_query($input));

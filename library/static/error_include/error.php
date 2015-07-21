@@ -39,6 +39,9 @@ switch ((int)$aulis['error_code']) {
     break;
   case 6:
     $aulis['error_display'] = "Core function could not be excecuted, because it does not exist.";
+    break;
+  case 7:
+    $aulis['error_display'] = "Theme settings could not be loaded.";
     break; 
   default:
     $aulis['error_display'] = "Unknown error.";

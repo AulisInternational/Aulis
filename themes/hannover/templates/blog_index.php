@@ -35,18 +35,62 @@ function au_template_blog_index(){
 	if(!isset($aulis['page']['blog_preview']) || empty($aulis['page']['blog_preview']))
 		au_out("<br /><br />", true, 'blog_preview') . au_error_box($no_entries, 'blog_preview');
 		
-	// We want page links!
-	$links = '';
-	var_dump($aulis);
-	if($aulis['previous_offset'] < $aulis['blog_count'])
-		$links .= '<span class="floatleft">' . BLOG_OLDER_ENTRIES . '</span>';
-	au_out('<br />' . $links, true, 'blog_preview');
+	// Let's output the page links we want into $aulis['blog_preview'], so that it gets parsed in a nice wrapper
+	au_out('<br /><div class="maxwidth">' . au_blog_index_timeline_links() . '</div>', true, 'blog_preview');
 
-	// Finalize the output
+	// Finalize the output; rendering it into nice wrappers.
 	foreach($aulis['page']['blog_preview'] as $entry)
 			au_out('<div class="blog_preview_wrapper">'.$entry.'</div>');
 
 	// We want a clean page
 	au_out('<br class="clear" />');
 
+}
+
+function au_blog_index_timeline_links(){
+
+	// We need $aulis, all information we need is stored there
+	global $aulis;
+
+	$links = '';
+
+	// We need to make input for the au_blog_url function
+	$href_older = array(
+			"app" => "blogindex",
+			"offset" => $aulis['blog_next_offset']
+		);
+	$href_newer = array(
+			"app" => "blogindex",
+			"offset" => $aulis['blog_previous_offset']
+		);
+
+	// Do we need a to add search, category or tag paramaters to the hrefs?
+	if(isset($_GET['search']) and !isset($_GET['tag'], $_GET['category'])){
+		$href_older['search'] = $_GET['search'];
+		$href_newer['search'] = $_GET['search'];
+	}
+	if(isset($_GET['category']) and !isset($_GET['tag'], $_GET['search'])){
+		$href_older['category'] = $_GET['category'];
+		$href_older['category_name'] = au_get_blog_category_name($_GET['category']);
+		$href_newer['category_name'] = au_get_blog_category_name($_GET['category']);
+		$href_newer['category'] = $_GET['category'];
+	}
+	if(isset($_GET['tag']) and !isset($_GET['category'], $_GET['search'])){
+		$href_older['tag'] = $_GET['tag'];
+		$href_newer['tag'] = $_GET['tag'];
+	}
+
+	// Is the newer link the link to the newest entries, we don't need offset then
+	if($href_newer['offset'] == 0)
+		unset($href_newer['offset']);
+
+	// Are there, like, any older entries?
+	if($aulis['blog_next_offset'] < $aulis['blog_count'])
+		$links .= '<span class="floatleft"><a href="' . au_blog_url($href_older) . '">' . BLOG_OLDER_ENTRIES . '</a></span>';
+	
+	// Or are we that far behind that we have newer as well?
+	if($aulis['blog_current_offset'] != 0)
+		$links .= '<span class="floatright"><a href="' . au_blog_url($href_newer) . '">' . BLOG_NEWER_ENTRIES . '</a></span>';
+
+	return $links;
 }

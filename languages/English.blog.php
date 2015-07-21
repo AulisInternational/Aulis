@@ -29,13 +29,14 @@ define('BLOG_ENTRIES', "entries");
 define('BLOG_NO_ENTRIES_FOUND', "No entries have been found.");
 define('BLOG_NOT_FOUND', "The requested blog entry has not been found, we are sorry.");
 define('BLOG_EMPTY', "The requested blog entry is empty and cannot be shown.");
+define('BLOG_ABOUT', "About this blog");
 
 // Blog information
 define('BLOG_POSTED_IN', "Posted in %s");
 
 // The links
-define('BLOG_OLDER_ENTRIES', '< Older Entries');
-define('BLOG_NEWER_ENTRIES', 'Newer Entries >');
+define('BLOG_OLDER_ENTRIES', '￩ Older Entries');
+define('BLOG_NEWER_ENTRIES', 'Newer Entries ￫');
 
 // Search results
 define('BLOG_SEARCH', 'Search');

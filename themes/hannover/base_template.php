@@ -1,16 +1,22 @@
 <?php 
+
 /*
--->> Theme for Aulis
-|| Theme name:		Hannover
-|| Theme date:		2015
-|| Theme info:		Aulis' default theme
-|| Developed by: 	Thomas de Roo 
+|| Aulis
+|| Organisation:	Aulis International
+|| Website:			http://germanics.org/aulis
+|| Developed by: 	Robert Monden
+					Thomas de Roo
 || License: 		MIT
-|| File: 			base_template.php
-|| Last change:		July, 2015
+|| Version: 		0.01
+|| * File information * 
+||		-> base_template.php
+| 		-> // This file handles the display of the site
+|| 		-> Last change: July, 2015
 
-
-<script src="' . $aulis['absolute_path'] . 'themes/hannover/scroll-header.js"></script>
+-------------------------------------------------------
+-->> Theme for Aulis
+	Hannover version 1.0
+	Thomas de Roo & Robert Monden
 
 */
 

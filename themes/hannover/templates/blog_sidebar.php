@@ -21,6 +21,7 @@ function au_template_blog_sidebar(){
 	global $aulis;
 
 	return au_out('<div class="blog_sidebar">
+			' . au_blog_sidebar_about() . '
 			' . au_blog_sidebar_search() . '
 			' . au_blog_sidebar_categories() . '
 		</div>');
@@ -85,5 +86,19 @@ function au_blog_sidebar_categories(){
 
 	// Return a neat side bar block
 	return au_sidebar_block(BLOG_CATEGORIES, 'category', $output);
+
+}
+
+function au_blog_sidebar_about(){
+
+	// We need $setting for this
+	global $setting;
+
+	// Check if our about section is empty
+	if($setting['blog_about'] == '')
+		return false;
+
+	// Otherwise we are ready to go
+	return au_sidebar_block(BLOG_ABOUT, 'info', '<p>' . au_parse_blog($setting['blog_about']) . '</p>');
 
 }

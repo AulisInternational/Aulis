@@ -27,13 +27,15 @@ function au_show_blogindex(){
 	// $aulis might come in handy here
 	global $aulis, $setting;
 
-	// Did our lovely user specify a page?
-	if(isset($_GET['offset']) && is_numeric($_GET['ofset']))
+	// Did our lovely user specify an offset?
+	if(isset($_GET['offset']) && is_numeric($_GET['offset']))
 		$offset = $_GET['offset'];
-	else
-		$offset = 1;
 
-	// Extra parameters
+	// Oh noes... he didn't, we need to assume the initial offset of 0 then
+	else
+		$offset = 0;
+
+	// Extra parameters, in case we need them
 	$extra_parameters = '';
 
 	// Are we searching?
@@ -86,25 +88,25 @@ function au_show_blogindex(){
 
 	}
 
-	// Do we have to add parameters for category and tag to the query?
+	// Do we have to add parameters for category or tag to the query?
 	if((isset($_GET['category']) && is_numeric($_GET['category'])) && !isset($_GET['search'], $_GET['tag']) && $aulis['blog_category'] = $_GET['category'])
 		$extra_parameters .= ' AND '.(isset($_GET['category']) ? "blog_category = {$_GET['category']}" : '');
 
 	// Let's build the query
 	$query = "SELECT * FROM blog_entries WHERE blog_activated = 1 and blog_in_queue = 0 {$extra_parameters} ORDER BY blog_date DESC;";
 
-	// Let's load all blog entries that are activated and are not in the queue
-	$entries = au_parse_pagination($query, true, $offset, 1);
+	// Let's load all blog entries that are activated and are not in the queue (thus are published)
+	$entries = au_parse_pagination($query, true, $offset, THEME_BLOG_ENTRIES_PER_PAGE);
 
 	// For each blog item, we want to show its preview
 	while($entry = $entries['paged']->fetchObject())
 		au_show_blog_preview($entry);
 
-	// We might want to know the count of articles (unpaged) and we might want to transfer the offset
+	// We might want to transfer the information about the pagination, so that it can be used in the template
 	$aulis['blog_count'] = $entries['unpaged_count'];
-	$aulis['blog_offset'] = $offset;
-	$aulis['next_offset'] = $entries['next_position'];
-	$aulis['previous_offset'] = $entries['previous_position'];
+	$aulis['blog_current_offset'] = $offset;
+	$aulis['blog_next_offset'] = $entries['next_position'];
+	$aulis['blog_previous_offset'] = $entries['previous_position'];
 
 	// This will load the wrapper! :)
 	return au_load_template('blog_index');	

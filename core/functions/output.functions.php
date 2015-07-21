@@ -46,6 +46,9 @@ function au_finalize_output(){
 	foreach($aulis['page']['content'] as $section)
 		$aulis['page']['final_content'] .= "$section \n";
 
+	// HTML entities stuff
+	$aulis['page']['final_content'] = htmlspecialchars_decode(htmlentities($aulis['page']['final_content'], ENT_NOQUOTES, 'UTF-8', false), ENT_NOQUOTES);
+
 	// Functions have to have something to return, so we do that
 	return true;
 

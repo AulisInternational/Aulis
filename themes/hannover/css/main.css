@@ -170,6 +170,10 @@ ul {
 	width: 48%;
 }
 
+.maxwidth{
+	width: 100%;
+}
+
 /* First layer of layout elements */
 
 .top-stripe{

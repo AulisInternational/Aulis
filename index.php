@@ -47,6 +47,9 @@ session_start();
 // Load the user information into $aulis
 au_load_user();
 
+// We might not need the theme at first, but we do need some of its settings to be loaded
+au_load_theme_settings();
+
 // Let's load the language files, I mean, we want to communicate with them, right?
 au_load_language($setting['language']);
 

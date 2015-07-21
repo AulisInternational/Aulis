@@ -47,23 +47,56 @@ function au_load_theme($theme){
 
 }
 
+
+// We might not need the theme at first, but we do need some of its settings
+function au_load_theme_settings(){
+	
+	// Which file paths do we need
+	$settings_file = au_get_path_from_root("themes/".au_get_setting("theme")."/theme_settings.php");
+	$settings_file_hannover = au_get_path_from_root("themes/hannover/theme_settings.php");
+
+	// If the settings_file from the current theme exists, it's alright
+	if(file_exists($settings_file))
+		return require_once $settings_file;
+
+	// ...otherwise we need to fallback
+	else if(file_exists($settings_file_hannover))
+		return require_once $settings_file_hannover;
+
+	// ...otherwise a fatal error is handy
+	else
+		return au_fatal_error(7, 'Setting files ' . $settings_file_hannover . ' and ' . $settings_file . ' do not exist.');
+
+
+}
+
 function au_load_template($template){
 
-	// Which is the file we want?
+	// Which file paths do we need?
 	$filename = au_get_path_from_root("themes/".au_get_setting("theme")."/templates/".$template.".php");
 	$filename_hannover = au_get_path_from_root("themes/hannover/templates/".$template.".php");
+	$settings_file_hannover = au_get_path_from_root("themes/hannover/theme_settings.php");
 
 	// If it exists, all is right, return the include
 	if(file_exists($filename))
-		require_once $filename;
+		$fallback = !(require_once $filename);
 
 	// If it does not exist, we will have to call the file from the hannover theme
 	elseif(file_exists($filename_hannover))
-		require_once $filename_hannover;
+		$fallback = require_once $filename_hannover;
 
 	// Otherwise... this is the end, show an error and return false.
 	else
-		return au_fatal_error(3, "Template '" . $filename . "' was not found.");
+		return au_fatal_error(3, "Template '" .  $filename_hannover . "' was not found.");
+
+	// We need to load the hannover settings file, if we have a fallback situation and if it hasn't been loaded already
+
+	if($fallback and !defined('HANNOVER_SETTINGS'))
+		// We need to load the settings from hannover
+		if(file_exists($settings_file_hannover))
+			require_once $settings_file_hannover;
+		else
+			return au_fatal_error(3, "Settings file '$settings_hannover' could not be loaded, it does not exist.");
 
 	// The name of the template's main function
 	$function = 'au_template_' . $template;

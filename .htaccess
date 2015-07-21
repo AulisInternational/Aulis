@@ -11,16 +11,16 @@ RewriteEngine On
 	RewriteRule ^blog/$ index.php/?app=blogindex
 
 	# website.com/blog/offset/20
-	RewriteRule ^blog/offset/([0-9]+)$ index.php/?app=blogindex&offset=$1&rewrite
-	RewriteRule ^blog/offset/([0-9]+)$ index.php/?app=blogindex&offset=$1&rewrite
+	RewriteRule ^blog/offset/([^/]*)$ index.php/?app=blogindex&offset=$1&rewrite
+	RewriteRule ^blog/offset/([^/]*)$ index.php/?app=blogindex&offset=$1&rewrite
 
 	# website.com/blog/search/een-jaar-naar-zweden
 	RewriteRule ^blog/search/([^/]*)$ index.php/?app=blogindex&search=$1&rewrite
 	RewriteRule ^blog/search/([^/]*)/$ index.php/?app=blogindex&search=$1&rewrite
 
 	# website.com/blog/search/lekker+eten/offset/20
-	RewriteRule ^blog/search/([^/]*)/offset/([0-9]+)$ index.php/?app=blogindex&search=$1&offset=$2&rewrite
-	RewriteRule ^blog/search/([^/]*)/offset/([0-9]+)/$ index.php/?app=blogindex&search=$1&offset=$2&rewrite
+	RewriteRule ^blog/search/([^/]*)/offset/([^/]*)$ index.php/?app=blogindex&search=$1&offset=$2&rewrite
+	RewriteRule ^blog/search/([^/]*)/offset/([^/]*)/$ index.php/?app=blogindex&search=$1&offset=$2&rewrite
 
 	# website.com/entries/6810181/een-jaar-naar-zweden
 	RewriteRule ^entries/([0-9]+)/([^/]*)$ index.php/?app=blogentry&id=$1
@@ -31,5 +31,5 @@ RewriteEngine On
 	RewriteRule ^blog/category/([0-9]+)/([^/]*)/$ index.php/?app=blogindex&category=$1&rewrite
 
 	# website.com/blog/category/2/category-name/offset/20
-	RewriteRule ^blog/category/([0-9]+)/([^/]*)/offset/([0-9]+)$ index.php/?app=blogindex&category=$1&offset=$2&rewrite
-	RewriteRule ^blog/category/([0-9]+)/([^/]*)/offset/([0-9]+)/$ index.php/?app=blogindex&category=$1&offset=$2&rewrite
+	RewriteRule ^blog/category/([0-9]+)/([^/]*)/offset/([^/]*)$ index.php/?app=blogindex&category=$1&offset=$2&rewrite
+	RewriteRule ^blog/category/([0-9]+)/([^/]*)/offset/([^/]*)/$ index.php/?app=blogindex&category=$1&offset=$2&rewrite
