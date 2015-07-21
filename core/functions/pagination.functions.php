@@ -17,6 +17,7 @@
 if(!defined('aulis'))
 	header("Location: index.php");
 
+// This functions parses a query an puts pagination limits on it
 function au_parse_pagination($query, $only_offset = false, $position = 1, $items_per_page = 10){
 
 	// We need a number for both the $page as the $items_per_page
@@ -26,27 +27,12 @@ function au_parse_pagination($query, $only_offset = false, $position = 1, $items
 	// A flat request to the database
 	$unpaged = au_query($query);
 
-	// At first we want to know what our maximum offset is
-
-	// Let's check if we have enough to fill more than one page...
-	if($unpaged->rowCount() > $items_per_page)
-		$maximum_offset = abs($unpaged->rowCount() - $items_per_page);
-	// We don't... so we don't need offset then
-	else
-		$maximum_offset = 0;
-
 	// Now let's calculate our offset, that is the number of the previous page times the $items_per_page
 
 	if(!$only_offset) 
 		$offset = (($position - 1) * $items_per_page);
 	else
 		$offset = $position;
-
-	// Let's see if out offset is possible...
-	if($maximum_offset == 0)
-		$offset = 0;
-	else if($offset > $maximum_offset)
-		$offset = $maximum_offset;
 
 	// Our query cannot end in ";", so if it does, we need to remove that
 	$query = trim($query, ";");
@@ -60,7 +46,50 @@ function au_parse_pagination($query, $only_offset = false, $position = 1, $items
 	else
 		$modifier = 1;
 
+	// Let's calculate our maximum offset
+	$max_offset = $unpaged->rowCount() - $items_per_page;
+
+	// If the maximum offset is negative, it is 0
+	if($max_offset < 0)
+		$max_offset = 0;
+
 	// Return an array with in it the next offset, previous offset and of course the paged database object
-	return array("unpaged_count" => $unpaged->rowCount(), "paged" => $paged, "next_position" => $position + $modifier,"previous_position" => $position - $modifier);
+	return array("max_offset" => $max_offset, $items_per_page, "unpaged_count" => $unpaged->rowCount(), "paged" => $paged, "next_position" => $position + $modifier,"previous_position" => $position - $modifier);
+
+}
+
+// This function checks if an offset is right or not
+function au_check_offset($offset, $items_per_page, $max_offset){
+
+	if($offset < 0)
+		return false;
+	else if($offset == 0)
+		return true;
+	else if($offset > $max_offset)
+		return false;
+	else if (!($offset % $items_per_page == 0))
+		return false;
+	else if ($offset % $items_per_page == 0)
+		return true;
+
+}
+
+
+// This functions makes an offset valid
+function au_validate_offset($offset, $items_per_page, $max_offset){
+
+	if($offset < 0)
+		$offset = 0;
+	else if($offset > $max_offset)
+		$offset = $max_offset;
+
+	$new_offset = (ceil($offset)%$items_per_page === 0) ? ceil($offset) : round(($offset+$items_per_page/2)/$items_per_page)*$items_per_page;
+
+	// We need to check it though
+	while(au_check_offset($new_offset, $items_per_page, $max_offset) === false){
+		$new_offset = $new_offset - $items_per_page;
+	}
+
+	return $new_offset;
 
 }

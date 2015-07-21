@@ -24,12 +24,14 @@ $aulis['blog'] = array();
 
 function au_show_blogindex(){
 
+
 	// $aulis might come in handy here
 	global $aulis, $setting;
 
 	// Did our lovely user specify an offset?
 	if(isset($_GET['offset']) && is_numeric($_GET['offset']))
 		$offset = $_GET['offset'];
+
 
 	// Oh noes... he didn't, we need to assume the initial offset of 0 then
 	else
@@ -95,6 +97,12 @@ function au_show_blogindex(){
 	// Let's build the query
 	$query = "SELECT * FROM blog_entries WHERE blog_activated = 1 and blog_in_queue = 0 {$extra_parameters} ORDER BY blog_date DESC;";
 
+	// We need to check if our offset is, like, alright, otherwise we need to redirect
+	if(!au_check_offset($offset, THEME_BLOG_ENTRIES_PER_PAGE, au_get_max_blog_offset($query))){
+		$_GET['offset'] = au_validate_offset($offset, THEME_BLOG_ENTRIES_PER_PAGE, au_get_max_blog_offset($query));
+		au_blog_url($_GET, true);
+	}
+
 	// Let's load all blog entries that are activated and are not in the queue (thus are published)
 	$entries = au_parse_pagination($query, true, $offset, THEME_BLOG_ENTRIES_PER_PAGE);
 
@@ -107,6 +115,7 @@ function au_show_blogindex(){
 	$aulis['blog_current_offset'] = $offset;
 	$aulis['blog_next_offset'] = $entries['next_position'];
 	$aulis['blog_previous_offset'] = $entries['previous_position'];
+	$aulis['blog_max_offset'] = $entries['max_offset'];
 
 	// This will load the wrapper! :)
 	return au_load_template('blog_index');	
@@ -129,5 +138,24 @@ function au_show_blog_preview($entry){
 
 	// Load the preview template
 	return au_load_template("blog_preview");
+
+}
+
+
+function au_get_max_blog_offset($query){
+
+	$plain_request = au_query(str_replace('SELECT *', 'SELECT id', $query));
+
+	// If the module of blog_count and entries per page not is 0, we need to substract that instead
+	if(($plain_request->rowCount() % THEME_BLOG_ENTRIES_PER_PAGE) != 0)
+		return $plain_request->rowCount() - ($plain_request->rowCount() % THEME_BLOG_ENTRIES_PER_PAGE);
+	
+	// If we have less than needed our maximum offset is 0, offcourse
+	else if($plain_request->rowCount() < THEME_BLOG_ENTRIES_PER_PAGE)
+		return 0;
+
+	// Otherwise it's just blog_count minus items_per_page
+	else
+		return $plain_request->rowCount() - THEME_BLOG_ENTRIES_PER_PAGE;
 
 }

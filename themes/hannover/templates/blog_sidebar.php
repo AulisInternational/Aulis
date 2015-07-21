@@ -99,6 +99,6 @@ function au_blog_sidebar_about(){
 		return false;
 
 	// Otherwise we are ready to go
-	return au_sidebar_block(BLOG_ABOUT, 'info', '<p>' . au_parse_blog($setting['blog_about']) . '</p>');
+	return au_sidebar_block(BLOG_ABOUT, 'info', au_parse_blog($setting['blog_about']));
 
 }

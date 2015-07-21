@@ -31,12 +31,13 @@ echo '<!DOCTYPE html>
     <link rel="stylesheet" href="' . $aulis['absolute_path'] . '/library/css-assets/icons.css">
  	<link rel="shortcut icon" type="image/png" href="' . $aulis['absolute_path'] . 'library/static/favicon.png" />
  	<script src="' . $aulis['absolute_path'] . 'library/js-assets/jquery-1.11.3.min.js"></script>
- 	
   </head>
   <body class="bg4">
   	<header>
   		<div class="top-stripe bg1"></div>
   		<div class="logobar bg2">
+  			<div class="float-right">
+  			</div>
 	  		<div class="iconstack float-left">
 	  			<a href="javascript:void();">' . au_icon('menu', 24, 'black') . '</a>
 	  			<a href="javascript:void();">' . au_icon('house', 24, 'black') . '</a>

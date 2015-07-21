@@ -1,0 +1,19 @@
+{b:bold} => <strong>bold</strong>
+{i:italic} => <em>italic</em>
+{u:underlined} => <u>underlined</u>
+
+{url:http://google.nl}google => <a href='http://google.nl'>google</a>
+{img:http://url.com/image.png} => <img src='http://url.com/image.png' />
+
+{code:{b:text}} => <span class='code'>{b:text} means bold text</span>
+
+{vimeo:http://vimeo.com/103751207} => <iframe src="https://player.vimeo.com/video/103751207?byline=0&portrait=0" width="350" height="197" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+{youtube:https://www.youtube.com/watch?v=B8x3CzfYwIQ} => <iframe width="350" height="197" src="https://www.youtube.com/embed/[B8x3CzfYwIQ]?rel=0" frameborder="0" allowfullscreen></iframe>
+
+{list}
+{:}hoi
+{:}item
+{:}item
+{:}
+

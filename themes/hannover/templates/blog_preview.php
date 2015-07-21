@@ -51,6 +51,7 @@ function au_template_blog_preview(){
 	au_out("<span class='sub'>" . au_icon('category', 12) . ' ' . sprintf(BLOG_POSTED_IN, "<a href='" . au_url("?app=blogindex&category=" . $e->blog_category) . "'>" . au_get_blog_category_name($e->blog_category) . "</a>") . "
 		 " . au_icon('clock', 12) . ' ' . au_date($e->blog_date) . "</span>", true, 'blog_entries');
 	
+
 	// The content
 	au_out("<p>" . au_parse_blog($e->blog_intro) . "</p>", true, 'blog_entries');
 

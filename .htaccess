@@ -30,6 +30,6 @@ RewriteEngine On
 	RewriteRule ^blog/category/([0-9]+)/([^/]*)$ index.php/?app=blogindex&category=$1&rewrite
 	RewriteRule ^blog/category/([0-9]+)/([^/]*)/$ index.php/?app=blogindex&category=$1&rewrite
 
-	# website.com/blog/category/2/category-name/offset/20
-	RewriteRule ^blog/category/([0-9]+)/([^/]*)/offset/([^/]*)$ index.php/?app=blogindex&category=$1&offset=$2&rewrite
-	RewriteRule ^blog/category/([0-9]+)/([^/]*)/offset/([^/]*)/$ index.php/?app=blogindex&category=$1&offset=$2&rewrite
+	# website.com/blog/category/2/offset/20/category-name
+	RewriteRule ^blog/category/([0-9]+)/offset/([0-9]+)/([^/]*)$ index.php/?app=blogindex&category=$1&offset=$2&rewrite
+	RewriteRule ^blog/category/([0-9]+)/offset/([0-9]+)/([^/]*)/$ index.php/?app=blogindex&category=$1&offset=$2&rewrite

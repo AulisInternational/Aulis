@@ -41,16 +41,16 @@ define('BLOG_NEWER_ENTRIES', 'Newer Entries ￫');
 // Search results
 define('BLOG_SEARCH', 'Search');
 define('BLOG_SEARCH_BTN', 'Search');
-define('BLOG_SEARCH_TITLE', 'Search results for \'%s\'');
+define('BLOG_SEARCH_TITLE', 'Search results for %s');
 define('BLOG_SEARCH_NO_ENTRIES', 'Searching for \'%s\' returned nothing.');
-define('BLOG_SEARCH_FOUND_HITS', 'Your search query returned %s %s.');
+define('BLOG_SEARCH_FOUND_HITS', 'Your search query returned %s %s');
 define('BLOG_SEARCH_FOUND_HITS_PLURAL', 'results');
 define('BLOG_SEARCH_FOUND_HITS_SINGULAR', 'result');
 
 // Category view
 define('BLOG_CATEGORIES', 'Categories');
 define('BLOG_CATEGORIES_NONE', 'There are no categories');
-define('BLOG_CATEGORY_TITLE', 'Entries categorized in \'%s\'');
+define('BLOG_CATEGORY_TITLE', 'Entries categorized as %s');
 define('BLOG_CATEGORY_NO_ENTRIES', 'This category is empty.');
 
 

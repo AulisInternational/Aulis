@@ -147,7 +147,6 @@ function au_highlight($needle, $haystack, $before, $after){
 // This function parses the output for blog entries
 function au_parse_blog($content){
 
-	// DUMMY FUNCTION
-	return nl2br($content);
+	return nl2br(html_entity_decode($content));
 
 }

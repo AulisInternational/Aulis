@@ -105,27 +105,32 @@ function au_blog_url($input = '', $header = false)
 		// blog/?/offset/?
 		else if($input['app'] == "blogindex" && array_key_exists('offset', $input))
 			if(array_key_exists('search', $input))
-				return au_url('blog/search/' . $input['search'] . '/offset/' . $input['offset']);
+				return au_url('blog/search/' . $input['search'] . '/offset/' . $input['offset'], $header);
 			else if(array_key_exists('category', $input) && array_key_exists('category_name', $input))
-				return au_url('blog/category/' . $input['category'] . '/' . au_string_clean($input['category_name']) . '/offset/' . $input['offset']);
+				return au_url('blog/category/' . $input['category']  . '/offset/' . $input['offset'] . '/' . au_string_clean($input['category_name'], '-'), $header);
 			else
-				return au_url('blog/offset/' . $input['offset']);
+				return au_url('blog/offset/' . $input['offset'], $header);
 		
 		// blog/category/?
 		elseif($input['app'] == 'blogindex' && array_key_exists('category', $input) && array_key_exists('category_name', $input))
-			return au_url('blog/category/' . $input['category'] . '/' . au_string_clean($input['category_name'], '_'));
+			return au_url('blog/category/' . $input['category'] . '/' . au_string_clean($input['category_name'], '-'), $header);
+
+		
+		// blog/search/?
+		elseif($input['app'] == 'blogindex' && array_key_exists('search', $input))
+			return au_url('blog/search/' . au_string_clean($input['search']), $header);
 
 		// blog?
 		else if($input['app'] == 'blogindex' && count($input) == 1)
-			return au_url('/blog');
+			return au_url('blog', $header);
 
 		// Place holder
 		else
-			return au_url("?".http_build_query($input));
+			return au_url("?".http_build_query($input), $header);
 	}
 
 	// Otherwise just a normal url
-	return au_url("?".http_build_query($input));
+	return au_url("?".http_build_query($input), $header);
 
 }
 

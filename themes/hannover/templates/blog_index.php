@@ -26,21 +26,30 @@ function au_template_blog_index(){
 
 	// If we are searching, we need to have a title and such
 	if(isset($_GET['search']) && !isset($_GET['category'], $_GET['tag']) && $no_entries = sprintf(BLOG_SEARCH_NO_ENTRIES, $aulis['blog_search']))
-		au_out('<div class="blog_preview_page_title"><h1>' . sprintf(BLOG_SEARCH_TITLE, '\'' . $aulis['blog_search'] . '\'') . '</h1></div><div class="blog_preview_page_title_sub">' . sprintf(BLOG_SEARCH_FOUND_HITS, au_format_number($aulis['blog_count'], 0), (($aulis['blog_count'] > 1 || $aulis['blog_count'] == 0) ? BLOG_SEARCH_FOUND_HITS_PLURAL : BLOG_SEARCH_FOUND_HITS_SINGULAR)) . '</div>');
+		au_out('<div class="blog_preview_page_title"><span class="float-right lowercase">' . sprintf(BLOG_SEARCH_FOUND_HITS, au_format_number($aulis['blog_count'], 0), (($aulis['blog_count'] > 1 || $aulis['blog_count'] == 0) ? BLOG_SEARCH_FOUND_HITS_PLURAL : BLOG_SEARCH_FOUND_HITS_SINGULAR)) . '</span>
+			<h1>' . sprintf(BLOG_SEARCH_TITLE, '\'' . $aulis['blog_search'] . '\'') . '</h1></div>
+			<div class="blog_preview_page_title_sub"><a class="button" href="' . au_blog_url() . '">' . au_icon('arrow_left', 8) . 'Back to blog</a><br /><br /></div>');
 	// If we are in category, the title needs to show that
 	if(isset($_GET['category']) && is_numeric($_GET['category']) && !isset($_GET['search'], $_GET['tag']) and $no_entries = BLOG_CATEGORY_NO_ENTRIES)
-		au_out('<div class="blog_preview_page_title"><h1>' . sprintf(BLOG_CATEGORY_TITLE, '\'' . au_get_blog_category_name($aulis['blog_category']) . '\'') . '</h1></div><div class="blog_preview_page_title_sub">' . sprintf(BLOG_FOUND_HITS, au_format_number($aulis['blog_count'], 0), (($aulis['blog_count'] > 1 || $aulis['blog_count'] == 0) ? BLOG_FOUND_HITS_PLURAL : BLOG_FOUND_HITS_SINGULAR)) . '</div>');
+		au_out('<div class="blog_preview_page_title"><span class="float-right lowercase">' . sprintf(BLOG_FOUND_HITS, au_format_number($aulis['blog_count'], 0), (($aulis['blog_count'] > 1 || $aulis['blog_count'] == 0) ? BLOG_FOUND_HITS_PLURAL : BLOG_FOUND_HITS_SINGULAR)) . '</span>
+			<h1>' . sprintf(BLOG_CATEGORY_TITLE, '\'' . au_get_blog_category_name($aulis['blog_category']) . '\'') . '</h1></div>
+			<div class="blog_preview_page_title_sub"><a class="button" href="' . au_blog_url() . '">' . au_icon('arrow_left', 8) . 'Back to blog</a><br /><br /></div>');
 
 	// If there are no entries parsed, we need to show that
 	if(!isset($aulis['page']['blog_preview']) || empty($aulis['page']['blog_preview']))
-		au_out("<br /><br />", true, 'blog_preview') . au_error_box($no_entries, 'blog_preview');
+		au_error_box($no_entries, 'blog_preview');
 		
 	// Let's output the page links we want into $aulis['blog_preview'], so that it gets parsed in a nice wrapper
-	au_out('<br /><div class="maxwidth">' . au_blog_index_timeline_links() . '</div>', true, 'blog_preview');
+	au_out('<br /><div class="maxwidth">' . au_blog_index_timeline_links() . '</div>', ($aulis['blog_count'] != 0 and $aulis['blog_max_offset'] != 0), 'blog_preview');
 
 	// Finalize the output; rendering it into nice wrappers.
-	foreach($aulis['page']['blog_preview'] as $entry)
-			au_out('<div class="blog_preview_wrapper">'.$entry.'</div>');
+	$output = '';
+
+	foreach($aulis['page']['blog_preview'] as $number => $entry)
+		$output .= '<div class="blog_preview_wrapper w-' . $number . '">'.$entry.'</div>';
+
+	// Wrap it again, for easy jQuery selection of all preview elements
+	au_out('<div class="blog_previews">' . $output . '</div>');
 
 	// We want a clean page
 	au_out('<br class="clear" />');
@@ -84,13 +93,14 @@ function au_blog_index_timeline_links(){
 	if($href_newer['offset'] == 0)
 		unset($href_newer['offset']);
 
+	// Are we that far behind that we have newer as well?
+	if($aulis['blog_current_offset'] != 0)
+		$links .= '<span class="float-right"><a href="' . au_blog_url($href_newer) . '">' . BLOG_NEWER_ENTRIES . '</a></span>';
+
 	// Are there, like, any older entries?
 	if($aulis['blog_next_offset'] < $aulis['blog_count'])
-		$links .= '<span class="floatleft"><a href="' . au_blog_url($href_older) . '">' . BLOG_OLDER_ENTRIES . '</a></span>';
+		$links .= '<span class="float-left"><a href="' . au_blog_url($href_older) . '">' . BLOG_OLDER_ENTRIES . '</a></span>';
 	
-	// Or are we that far behind that we have newer as well?
-	if($aulis['blog_current_offset'] != 0)
-		$links .= '<span class="floatright"><a href="' . au_blog_url($href_newer) . '">' . BLOG_NEWER_ENTRIES . '</a></span>';
 
 	return $links;
 }
