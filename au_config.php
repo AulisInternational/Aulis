@@ -40,7 +40,7 @@ $aulis['db_host'] = 'localhost';
 $aulis['db_user'] = 'root'; 
 $aulis['db_password'] = ''; 
 $aulis['db_database'] = 'aulis'; 
-
+$aulis['db_query_count'] = 0; 
 
 // Page information
 $aulis['page'] = array();

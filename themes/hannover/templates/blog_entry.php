@@ -31,7 +31,7 @@ function au_template_blog_entry(){
 	au_out("<h1><a href='" . $href . "'>" . $e->blog_name . "</a></h1>");
 
 	// The sub heading with time and catergory
-	au_out("<span class='sub'><a class='icon i-category i-12'></a> " . sprintf(BLOG_POSTED_IN, "<a href='" . au_url("?app=blogindex&category=" . $e->blog_category) . "'>" . au_get_blog_category_name($e->blog_category) . "</a>") . "
+	au_out("<span class='sub'><a class='icon i-category i-12'></a> " . sprintf(BLOG_POSTED_IN, "<a href='" . au_url("?app=blogindex&category=" . $e->blog_category) . "'>" . $e->category_name . "</a>") . "
 		 <a class='icon i-clock i-12'></a> " . au_date($e->blog_date) . "</span>");
 
 	// The content

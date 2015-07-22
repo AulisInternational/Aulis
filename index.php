@@ -13,6 +13,13 @@
 || 		-> Last change: July, 2015
 */
 
+// Starting the timer, because we like measuring things, duh.
+$start_time = array_sum(explode(' ', microtime()));
+
+// DEBUG <1.1 ALPHA 1> [These constants are only used for debugging]
+define("DEBUG_SHOW_QUERIES", false); // Functionality is in au_query, REMEMBER TO TURN OFF!!
+define("DEBUG_SHOW_PREFORMANCE", true); // Functionality is in base_template.php, REMEMBER TO TURN OFF!!
+
 // This is the only file that can (and should) be accessed directly. Let's make sure of that.
 if(!defined('aulis'))
 	define('aulis', 1);
@@ -24,6 +31,10 @@ require_once 'au_config.php';
 
 // The big $aulis is our friend, he needs te be by our side.
 global $aulis;
+
+// We have a first task for $aulis the great, he needs to keep track of the time, $start_time is getting fired
+$aulis['start_time'] = $start_time;
+unset($start_time);
 
 // Ok, we need a copyright line. We might as well create it here
 $aulis['copyright'] = 'Powered by Aulis ' . $aulis['version'];
@@ -40,6 +51,10 @@ au_setup_database();
 
 // Get the settings
 $setting = au_get_settings();
+
+// Now if we need to cache, we need to cache, obviously
+if($setting['enable_cache'] == 1)
+	require_once au_get_path_from_root('cache/cache_start.php');
 	
 // Start sessions
 session_start();
@@ -92,6 +107,10 @@ au_finalize_output();
 
 // Calling the theme..., let's hope it responds our call.
 au_load_theme($setting['theme']);
+
+// Now if we need to cache, we need to cache, obviously
+if($setting['enable_cache'] == 1)
+	require_once au_get_path_from_root('cache/cache_end.php');
 
 // In the end, there is nothing left but star dust.
 die();

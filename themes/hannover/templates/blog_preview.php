@@ -47,13 +47,14 @@ function au_template_blog_preview(){
 	// The heading
 	au_out("<h1><a href='" . $href . "'>" . $e->blog_name . "</a></h1>", true, 'blog_entries');
 	
+
 	// The sub heading with time and catergory
-	au_out("<span class='sub'>" . au_icon('category', 12) . ' ' . sprintf(BLOG_POSTED_IN, "<a href='" . au_url("?app=blogindex&category=" . $e->blog_category) . "'>" . au_get_blog_category_name($e->blog_category) . "</a>") . "
+	au_out("<span class='sub'>" . au_icon('category', 12) . ' ' . sprintf(BLOG_POSTED_IN, "<a href='" . au_blog_url(array('app' => 'blogindex', 'category' => $e->blog_category, 'category_name' => $e->category_name))  . "'>" . $e->category_name . "</a>")."
 		 " . au_icon('clock', 12) . ' ' . au_date($e->blog_date) . "</span>", true, 'blog_entries');
 	
 
 	// The content
-	au_out("<p>" . au_parse_blog($e->blog_intro) . "</p>", true, 'blog_entries');
+	au_out("<p>" . au_parse_blog($e->blog_intro, $e->blog_parse_mode) . "</p>", true, 'blog_entries');
 
 	// Comments bar!
 	au_out('<div class="comments_bar"><a href="' . $href . '#comments">' . au_icon('comment', 12) . ' ' . (($aulis['blog_comment_count'] == 0) ? BLOG_NO_COMMENTS : $aulis['blog_comment_count'] . ' ' .(($aulis['blog_comment_count'] > 1) ? BLOG_COMMENTS : BLOG_COMMENT)) . '</a> | <a href="' . $href . '">'.au_icon('lamp', 12) . ' ' . BLOG_READMORE . '</a></div>', ($e->blog_can_comment == 1), 'blog_entries');

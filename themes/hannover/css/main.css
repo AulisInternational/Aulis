@@ -352,14 +352,16 @@ footer
 	font-size: 10px;
 	font-family: Verdana, Calibri, Arial;
 	padding: 10px;
-	text-align: center;
-
 }
 
 	footer img{
 		height: 15px;
 		width: auto;
 		float: left;
+	}
+
+	footer .generated{
+		font-size: 9px;
 	}
 
 /* Second layer elements */

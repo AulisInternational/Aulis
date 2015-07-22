@@ -2,6 +2,11 @@ ErrorDocument 404 index.php?404
 
 RewriteEngine On
 
+# The cache folder should NOT be accessed via the URL
+	RewriteRule ^cache$ index.php
+	RewriteRule ^cache/$ index.php
+	RewriteRule ^cache/([^/]*)$ index.php
+	RewriteRule ^cache/([^/]*)/$ index.php
 
 # Blog rewrites
 	RewriteRule ^$ index.php/

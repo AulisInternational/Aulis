@@ -29,16 +29,13 @@ function au_show_entry(){
 	else
 		$entry_id = 0;
 
-	// This if is needed to check whether our blog entry exists
-	if(au_exist_blog_entry($entry_id)){
+	// Try to obtain the entry from the big (or small, it all depends) database
+	if($aulis['blog']['entry'] = au_get_blog_entry($entry_id)){
 
-		// Obtain the entry from the big (or small, it all depends) database
-		$aulis['blog']['entry'] = au_get_blog_entry($entry_id);
-		
 		// Prepare some url inputs
 		$aulis['blog']['url_input'] = array(
 			"app" => "blogentry",
-			"id" => $aulis['blog']['entry']->id,
+			"id" => $aulis['blog']['entry']->entry_id,
 			"title" => $aulis['blog']['entry']->blog_name
 		);
 

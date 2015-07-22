@@ -34,6 +34,7 @@ define('LANGUAGE_NUMBER_THOUSANDS_SEPARATOR', ',');
 
 // Strings that are used pretty much everywhere
 define('FOOTER_LANGUAGE', 'Language: ');
+define('FOOTER_PAGE_GENERATED', 'Page generated in %s ms with %s queries.');
 
 // These strings are used for dates
 define('DATE_TODAY', 'Today');

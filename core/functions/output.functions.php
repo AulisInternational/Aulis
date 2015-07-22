@@ -149,8 +149,9 @@ function au_parse_markdown($content, $line = false){
 
 	// We need to require the parsedown file, but only once.
 	require_once au_get_path_from_root('library/parsedown.require.php');
+	require_once au_get_path_from_root('library/parsedown_extra.require.php');
 
-	$parse = new Parsedown;
+	$parse = new ParsedownExtra;
 
 	if($line)
 		return $parse->line($content);
@@ -160,8 +161,11 @@ function au_parse_markdown($content, $line = false){
 }
 
 // This function parses the output for blog entries
-function au_parse_blog($content){
+function au_parse_blog($content, $mode = 'markdown'){
 
-	return nl2br(html_entity_decode($content));
-
+	if($mode == 'markdown')
+		return au_parse_markdown($content);
+	else
+		return nl2br($content);
+	
 }

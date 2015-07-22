@@ -74,7 +74,7 @@ function au_blog_sidebar_categories(){
 		// We need an url element for the au_blog_url function
 		$category_url = array(
 			"app" => "blogindex",
-			"category" => $category->id,
+			"category" => $category->category_id,
 			"category_name" => $category->category_name
 		);
 

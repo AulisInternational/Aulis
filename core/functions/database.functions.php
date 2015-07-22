@@ -55,12 +55,21 @@ function au_setup_database(){
 }
 
 function au_query($sql){
+
 	global $aulis;
 
 	// Make sure we have the right database prefix.
-	$search = array("FROM ", "INTO ", "UPDATE ");
-	$replace = array("FROM ".$aulis['db_prefix'], "INTO ".$aulis["db_prefix"], "UPDATE ".$aulis["db_prefix"]);
+	$search = array("FROM ", "INTO ", "UPDATE ", "JOIN ");
+	$replace = array("FROM ".$aulis['db_prefix'], "INTO ".$aulis["db_prefix"], "UPDATE ".$aulis["db_prefix"],  "JOIN ".$aulis["db_prefix"]);
 	$sql = str_replace($search, $replace, $sql);
+
+	// Are we in debug mode? ONLY ALPHA :: NOTE: THIS WILL SEND THE HEADERS AWAY
+	if(DEBUG_SHOW_QUERIES)
+		echo "<div class='notice bg1 cwhite'>".$sql."</div>";
+
+	// We like counting
+	$aulis['db_query_count']++;
+
 	// Let's run the query
 	return $aulis["db"]->query($sql);
 }

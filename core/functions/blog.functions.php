@@ -25,7 +25,7 @@ function au_exist_blog_entry($entry_id, $encrypted = false){
 		$entry_id = au_decrypt_blog_id($id);
 
 	// Try to get the entry from the database
-	$entry = au_query("SELECT id FROM blog_entries WHERE id = " . $entry_id . " LIMIT 1;");
+	$entry = au_query("SELECT entry_id FROM blog_entries WHERE entry_id = " . $entry_id . " LIMIT 1;");
 
 	// This function was quick, we are done already
 	return ($entry->rowCount() === 1);
@@ -35,12 +35,8 @@ function au_exist_blog_entry($entry_id, $encrypted = false){
 // This function gets and returns a blog entry from the database
 function au_get_blog_entry($entry_id){
 
-	// We can only get an item that exists, though
-	if(!au_exist_blog_entry($entry_id))
-		return false;
-
 	// Return database object
-	$query = au_query("SELECT * FROM blog_entries WHERE id = " . $entry_id . " LIMIT 1;");
+	$query = au_query("SELECT * FROM blog_entries as entries LEFT JOIN blog_categories AS categories ON entries.blog_category = categories.category_id WHERE entry_id = " . $entry_id . " LIMIT 1;");
 	return $query->fetchObject();
 
 }
@@ -50,7 +46,7 @@ function au_get_blog_entry($entry_id){
 function au_exists_blog_comment($comment_id){
 
 	// Try to get the comment from the database
-	$entry = au_query("SELECT id FROM blog_comments WHERE id = " . $comment_id . " LIMIT 1;");
+	$entry = au_query("SELECT id FROM blog_comments WHERE comment_id = " . $comment_id . " LIMIT 1;");
 
 	// This function was quick, we are done already
 	return ($entry->rowCount() === 1);
@@ -78,7 +74,7 @@ function au_exists_blog_category($id){
 function au_get_blog_category_name($category_id){
 
 	// Let's get the category in question form the database
-	$category = au_query("SELECT category_name FROM blog_categories WHERE id  = {$category_id} LIMIT 1;");
+	$category = au_query("SELECT category_name FROM blog_categories WHERE category_id  = {$category_id} LIMIT 1;");
 
 	// It has to exist
 	if($category->rowCount() === 0)
@@ -106,18 +102,18 @@ function au_blog_url($input = '', $header = false)
 {
 
 	// Global the big $aulis
-	global $aulis;
+	global $aulis, $setting;
 
 	// The input needs to be an array otherwise we will redirect to the blogindex
 	if(!(is_array($input) and $input != ''))
-		return au_url(((au_get_setting("enable_blog_url_rewriting") == "1") ? 'blog' : '?'), $header);
+		return au_url((($setting["enable_blog_url_rewriting"] == "1") ? 'blog' : '?'), $header);
 
 	// If we are an array, we have to have the app value
 	if(!array_key_exists("app", $input))
-		return au_url(((au_get_setting("enable_blog_url_rewriting") == "1") ? 'blog' : '?'), $header);
+		return au_url((($setting["enable_blog_url_rewriting"] == "1") ? 'blog' : '?'), $header);
 
 	// Is blog rewriting enabled?
-	if(au_get_setting("enable_blog_url_rewriting") == "1"){
+	if($setting["enable_blog_url_rewriting"] == "1"){
 		
 		// entries/number/entry-name
 		if($input['app'] == "blogentry")

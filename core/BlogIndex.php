@@ -85,37 +85,48 @@ function au_show_blogindex(){
 		$exploded_search = explode(' ', $aulis['blog_search']);
 		foreach ($exploded_search as $keyword) {
 			$regex = "REGEXP '[[:<:]]".$keyword."[[:>:]]'";
-			$extra_parameters .=  " AND (blog_name {$regex} OR blog_intro {$regex} OR blog_content {$regex})";
+			$extra_parameters .=  " AND (entries.blog_name {$regex} OR entries.blog_intro {$regex} OR entries.blog_content {$regex})";
 		}
 
 	}
 
 	// Do we have to add parameters for category or tag to the query?
 	if((isset($_GET['category']) && is_numeric($_GET['category'])) && !isset($_GET['search'], $_GET['tag']) && $aulis['blog_category'] = $_GET['category'])
-		$extra_parameters .= ' AND '.(isset($_GET['category']) ? "blog_category = {$_GET['category']}" : '');
+		$extra_parameters .= ' AND '.(isset($_GET['category']) ? "entries.blog_category = {$_GET['category']}" : '');
 
 	// Let's build the query
-	$query = "SELECT * FROM blog_entries WHERE blog_activated = 1 and blog_in_queue = 0 {$extra_parameters} ORDER BY blog_date DESC;";
+	$query = "SELECT entries.*, COUNT(comments.comment_id) AS comment_count, categories.category_name AS category_name
+	FROM blog_entries AS entries 
+	LEFT JOIN blog_comments AS comments ON entries.entry_id = comments.blog_id 
+	LEFT JOIN blog_categories AS categories ON entries.blog_category = categories.category_id 
+	WHERE entries.blog_activated = 1 and entries.blog_in_queue = 0 {$extra_parameters} GROUP BY entries.entry_id ORDER BY entries.blog_date DESC;";
+
+	// We are building the simple version of the query now, because that's enough to get info from
+	$query_simple_parameters = "entries.blog_activated = 1 and entries.blog_in_queue = 0 {$extra_parameters}";
+
+	// We are getting the maximum offset and the initial row count right now
+	$query_info = au_get_max_blog_offset($query_simple_parameters);
 
 	// We need to check if our offset is, like, alright, otherwise we need to redirect
-	if(!au_check_offset($offset, THEME_BLOG_ENTRIES_PER_PAGE, au_get_max_blog_offset($query))){
-		$_GET['offset'] = au_validate_offset($offset, THEME_BLOG_ENTRIES_PER_PAGE, au_get_max_blog_offset($query));
+	if(!au_check_offset($offset, THEME_BLOG_ENTRIES_PER_PAGE, $query_info['max_offset'])){
+		$_GET['offset'] = au_validate_offset($offset, THEME_BLOG_ENTRIES_PER_PAGE, $query_info['max_offset']);
 		au_blog_url($_GET, true);
 	}
 
 	// Let's load all blog entries that are activated and are not in the queue (thus are published)
-	$entries = au_parse_pagination($query, true, $offset, THEME_BLOG_ENTRIES_PER_PAGE);
+	$entries = au_parse_pagination($query, true, $offset, THEME_BLOG_ENTRIES_PER_PAGE, $query_info['row_count']);
+
 
 	// For each blog item, we want to show its preview
 	while($entry = $entries['paged']->fetchObject())
 		au_show_blog_preview($entry);
 
 	// We might want to transfer the information about the pagination, so that it can be used in the template
-	$aulis['blog_count'] = $entries['unpaged_count'];
+	$aulis['blog_count'] = $query_info['row_count'];
 	$aulis['blog_current_offset'] = $offset;
 	$aulis['blog_next_offset'] = $entries['next_position'];
 	$aulis['blog_previous_offset'] = $entries['previous_position'];
-	$aulis['blog_max_offset'] = $entries['max_offset'];
+	$aulis['blog_max_offset'] = $query_info['max_offset'];
 
 	// This will load the wrapper! :)
 	return au_load_template('blog_index');	
@@ -129,7 +140,7 @@ function au_show_blog_preview($entry){
 	// The au_blog_url input for this entry
 	$aulis['blog_url_input'] = array(
 		"app" => "blogentry",
-		"id" => $entry->id,
+		"id" => $entry->entry_id,
 		"title" => $entry->blog_name
 	);
 
@@ -137,7 +148,7 @@ function au_show_blog_preview($entry){
 	$aulis['blog_entry'] = $entry;
 
 	// We need to know how many comments we have though
-	$aulis['blog_comment_count'] = (int)au_count_blog_comments($entry->id);
+	$aulis['blog_comment_count'] = $entry->comment_count;
 
 	// Load the preview template
 	return au_load_template("blog_preview");
@@ -145,20 +156,29 @@ function au_show_blog_preview($entry){
 }
 
 
-function au_get_max_blog_offset($query){
+function au_get_max_blog_offset($parameters){
 
-	$plain_request = au_query(str_replace('SELECT *', 'SELECT id', $query));
+	// This will be a very simple query
+	$plain_request = au_query("SELECT COUNT(entry_id) AS count FROM blog_entries AS entries WHERE {$parameters};");
+	$plain_request_object = $plain_request->fetchObject();
+
+	// We are going to do this by returing both the rowCount() and the max_offset, in an array
+	$return = array();
+	$return['row_count'] = $plain_request_object->count;
 
 	// If the module of blog_count and entries per page not is 0, we need to substract that instead
 	if(($plain_request->rowCount() % THEME_BLOG_ENTRIES_PER_PAGE) != 0)
-		return $plain_request->rowCount() - ($plain_request->rowCount() % THEME_BLOG_ENTRIES_PER_PAGE);
+		$return['max_offset'] =  $return['row_count'] - ($return['row_count'] % THEME_BLOG_ENTRIES_PER_PAGE);
 	
 	// If we have less than needed our maximum offset is 0, offcourse
-	else if($plain_request->rowCount() < THEME_BLOG_ENTRIES_PER_PAGE)
-		return 0;
+	else if($return['row_count'] < THEME_BLOG_ENTRIES_PER_PAGE)
+		$return['max_offset'] =  0;
 
 	// Otherwise it's just blog_count minus items_per_page
 	else
-		return $plain_request->rowCount() - THEME_BLOG_ENTRIES_PER_PAGE;
+		$return['max_offset'] =  $return['row_count'] - THEME_BLOG_ENTRIES_PER_PAGE;
+
+	return $return;
+
 
 }

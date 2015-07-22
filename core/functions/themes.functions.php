@@ -21,7 +21,7 @@ if(!defined('aulis'))
 function au_load_theme($theme){
 
 	// Our base_template needs access to $aulis too, you know?
-	global $aulis;
+	global $aulis, $setting;
 
 	// We need this one to know whether we have to display a fatal error
 	$return_false = false;
@@ -39,7 +39,7 @@ function au_load_theme($theme){
 
 	// Do we have to tell the bad news? au_fatal_error shows an error and returns false.
 	if($return_false)
-		return au_fatal_error(2, "The value '" . au_get_setting("theme") . "' was assumed as theme.");
+		return au_fatal_error(2, "The value '" . $theme . "' was assumed as theme.");
 
 	// Apparently all is right, so let's get that party started...
 	else
@@ -50,9 +50,12 @@ function au_load_theme($theme){
 
 // We might not need the theme at first, but we do need some of its settings
 function au_load_theme_settings(){
+
+	// Global setting
+	global $setting;
 	
 	// Which file paths do we need
-	$settings_file = au_get_path_from_root("themes/".au_get_setting("theme")."/theme_settings.php");
+	$settings_file = au_get_path_from_root("themes/".$setting['theme']."/theme_settings.php");
 	$settings_file_hannover = au_get_path_from_root("themes/hannover/theme_settings.php");
 
 	// If the settings_file from the current theme exists, it's alright
@@ -72,8 +75,11 @@ function au_load_theme_settings(){
 
 function au_load_template($template){
 
+	// Global setting
+	global $setting;
+
 	// Which file paths do we need?
-	$filename = au_get_path_from_root("themes/".au_get_setting("theme")."/templates/".$template.".php");
+	$filename = au_get_path_from_root("themes/".$setting['theme']."/templates/".$template.".php");
 	$filename_hannover = au_get_path_from_root("themes/hannover/templates/".$template.".php");
 	$settings_file_hannover = au_get_path_from_root("themes/hannover/theme_settings.php");
 

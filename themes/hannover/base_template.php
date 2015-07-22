@@ -44,7 +44,7 @@ echo '<!DOCTYPE html>
 	  			<a href="javascript:void();">' . au_icon('menu', 24, 'black') . '</a>
 	  			<a href="javascript:void();">' . au_icon('house', 24, 'black') . '</a>
 	  		</div> 
-	  		<img src="' . $aulis['absolute_path'] . 'themes/hannover/images/logo.svg" />
+	  		<a href="' . au_url() . '"><img src="' . $aulis['absolute_path'] . 'themes/hannover/images/logo.svg" /></a>
   		</div>
   		<div class="navbar bg3">
 	  		<div class="menustack float-left">';
@@ -82,9 +82,8 @@ echo '<!DOCTYPE html>
   	</main>
   	<footer>
 		<div class="float-right"><strong>' . FOOTER_LANGUAGE . '</strong>' . LANGUAGE_NAME . '</div>
-		<div class="float-left">
-		  <a href="http://germanics.org/aulis" target="_blank">' . $aulis['copyright'] . '</a><br /> 
-		</div>
+		 <a href="http://aulis.germanics.org" target="_blank">' . $aulis['copyright'] . '</a><br />
+		 ' . ((DEBUG_SHOW_PREFORMANCE) ? '<span class="generated">' . sprintf(FOOTER_PAGE_GENERATED, au_format_number(((array_sum(explode(' ', microtime())) - $aulis['start_time']) * 1000)), $aulis['db_query_count']) . '</span><br />' : '') . '
   	</footer>
   	<br class="clear" />
   </body>

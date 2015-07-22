@@ -18,14 +18,11 @@ if(!defined('aulis'))
 	header("Location: index.php");
 
 // This functions parses a query an puts pagination limits on it
-function au_parse_pagination($query, $only_offset = false, $position = 1, $items_per_page = 10){
+function au_parse_pagination($query, $only_offset = false, $position = 1, $items_per_page = 10, $rowCount){
 
 	// We need a number for both the $page as the $items_per_page
 	if(!(is_numeric($position) and is_numeric($items_per_page)))
 		return false;
-
-	// A flat request to the database
-	$unpaged = au_query($query);
 
 	// Now let's calculate our offset, that is the number of the previous page times the $items_per_page
 
@@ -46,15 +43,8 @@ function au_parse_pagination($query, $only_offset = false, $position = 1, $items
 	else
 		$modifier = 1;
 
-	// Let's calculate our maximum offset
-	$max_offset = $unpaged->rowCount() - $items_per_page;
-
-	// If the maximum offset is negative, it is 0
-	if($max_offset < 0)
-		$max_offset = 0;
-
 	// Return an array with in it the next offset, previous offset and of course the paged database object
-	return array("max_offset" => $max_offset, $items_per_page, "unpaged_count" => $unpaged->rowCount(), "paged" => $paged, "next_position" => $position + $modifier,"previous_position" => $position - $modifier);
+	return array("unpaged_count" => $rowCount, "paged" => $paged, "next_position" => $position + $modifier,"previous_position" => $position - $modifier);
 
 }
 
