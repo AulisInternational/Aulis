@@ -36,7 +36,9 @@ echo '<!DOCTYPE html>
   	<header>
   		<div class="top-stripe bg1"></div>
   		<div class="logobar bg2">
-  			<div class="float-right">
+  			<div class="userstack float-right">
+  				<a href=""><img src="' . $aulis['absolute_path'] . '/uploads/avatars/80183_1.png" /></a>
+  				<span class="username"><a href="">Charlie ' . au_icon('small_arrow_down', 8, 'black') . '</a></span>
   			</div>
 	  		<div class="iconstack float-left">
 	  			<a href="javascript:void();">' . au_icon('menu', 24, 'black') . '</a>
@@ -72,7 +74,7 @@ echo '<!DOCTYPE html>
 		</script>
   	</header>
   	<main>
-	  	<div class="wrapper bg4">
+	  	<div class="wrapper">
 		  	<div class="page white">
 				' . $aulis['page']['final_content'] . '
 		  	</div>
