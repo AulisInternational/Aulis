@@ -144,6 +144,21 @@ function au_highlight($needle, $haystack, $before, $after){
 
 }
 
+// This function parses text through the markdown parser "Parsedown"
+function au_parse_markdown($content, $line = false){
+
+	// We need to require the parsedown file, but only once.
+	require_once au_get_path_from_root('library/parsedown.require.php');
+
+	$parse = new Parsedown;
+
+	if($line)
+		return $parse->line($content);
+	else
+		return $parse->text($content);
+
+}
+
 // This function parses the output for blog entries
 function au_parse_blog($content){
 
