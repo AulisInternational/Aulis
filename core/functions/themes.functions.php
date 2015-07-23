@@ -31,11 +31,14 @@ function au_load_theme($theme){
 		$return_false = true;
 
 	// Let's put our path to base_template.php in a beautiful variable
-	$filename = au_get_path_from_root('themes/' . $theme . '/base_template.php');
+	$filename = au_get_path_from_root("themes/".$theme."/base_template.php");
 
 	// Does our theme have a base_template, if it doesn't we don't even have to try.
 	if(!file_exists($filename))
 		$return_false = true;
+		
+	// We might need this later
+	$setting['theme_current'] = $theme;
 
 	// Do we have to tell the bad news? au_fatal_error shows an error and returns false.
 	if($return_false)
@@ -44,7 +47,9 @@ function au_load_theme($theme){
 	// Apparently all is right, so let's get that party started...
 	else
 		return require_once $filename;
+
 }
+
 
 // We might not need the theme at first, but we do need some of its settings
 function au_load_theme_settings(){
@@ -67,6 +72,8 @@ function au_load_theme_settings(){
 	// ...otherwise a fatal error is handy
 	else
 		return au_fatal_error(7, 'Setting files ' . $settings_file_hannover . ' and ' . $settings_file . ' do not exist.');
+
+
 }
 
 function au_load_template($template, $execute_function = true){
