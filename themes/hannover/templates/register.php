@@ -21,15 +21,15 @@ function au_template_register($data = array(), $iscomplete = false) {
 	// Show a thanks-page if we need to
 	if($iscomplete == true) {
 		
-		echo '
+		au_out('
 				<div class="reglogin">
 					<div class="sectiontitle">
-						<img src="' . $setting['theme_url'] . '/images/icons/user_add.png" /> ' . REGISTER_DONE . '
+						' . REGISTER_DONE . '
 					</div>
 					<div class="sectioncontent">
 						' . REGISTER_DONE_DESC . '
 					</div>
-				</div>';	
+				</div>');	
 	
 		return;
 	}

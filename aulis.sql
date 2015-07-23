@@ -136,13 +136,13 @@ INSERT INTO `aulis_settings` (`id_setting`, `setting_name`, `setting_value`) VAL
 (13, 'security_questions', '3'),
 (14, 'email_activation', '0');
 
-CREATE TABLE `aulis_users` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `aulis_users` (
+`user_id` int(11) NOT NULL,
   `user_username` tinytext NOT NULL,
   `user_password` text NOT NULL,
   `user_email` tinytext NOT NULL,
-  `user_birthdate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `user_regdate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `user_birthdate` tinytext NOT NULL,
+  `user_regdate` tinytext NOT NULL,
   `user_gender` int(11) NOT NULL,
   `user_group` int(11) NOT NULL,
   `user_include_groups` mediumtext NOT NULL,
@@ -153,9 +153,8 @@ CREATE TABLE `aulis_users` (
   `user_theme` tinytext NOT NULL,
   `user_ban` smallint(6) NOT NULL,
   `user_activated` int(11) NOT NULL,
-  `user_actcode` text NOT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `user_actcode` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 INSERT INTO `aulis_users` (`user_id`, `user_username`, `user_password`, `user_email`, `user_birthdate`, `user_regdate`, `user_gender`, `user_group`, `user_include_groups`, `user_avatar`, `user_signature`, `user_ip`, `user_language`, `user_theme`, `user_ban`, `user_activated`, `user_actcode`) VALUES
 (1, 'Charlie',  '3d1623a30d2f71f14a1104a855230f03bfdfee0d', 'charlie@germanics.org',  '2015-07-12 00:00:00',  '2015-07-15 01:01:39',  0,  0,  '', '80183_1.png',  '', '', '1',  '', 0,  1,  '');

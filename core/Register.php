@@ -39,7 +39,7 @@ function au_register(){
 				if(empty($_POST['aulis_' . $impfield])) {
 				
 					// The error message
-					$errormsg[] = constant('REGISTER_PLEASE_NO_BLANK_' . ($impfield == 'month' || $impfield == 'day' || $impfield == 'year' ? 'BIRTHDATE' : $impfield));
+					$errormsg[] = constant('REGISTER_PLEASE_NO_BLANK_' . ($impfield == 'month' || $impfield == 'day' || $impfield == 'year' ? 'BIRTHDATE' : strtoupper($impfield)));
 					
 					// We don't want to continue
 					$fail = true;

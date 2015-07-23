@@ -36,6 +36,9 @@ function au_load_theme($theme){
 	// Does our theme have a base_template, if it doesn't we don't even have to try.
 	if(!file_exists($filename))
 		$return_false = true;
+		
+	// We might need this later
+	$setting['theme_current'] = $theme;
 
 	// Do we have to tell the bad news? au_fatal_error shows an error and returns false.
 	if($return_false)
