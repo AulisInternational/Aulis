@@ -40,7 +40,7 @@ unset($start_time);
 $aulis['copyright'] = 'Powered by Aulis ' . $aulis['version'];
 
 // What function files do we need?
-$load_functions = array('blog', 'core', 'database', 'global', 'hash', 'languages', 'menu', 'output', 'pagination', 'sessions', 'settings', 'themes', 'user');
+$load_functions = array('blog', 'cache', 'core', 'database', 'global', 'hash', 'languages', 'menu', 'output', 'pagination', 'sessions', 'settings', 'themes', 'user');
 
 	// It's not like that's all, we need our functions to be loaded too
 	foreach($load_functions as $filename)
