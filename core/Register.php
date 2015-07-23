@@ -151,7 +151,7 @@ function au_register(){
 				$result = au_query("
 					SELECT *
 						FROM questions
-				");
+				", true);
 				
 					// Now check them
 					foreach($result as $question) {
@@ -213,7 +213,7 @@ function au_register(){
 				SELECT user_id, user_username
 					FROM users
 					WHERE user_username = '" . $register['username'] . "'
-			");
+			", true);
 			
 				// Let's check.
 				foreach($result as $foundusername)
@@ -224,7 +224,7 @@ function au_register(){
 				SELECT user_id, user_email
 					FROM users
 					WHERE user_email = '" . $register['email'] . "'
-			");
+			", true);
 			
 				// Let's check again
 				foreach($result2 as $foundemail)
@@ -256,7 +256,7 @@ function au_register(){
 					$register['activated'] = 1;
 			
 				// Exiting times. Let's add the account to the database.
-				$result = au_query($aulis['connection'], "
+				$result = au_query("
 					INSERT INTO users (user_username, user_password, user_email, user_birthdate, user_ip, user_language, user_theme, user_activated, user_actcode)
 					VALUES (
 						'" . $register['username'] . "',
@@ -269,7 +269,7 @@ function au_register(){
 						'" . $register['activated'] . "',
 						'" . $register['activation_code'] . "'
 					)
-				", true);
+				");
 				
 				// Did it work?
 				if(!$result == true)
@@ -282,7 +282,7 @@ function au_register(){
 					include $setting['dir_apps'] . '/Email.app.php';
 					
 					// Send it
-					$result = aulis_activation_mail($register['activation_code'], $register['username'], $register['email']);
+					$result = au_activation_mail($register['activation_code'], $register['username'], $register['email']);
 					
 					// Did it actually work?
 					if(!$result)
@@ -318,7 +318,7 @@ function au_register(){
 				WHERE question_language = '" . $setting['lang_current'] . "'
 				ORDER BY RAND()
 				LIMIT " . $setting['security_questions'] . "
-		");
+		", true);
 
 		$questions = 0;
 		
@@ -345,7 +345,7 @@ function au_register(){
 					WHERE question_language = 'English'
 					ORDER BY RAND()
 					LIMIT " . $missing . "
-			");
+			", true);
 			
 			// Add these to the template as well. This time we don't need to increase the number of questions.
 			foreach($result as $question)
@@ -357,5 +357,5 @@ function au_register(){
 	au_load_template('Register');
 	
 	// Show the registration template
-	template_register($reg_data, (!empty($registration_complete) ? true : ''));
+	au_template_register($reg_data, (!empty($registration_complete) ? true : ''));
 }

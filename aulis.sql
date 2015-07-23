@@ -130,10 +130,11 @@ INSERT INTO `aulis_settings` (`id_setting`, `setting_name`, `setting_value`) VAL
 (7, 'enable_blog_url_rewriting',  '1'),
 (8, 'minimum_age',  '13'),
 (9, 'blog_about', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. nnThis blog is mostly about Lorem, but Ipsum is also a popular topic here.'),
-(10,  'enable_cache', '1'),
-(11,  'enable_query_caching', '1'),
-(12,  'query_caching_time', '150'),
-(13, 'security_questions', '3');
+(10, 'enable_cache', '1'),
+(11, 'enable_query_caching', '1'),
+(12, 'query_caching_time', '150'),
+(13, 'security_questions', '3'),
+(14, 'email_activation', '0');
 
 CREATE TABLE `aulis_users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,

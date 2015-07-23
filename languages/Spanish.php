@@ -6,14 +6,14 @@
 || Developed by:	 	Robert Monden
 						Thomas de Roo
 || License: 			MIT
-|| Version: 			0.01
+|| Version: 			1.1 Alpha 1
 ||
 ||------------------------------------------------
-|| ENGLISH TRANSLATION
+|| SPANISH TRANSLATION
 ||------------------------------------------------
-|| Software version:	0.01
+|| Software version:	1.1 Alpha 1
 || Version:				1.0.0
-|| Dialect:				American English
+|| Dialect:				Galician Spanish
 || Translators:			Thomas de Roo
 ||						Robert Monden
 || License:				MIT
@@ -28,54 +28,54 @@ global $setting;
 $setting['sub_files'] = array('blog');
 	
 // Some basic information about the language itself
-define('LANGUAGE_NAME', 'English (US)');
-define('LANGUAGE_CODE', 'en');
-define('LANGUAGE_NUMBER_DECIMALS_SEPARATOR', '.');
+define('LANGUAGE_NAME', 'Castellano (ES)');
+define('LANGUAGE_CODE', 'es');
+define('LANGUAGE_NUMBER_DECIMALS_SEPARATOR', ',');
 define('LANGUAGE_NUMBER_DECIMALS', 2);
-define('LANGUAGE_NUMBER_THOUSANDS_SEPARATOR', ',');
+define('LANGUAGE_NUMBER_THOUSANDS_SEPARATOR', '.');
 
 // Strings that are used pretty much everywhere
-define('FOOTER_LANGUAGE', 'Language: ');
+define('FOOTER_LANGUAGE', 'Idioma: ');
 define('FOOTER_PAGE_GENERATED', 'Page generated in %s ms with %s queries.');
 
 // These strings are used for dates
-define('DATE_TODAY', 'Today');
-define('DATE_YESTERDAY', 'Yesterday');
-define('DATE_TOMORROW', 'Tomorrow');
+define('DATE_TODAY', 'Hoy');
+define('DATE_YESTERDAY', 'Ayer');
+define('DATE_TOMORROW', 'Mañana');
 
-define('DATE_DAY_0', 'Sunday');
-define('DATE_DAY_1', 'Monday');
-define('DATE_DAY_2', 'Tuesday');
-define('DATE_DAY_3', 'Wednesday');
-define('DATE_DAY_4', 'Thursday');
-define('DATE_DAY_5', 'Friday');
-define('DATE_DAY_6', 'Saturday');
+define('DATE_DAY_0', 'Domingo');
+define('DATE_DAY_1', 'Lunes');
+define('DATE_DAY_2', 'Martes');
+define('DATE_DAY_3', 'Miércoles');
+define('DATE_DAY_4', 'Jueves');
+define('DATE_DAY_5', 'Viernes');
+define('DATE_DAY_6', 'Sábado');
 
-define('DATE_MONTH_1', 'January');
-define('DATE_MONTH_2', 'February');
-define('DATE_MONTH_3', 'March');
-define('DATE_MONTH_4', 'April');
-define('DATE_MONTH_5', 'May');
-define('DATE_MONTH_6', 'June');
-define('DATE_MONTH_7', 'July');
-define('DATE_MONTH_8', 'August');
-define('DATE_MONTH_9', 'September');
-define('DATE_MONTH_10', 'October');
-define('DATE_MONTH_11', 'November');
-define('DATE_MONTH_12', 'December');
+define('DATE_MONTH_1', 'Enero');
+define('DATE_MONTH_2', 'Febrero');
+define('DATE_MONTH_3', 'Marzo');
+define('DATE_MONTH_4', 'Abril');
+define('DATE_MONTH_5', 'Mayo');
+define('DATE_MONTH_6', 'Junio');
+define('DATE_MONTH_7', 'Julio');
+define('DATE_MONTH_8', 'Agosto');
+define('DATE_MONTH_9', 'Septiembre');
+define('DATE_MONTH_10', 'Octubre');
+define('DATE_MONTH_11', 'Noviembre');
+define('DATE_MONTH_12', 'Diciembre');
 
-define('DATE_MONTH_SHORT_1', 'Jan');
+define('DATE_MONTH_SHORT_1', 'Ene');
 define('DATE_MONTH_SHORT_2', 'Feb');
 define('DATE_MONTH_SHORT_3', 'Mar');
-define('DATE_MONTH_SHORT_4', 'Apr');
+define('DATE_MONTH_SHORT_4', 'Abr');
 define('DATE_MONTH_SHORT_5', 'May');
 define('DATE_MONTH_SHORT_6', 'Jun');
 define('DATE_MONTH_SHORT_7', 'Jul');
-define('DATE_MONTH_SHORT_8', 'Aug');
+define('DATE_MONTH_SHORT_8', 'Ago');
 define('DATE_MONTH_SHORT_9', 'Sep');
 define('DATE_MONTH_SHORT_10', 'Oct');
 define('DATE_MONTH_SHORT_11', 'Nov');
-define('DATE_MONTH_SHORT_12', 'Dec');
+define('DATE_MONTH_SHORT_12', 'Dic');
 
 define('DATE_DAYNUMBERAFTER', true);
 define('DATE_USESHORTMONTHS', true);
@@ -83,18 +83,18 @@ define('DATE_ADDSUFFIX', true);
 define('DATE_ADDTIMEZONEINDICATOR', true);
 define('DATE_USE12HOUR', true);
 define('DATE_SEPERATOR', ', ');
-define('DATE_PREPOSITION_TIME', 'at');
+define('DATE_PREPOSITION_TIME', 'a');
 
 // Menu strings
-define('MENU_INDEX', 'Frontpage');
+define('MENU_INDEX', 'Inicio');
 define('MENU_BLOG', 'Blog');
-define('MENU_FORUM', 'Forum');
-define('MENU_ADMIN', 'Admin CP');
-define('MENU_MOD', 'Security');
-define('MENU_REGISTER', 'Sign up');
+define('MENU_FORUM', 'Foro');
+define('MENU_ADMIN', 'Administración');
+define('MENU_MOD', 'Seguridad');
+define('MENU_REGISTER', 'Regístrate');
 
 // The registration page
-define('REGISTER', 'Register new account');
+define('REGISTER', 'Registar una nueva cuenta');
 define('REGISTER_WELCOME', 'Thank you for choosing to register an account with ' . $setting['site_title'] . '. The registration process only lasts a few minutes, and after that you\'ll be able to post new topics, reply to existing ones, and much more!');
 define('REGISTER_USERNAME', 'Username:');
 define('REGISTER_USERNAME_DESCRIPTION', 'Your username, this will be used to distinguish your posts from those made by other accounts. Maximum length: 16 characters.');

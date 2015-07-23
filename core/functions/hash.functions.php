@@ -6,7 +6,7 @@
 || Developed by: 	Robert Monden
 					Thomas de Roo
 || License: 		MIT
-|| Version: 		0.01
+|| Version: 		1.1 Alpha 1
 || * File information * 
 ||		-> hash.functions.php
 | 		-> // This file contains the functions that have to do with password hashing
