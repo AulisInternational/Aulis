@@ -29,7 +29,7 @@ else
 // Important files we need to load before doing anything else.
 require_once 'au_config.php';
 
-// The big $aulis is our friend, he needs te be by our side.
+// The big $aulis is our friend, he needs to be by our side.
 global $aulis;
 
 // We have a first task for $aulis the great, he needs to keep track of the time, $start_time is getting fired

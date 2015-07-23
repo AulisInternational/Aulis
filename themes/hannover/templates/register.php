@@ -44,7 +44,7 @@ function au_template_register($data = array(), $iscomplete = false) {
 				<div class="sectioncontent">
 					' . REGISTER_WELCOME . '
 					<hr />
-					<form action="' . au_url('app=register') . '" method="post">
+					<form action="' . au_url('?app=register') . '" method="post">
 						<input type="hidden" name="aulis_register" value="1" />
 						<table class="user" width="100%">
 							<tr>

@@ -49,7 +49,7 @@ function au_register(){
 				else {
 
 					// But first, make sure we don't screw up the database
-					$_POST['aulis_' . $impfield] = au_db_quote($_POST['aulis_' . $impfield]);
+					$_POST['aulis_' . $impfield] = au_db_escape($_POST['aulis_' . $impfield]);
 					
 					// And now let's do what we came here to do
 					$register[$impfield] = $_POST['aulis_' . $impfield];
