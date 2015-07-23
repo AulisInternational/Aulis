@@ -249,6 +249,9 @@ function au_register(){
 				// Create a joint birthdate string
 				$register['birthdate'] = $register['month'] . '/' . $register['day'] . '/' . $register['year'];
 				
+				// What's the date?
+				$register['regdate'] = date("n/j/Y");
+				
 				// Are we using email verification?
 				if($setting['email_activation'] == 1)
 					$register['activated'] = 0;
@@ -257,15 +260,16 @@ function au_register(){
 			
 				// Exiting times. Let's add the account to the database.
 				$result = au_query("
-					INSERT INTO users (user_username, user_password, user_email, user_birthdate, user_ip, user_language, user_theme, user_activated, user_actcode)
+					INSERT INTO users (user_username, user_password, user_email, user_birthdate, user_regdate, user_ip, user_language, user_theme, user_activated, user_actcode)
 					VALUES (
 						'" . $register['username'] . "',
 						'" . $register['password'] . "',
 						'" . $register['email'] . "',
 						'" . $register['birthdate'] . "',
+						'" . $register['regdate'] . "',
 						'" . $_SERVER['REMOTE_ADDR'] . "',
 						'" . $setting['lang_current'] . "',
-						'" . $setting['theme_current'] . "',
+						'" . $setting['theme'] . "',
 						'" . $register['activated'] . "',
 						'" . $register['activation_code'] . "'
 					)
