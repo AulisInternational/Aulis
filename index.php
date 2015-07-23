@@ -19,6 +19,7 @@ $start_time = array_sum(explode(' ', microtime()));
 // DEBUG <1.1 ALPHA 1> [These constants are only used for debugging]
 define("DEBUG_SHOW_QUERIES", false); // Functionality is in au_query, REMEMBER TO TURN OFF!!
 define("DEBUG_SHOW_PREFORMANCE", true); // Functionality is in base_template.php, REMEMBER TO TURN OFF!!
+define("DEBUG_FORCE_DISABLE_CACHE", true); // Functionality is in base_template.php, REMEMBER TO TURN OFF!!
 
 // This is the only file that can (and should) be accessed directly. Let's make sure of that.
 if(!defined('aulis'))
@@ -54,7 +55,7 @@ au_setup_database();
 $setting = au_get_settings();
 
 // Now if we need to cache, we need to cache, obviously
-if($setting['enable_cache'] == 1)
+if($setting['enable_cache'] == 1 && !DEBUG_FORCE_DISABLE_CACHE)
 	require_once au_get_path_from_root('cache/cache_start.php');
 	
 // Start sessions
@@ -110,7 +111,7 @@ au_finalize_output();
 au_load_theme($setting['theme']);
 
 // Now if we need to cache, we need to cache, obviously
-if($setting['enable_cache'] == 1)
+if($setting['enable_cache'] == 1 && !DEBUG_FORCE_DISABLE_CACHE)
 	require_once au_get_path_from_root('cache/cache_end.php');
 
 // In the end, there is nothing left but star dust.
