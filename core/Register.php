@@ -6,12 +6,13 @@
 || Developed by: 	Robert Monden
 					Thomas de Roo
 || License: 		MIT
-|| Version: 		0.01
+|| Version: 		1.1 Alpha 1
 || * File information * 
 ||		-> Register.php
 | 		-> // This file contains the functions that handle the user registration process
 || 		-> Last change: July, 2015
 */
+
 // We can't access this file, if not from index.php, so let's check
 if(!defined('aulis'))
 	header("Location: index.php");
@@ -38,7 +39,7 @@ function au_register(){
 				if(empty($_POST['aulis_' . $impfield])) {
 				
 					// The error message
-					$errormsg[] = $language['register_please_no_blank_' . ($impfield == 'month' || $impfield == 'day' || $impfield == 'year' ? 'birthdate' : $impfield)];
+					$errormsg[] = constant('REGISTER_PLEASE_NO_BLANK_' . ($impfield == 'month' || $impfield == 'day' || $impfield == 'year' ? 'BIRTHDATE' : $impfield));
 					
 					// We don't want to continue
 					$fail = true;
@@ -48,7 +49,7 @@ function au_register(){
 				else {
 
 					// But first, make sure we don't screw up the database
-					$_POST['aulis_' . $impfield] = mysqli_real_escape_string($aulis['connection'], $_POST['aulis_' . $impfield]);
+					$_POST['aulis_' . $impfield] = au_db_quote($_POST['aulis_' . $impfield]);
 					
 					// And now let's do what we came here to do
 					$register[$impfield] = $_POST['aulis_' . $impfield];
@@ -60,51 +61,51 @@ function au_register(){
 		
 			// The username shouldn't be too long
 			if(strlen($register['username']) > 16)
-				$errormsg[] = $language['register_username_too_long'];
+				$errormsg[] = REGISTER_USERNAME_TOO_LONG;
 				
 			// Nor should it be too short
 			elseif(strlen($register['username']) < 5)
-				$errormsg[] = $language['register_username_too_short'];
+				$errormsg[] = REGISTER_USERNAME_TOO_SHORT;
 				
 			// Does it contain HTML?
 			if($register['username'] != htmlspecialchars($register['username'], ENT_NOQUOTES, 'UTF-8', false))
-				$errormsg[] = $language['register_username_no_html'];
+				$errormsg[] = REGISTER_USERNAME_NO_HTML;
 				
 			// Check the password length
 			if(strlen($register['password']) > 16)
-				$errormsg[] = $language['register_password_too_long'];
+				$errormsg[] = REGISTER_PASSWORD_TOO_LONG;
 				
 			// It's too short
 			elseif(strlen($register['password']) < 5)
-				$errormsg[] = $language['register_password_too_short'];
+				$errormsg[] = REGISTER_PASSWORD_TOO_SHORT;
 				
 			// Does it contain both letters and numbers? Thanks to Mohammad Naji (Stackoverflow)
 			if(!preg_match('/[A-Z]+[a-z]+[0-9]+/', $register['password']))
-				$errormsg[] = $language['register_password_weak'];
+				$errormsg[] = REGISTER_PASSWORD_WEAK;
 				
 			// Is the password the same as the username?
 			if($register['username'] == $register['password'])
-				$errormsg[] = $language['register_password_no_username'];
+				$errormsg[] = REGISTER_PASSWORD_NO_USERNAME;
 				
 			// Do the passwords match?
 			if(!$register['password'] == $register['password2'])
-				$errormsg[] = $language['register_password_no_match'];
+				$errormsg[] = REGISTER_PASSWORD_NO_MATCH;
 				
 			// Let's proceed with the email.
 			if(!filter_var($register['email'], FILTER_VALIDATE_EMAIL))
-				$errormsg[] = $language['register_email_invalid'];
+				$errormsg[] = REGISTER_EMAIL_INVALID;
 				
 			// Okay, so now let's check the day of birth
 			if(!is_numeric($register['day']))
-				$errormsg[] = $language['register_birthdate_day_not_numeric'];
+				$errormsg[] = REGISTER_BIRTHDATE_DAY_NOT_NUMERIC;
 				
 			// The month should also be numeric
 			if(!is_numeric($register['month']))
-				$errormsg[] = $language['register_birthdate_month_not_numeric'];
+				$errormsg[] = REGISTER_BIRTHDATE_MONTH_NOT_NUMERIC;
 				
 			// And the year?
 			if(!is_numeric($register['year']))
-				$errormsg[] = $language['register_birthdate_year_not_numeric'];
+				$errormsg[] = REGISTER_BIRTHDATE_YEAR_NOT_NUMERIC;
 				
 			// Okay, so can the user actually be born on this date?
 			$months = array(
@@ -124,21 +125,21 @@ function au_register(){
 			
 				// Please tell me we didn't somehow mess up the month
 				if($register['month'] > 12 || $register['month'] < 1)
-					$errormsg[] = $language['register_birthdate_wrong'];
+					$errormsg[] = REGISTER_BIRTHDATE_WRONG;
 			
 				// Check if the day is okay
 				elseif($register['day'] > $months[$register['month']])
-					$errormsg[] = $language['register_birthdate_wrong'];
+					$errormsg[] = REGISTER_BIRTHDATE_WRONG;
 					
 				// It should at least be on the first day of the specified month
 				if($register['day'] < 1)
-					$errormsg[] = $language['register_birthdate_wrong'];
+					$errormsg[] = REGISTER_BIRTHDATE_WRONG;
 					
 			// Validate the age
 			if((date("Y") - $register['year']) > 100)
-				$errormsg[] = $language['register_confirm_age'];
+				$errormsg[] = REGISTER_CONFIRM_AGE;
 			elseif((date("Y") - $register['year']) < $setting['minimum_age'])
-				$errormsg[] = $language['register_too_young'];
+				$errormsg[] = REGISTER_TOO_YOUNG;
 				
 			// Registration questions!
 			if(!$setting['security_questions'] == 0) {
@@ -147,9 +148,9 @@ function au_register(){
 				$questions = 0;
 				
 				// Get all the questions from the database
-				$result = aulis_query($aulis['connection'], "
+				$result = au_query("
 					SELECT *
-						FROM " . db_pref . "questions
+						FROM questions
 				");
 				
 					// Now check them
@@ -163,7 +164,7 @@ function au_register(){
 						
 							// Wrong answer.
 							if(!$_POST['aulis_squestion_' . $question['question_id']] == $question['question_answer1'] && !$_POST['aulis_squestion_' . $question['question_id']] == $question['question_answer2'])
-								$errormsg[] = $language['register_question_wrong'] . $question['question_title'];
+								$errormsg[] = REGISTER_QUESTION_WRONG . $question['question_title'];
 						
 							// Increase the number of questions that have been answered, but only if it's the right language
 							if($question['question_language'] == 'English' || $question['question_language'] == $setting['lang_current'])
@@ -172,7 +173,7 @@ function au_register(){
 						
 						// Nope
 						else
-							$errormsg[] = $language['register_question_fraud'];
+							$errormsg[] = REGISTER_QUESTION_FRAUD;
 					}
 					
 				// So do we have all of them?
@@ -190,9 +191,9 @@ function au_register(){
 					if($number_questions < $setting['security_questions'] && $setting['lang_current'] != 'English') {
 					
 						// So how many ENGLISH questions are there
-						$result = aulis_query($aulis['connection'], "
+						$result = au_query("
 							SELECT *
-								FROM " . db_pref . "questions
+								FROM questions
 								WHERE question_language = 'English'
 						");
 						
@@ -203,31 +204,31 @@ function au_register(){
 					
 					// Okay, so do we have enough now?
 					if(!$questions == $number_questions)
-						$errormsg[] = $language['register_question_fraud'];
+						$errormsg[] = REGISTER_QUESTION_FRAUD;
 				}
 			}
 				
 			// Do we already have a user registered with the same name?
-			$result = aulis_query($aulis['connection'], "
+			$result = au_query("
 				SELECT user_id, user_username
-					FROM " . db_pref . "users
+					FROM users
 					WHERE user_username = '" . $register['username'] . "'
 			");
 			
 				// Let's check.
 				foreach($result as $foundusername)
-					$errormsg[] = $language['register_username_unavailable'];
+					$errormsg[] = REGISTER_USERNAME_UNAVAILABLE;
 					
 			// What about the email?
-			$result2 = aulis_query($aulis['connection'], "
+			$result2 = au_query("
 				SELECT user_id, user_email
-					FROM " . db_pref . "users
+					FROM users
 					WHERE user_email = '" . $register['email'] . "'
 			");
 			
 				// Let's check again
 				foreach($result2 as $foundemail)
-					$errormsg[] = $language['register_email_in_use'];
+					$errormsg[] = REGISTER_EMAIL_IN_USE;
 					
 			// Generate a random activation code
 			$characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -243,7 +244,7 @@ function au_register(){
 			if(empty($errormsg)) {
 			
 				// Hash the password
-				$register['password'] = aulis_hash($register['password']);
+				$register['password'] = au_hash($register['password']);
 				
 				// Create a joint birthdate string
 				$register['birthdate'] = $register['month'] . '/' . $register['day'] . '/' . $register['year'];
@@ -255,8 +256,8 @@ function au_register(){
 					$register['activated'] = 1;
 			
 				// Exiting times. Let's add the account to the database.
-				$result = aulis_query($aulis['connection'], "
-					INSERT INTO " . db_pref . "users (user_username, user_password, user_email, user_birthdate, user_ip, user_language, user_theme, user_activated, user_actcode)
+				$result = au_query($aulis['connection'], "
+					INSERT INTO users (user_username, user_password, user_email, user_birthdate, user_ip, user_language, user_theme, user_activated, user_actcode)
 					VALUES (
 						'" . $register['username'] . "',
 						'" . $register['password'] . "',
@@ -272,7 +273,7 @@ function au_register(){
 				
 				// Did it work?
 				if(!$result == true)
-					$errormsg[] = $language['registration_failed'];
+					$errormsg[] = REGISTRATION_FAILED;;
 					
 				// Send an activation email
 				if($setting['email_activation'] == 1) {
@@ -285,7 +286,7 @@ function au_register(){
 					
 					// Did it actually work?
 					if(!$result)
-						$errormsg[] = $language['register_fail_mail'];
+						$errormsg[] = REGISTER_FAIL_MAIL;
 				}
 			
 				// We've just registered our account. Let's show a 'Thank you!'-message
@@ -311,9 +312,9 @@ function au_register(){
 	if(!$setting['security_questions'] == 0) {
 	
 		// Okay, so what we're going to do now is pretty simple. We're just going to load the questions from the database, and the template deals with showing them.
-		$result = aulis_query($aulis['connection'], "
+		$result = au_query("
 			SELECT *
-				FROM " . db_pref . "questions
+				FROM questions
 				WHERE question_language = '" . $setting['lang_current'] . "'
 				ORDER BY RAND()
 				LIMIT " . $setting['security_questions'] . "
@@ -338,9 +339,9 @@ function au_register(){
 			$missing = $questions['security_questions'] - $questions;
 			
 			// Now get those questions from the ENGLISH list
-			$result = aulis_query($aulis['connection'], "
+			$result = au_query("
 				SELECT *
-					FROM " . db_pref . "questions
+					FROM questions
 					WHERE question_language = 'English'
 					ORDER BY RAND()
 					LIMIT " . $missing . "
@@ -353,7 +354,7 @@ function au_register(){
 	}
 
 	// Okay, load this app's template
-	aulis_template('User');
+	au_load_template('Register');
 	
 	// Show the registration template
 	template_register($reg_data, (!empty($registration_complete) ? true : ''));

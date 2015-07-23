@@ -6,7 +6,7 @@
 || Developed by: 	Robert Monden
 					Thomas de Roo
 || License: 		MIT
-|| Version: 		0.01
+|| Version: 		1.1 Alpha 1
 || * File information * 
 ||		-> menu.functions.php
 | 		-> // This file contains the functions that handle the menu
@@ -58,7 +58,7 @@ function au_menu() {
 		),
 		'admincp' => array(
 			'text' => MENU_ADMIN,
-			'link' => au_url('?app=admincp'),
+			'link' => 'Admin.php',
 			'visible' => true,
 			'active' => ($aulis['active'] == 'admincp' ? 1 : 0),
 			'target' => '_self',

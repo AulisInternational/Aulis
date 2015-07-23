@@ -24,6 +24,8 @@ if(!defined('aulis'))
 	header('Location: index.php');
 	
 global $setting;
+
+$setting['sub_files'] = array('blog');
 	
 // Some basic information about the language itself
 define('LANGUAGE_NAME', 'English (US)');

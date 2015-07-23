@@ -6,7 +6,7 @@
 || Developed by: 	Robert Monden
 					Thomas de Roo
 || License: 		MIT
-|| Version: 		0.01
+|| Version: 		1.1 Alpha 1
 || * File information * 
 ||		-> au_config.php
 | 		-> // This file coordinates the database connection and the elementary settings
@@ -22,7 +22,7 @@ global $aulis;
 $aulis = array();
 
 // The current software version
-$aulis['version'] = '1.1 (alpha 1)';
+$aulis['version'] = '1.1 Alpha 1';
 
 // Some general stuff
 $aulis['file'] = 'index.php'; // You may change this, if you decide to move all functionality to another file

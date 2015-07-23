@@ -6,7 +6,7 @@
 || Developed by: 	Robert Monden
 					Thomas de Roo
 || License: 		MIT
-|| Version: 		0.01
+|| Version: 		1.1 Alpha 1
 || * File information * 
 ||		-> index.php
 | 		-> // This file coordinates the whole display of the site.

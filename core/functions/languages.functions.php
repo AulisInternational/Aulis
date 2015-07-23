@@ -20,18 +20,7 @@ if(!defined('aulis'))
 // Languages! Let's load one. Just one. Or perhaps two, if we're feeling up to it, bilingualism is a good thing.
 function au_load_language($language = '') {
 	
-	// Let's try to load our language files
-	if(!au_include_language_files($language))
-		return au_fatal_error(4, "Language files were not found.");
-	else
-		return true;
-
-}
-
-// Let's load all of the files coresponding to a language
-function au_include_language_files($language){
-
-	global $aulis;
+	global $aulis, $setting;
 
 	// So did we actually provide ourselves with a language? If the language is empty... it doesn't work, like at all
 	if(empty($language))
@@ -42,14 +31,17 @@ function au_include_language_files($language){
 
 	// Does this language exist?
 	if(!file_exists($language_main_path))
-		return false;
+		return au_fatal_error(4, "Language files were not found.");
 
 	// It does exists, let's load the main file
-		include_once $language_main_path;
+	include_once $language_main_path;
 
 	// Now all other files
-	foreach(glob($aulis['root_path'] . '/languages/' . $language . '.*.php') as $filename)
-		include $filename;
+	foreach($setting['sub_files'] as $filename)
+		include au_get_path_from_root('languages/' . $language . '.' . $filename . '.php');
+		
+	// We might need this
+	$setting['lang_current'] = $language;
 
 	return true;
 
