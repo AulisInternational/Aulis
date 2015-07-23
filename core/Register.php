@@ -357,5 +357,5 @@ function au_register(){
 	au_load_template('Register', false);
 	
 	// Show the registration template
-	au_template_register($reg_data, (!empty($registration_complete) ? true : ''));
+	au_template_register($reg_data, (!empty($registration_complete) ? true : false));
 }
