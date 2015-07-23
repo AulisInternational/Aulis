@@ -24,7 +24,7 @@ function au_template_register($data = array(), $iscomplete = false) {
 		au_out('
 				<div class="reglogin">
 					<div class="sectiontitle">
-						' . REGISTER_DONE . '
+						' . au_icon('user_add', 16) . ' ' . REGISTER_DONE . '
 					</div>
 					<div class="sectioncontent">
 						' . REGISTER_DONE_DESC . '
@@ -37,9 +37,9 @@ function au_template_register($data = array(), $iscomplete = false) {
 	// Now let's just echo the header
 	au_out('
 			<div class="reglogin">
-				' . (!empty($data['error_message']) ? '<div class="error">' . implode('<br />', $data['error_message']) . '</div>' : '') . '
+				' . (!empty($data['error_message']) ? '<div class="notice bg5 c5"><span class="float-right">' . au_icon('warning', 24, 'red') . '</span> ' . implode('<br />', $data['error_message']) . '</div>' : '') . '
 				<div class="sectiontitle">
-					' . REGISTER . '
+					' . au_icon('user_add', 16) . ' ' . REGISTER . '
 				</div>
 				<div class="sectioncontent">
 					' . REGISTER_WELCOME . '

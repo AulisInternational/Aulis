@@ -18,7 +18,7 @@ span.icon{
 	display: inline-block;
 }
 
-.notice span.icon{
+.notice span.icon, .sectiontitle span.icon{
 	margin-right: 4px;
 	margin-top: 1px;
 	float: left;

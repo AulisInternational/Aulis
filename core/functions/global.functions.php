@@ -34,14 +34,14 @@ function au_string_clean($string, $plus = '+'){
 	// We want it lowercase
 	$string = strtolower($string);
 
-	// Clean up by removing unwanted characters
-	$string = ereg_replace("[^ 0-9a-zA-Z]", " ", $string);
-
 	// Trim the string
 	$string = trim($string);
 
 	// We want little plus signs in stead of spaces
 	$string = str_replace(" ", $plus, $string);
+
+	// Now we want to encode it
+	$string = urlencode($string);
 
 	// Return the whole thing
 	return $string;
