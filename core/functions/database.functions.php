@@ -86,10 +86,11 @@ function au_query($original_sql, $force_no_cache = false, $force_no_count = fals
 	// We need the queries hash
 	$hash = md5($sql);
 	$cache_file = au_get_path_from_root('cache/queries/'.$hash.'.cache');
+	$cache_folder = au_get_path_from_root('cache/queries');
 	$cache_time = $setting['query_caching_time'];
 
 	// If we are not writable, we have to run the query without cache
-	if(!is_writable($cache_file))
+	if(!is_writable($cache_folder))
 		return $aulis["db"]->query($sql);
 
 	// We need to see if there are any queries like these done within the query_cache_time
@@ -145,11 +146,12 @@ function au_query($original_sql, $force_no_cache = false, $force_no_count = fals
 }
 
 
-function au_db_quote($value){
+function au_db_escape($value){
 	global $aulis;
 
-	// Return a proper quoted version of our value
-	return $aulis['db']->quote($value);
+	// Return a proper escaped version of our value
+	return trim($aulis['db']->quote($value), "'");
+
 }
 
 

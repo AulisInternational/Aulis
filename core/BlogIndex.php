@@ -84,7 +84,7 @@ function au_show_blogindex(){
 		// Time to form the extra parameters
 		$exploded_search = explode(' ', $aulis['blog_search']);
 		foreach ($exploded_search as $keyword) {
-			$regex = "REGEXP '[[:<:]]".$keyword."[[:>:]]'";
+			$regex = "REGEXP '[[:<:]]" . au_db_escape($keyword) . "[[:>:]]'";
 			$extra_parameters .=  " AND (entries.blog_name {$regex} OR entries.blog_intro {$regex} OR entries.blog_content {$regex})";
 		}
 
