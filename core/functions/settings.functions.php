@@ -29,34 +29,21 @@ function au_get_settings() {
 	$result = au_query("
 		SELECT setting_name, setting_value
 			FROM settings
-	");
+	", true);
+
 	
 	// Now, let's add them to the array
-	foreach($result as $tempsetting)
-		$temp_settings[$tempsetting['setting_name']] = $tempsetting['setting_value'];
+
+
+	while($tempsetting = $result->fetchObject())
+		$temp_settings[$tempsetting->setting_name] = $tempsetting->setting_value;
 	
+
 	// Let's return the array
 	return $temp_settings;
+
 }
 
-function au_get_setting($setting){
-	global $aulis;
-
-	// Try to get the setting, if it isn't possible, we'll have to disappoint you.
-	if(!($obtained_setting = au_query("SELECT * FROM settings WHERE setting_name = ".au_db_quote($setting).";")))
-		return false;
-
-	// Let's check if there is a setting to return.
-	if($obtained_setting->rowCount() == 0)
-		return false;
-
-	// Well, let's get its value then
-	while($fetch_setting = $obtained_setting->fetchObject())
-		$value = $fetch_setting->setting_value;
-
-	// Let's return the value, we have to be fair, if it's empty, an empty string should be returned, no booleans
-	return $value;
-}
 
 function au_set_setting($setting, $value){
 	global $aulis;

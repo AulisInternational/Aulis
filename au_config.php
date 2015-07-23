@@ -41,6 +41,7 @@ $aulis['db_user'] = 'root';
 $aulis['db_password'] = ''; 
 $aulis['db_database'] = 'aulis'; 
 $aulis['db_query_count'] = 0; 
+$aulis['db_enable_query_caching'] = 1;
 
 // Page information
 $aulis['page'] = array();

@@ -54,29 +54,144 @@ function au_setup_database(){
 
 }
 
-function au_query($sql){
+function au_query($original_sql, $force_no_cache = false, $force_no_count = false){
 
-	global $aulis;
+	global $aulis, $setting;
+
+	// We like counting
+	if(!$force_no_count)
+		$aulis['db_query_count']++;
 
 	// Make sure we have the right database prefix.
 	$search = array("FROM ", "INTO ", "UPDATE ", "JOIN ");
 	$replace = array("FROM ".$aulis['db_prefix'], "INTO ".$aulis["db_prefix"], "UPDATE ".$aulis["db_prefix"],  "JOIN ".$aulis["db_prefix"]);
-	$sql = str_replace($search, $replace, $sql);
+	$sql = str_replace($search, $replace, $original_sql);
 
 	// Are we in debug mode? ONLY ALPHA :: NOTE: THIS WILL SEND THE HEADERS AWAY
 	if(DEBUG_SHOW_QUERIES)
 		echo "<div class='notice bg1 cwhite'>".$sql."</div>";
 
-	// We like counting
-	$aulis['db_query_count']++;
+	// If query caching is disabled, we just need to execute the query
+	if($force_no_cache or @$setting['enable_query_caching'] == 0)
+		return $aulis["db"]->query($sql);
 
-	// Let's run the query
-	return $aulis["db"]->query($sql);
+	// If this is not a select query, it will change something, therefore the cache needs to be cleaned
+	if(!au_string_starts_with($sql, "SELECT"))
+		au_force_clean_cache('queries');
+
+	// Only select queries can be cached
+	if(!au_string_starts_with($sql, "SELECT"))
+		return $aulis["db"]->query($sql);
+
+	// We need the queries hash
+	$hash = md5($sql);
+	$cache_file = au_get_path_from_root('cache/queries/'.$hash.'.cache');
+	$cache_time = $setting['query_caching_time'];
+
+	// We need to see if there are any queries like these done within the query_cache_time
+	if(file_exists($cache_file)){
+		
+		// Our file exists... let's get its creation time
+		$cache_file_time = filemtime($cache_file);
+
+		// Is the file still valid?
+		 if (time() - $cache_file_time < $cache_time and $aulis['db_query_count']--)
+		 	return unserialize(file_get_contents($cache_file));
+
+		// If not we need to delete it and be a little recursive...
+		else if(unlink($cache_file))
+			return au_query($original_sql, false, true);
+
+	}
+
+	// The query isn't cached... or it is unvalid and therefore deleted
+	else{
+
+		// We need to execute the query, cache it and return the cached object
+		$execute = $aulis['db']->query($sql);
+
+		// If the rowCount is 0, we can just create an empty cached query
+		if($execute->rowCount() == 0)
+			$cache_query = new au_class_cached_query();
+
+		// Otherwise we need to do a little more...
+		else{
+
+			// Fetching the objects in order to cache them
+			$objects  = array();
+			
+			while($object = $execute->fetchObject()){
+				$objects[] = $object;
+			}
+
+			// Create the cached query
+			$cache_query = new au_class_cached_query($objects, $execute->rowCount());
+
+
+		}
+
+		// Cache the whole thing, if we cannot do that, we need to fallback
+		if(!file_put_contents($cache_file, serialize($cache_query)))
+			return au_query($original_sql, true);
+
+		return $cache_query;
+
+	}
+
 }
+
 
 function au_db_quote($value){
 	global $aulis;
 
 	// Return a proper quoted version of our value
 	return $aulis['db']->quote($value);
+}
+
+
+// For some change, this is not a function, but a simple class that contains information about cached queries
+class au_class_cached_query implements Iterator {
+
+
+	private $_row_count = -1;
+	private $_array_count = 0;
+	private $_db_objects = null;
+	private $position = -1;
+
+
+   function __construct($db_objects = array(), $row_count = 0) {
+       $this->_row_count = $row_count;
+       $this->_db_objects = $db_objects;
+       $this->_db_objects = new ArrayObject($db_objects);
+   }
+
+   function rowCount(){
+   		return $this->_row_count;
+   }
+
+   function fetchObject(){
+   		return $this->current();
+   }
+
+    function rewind() {
+        $this->position = -1;
+    }
+
+    function current() {
+    	$this->next();
+        return @$this->_db_objects[$this->position];
+    }
+
+    function key() {
+        return $this->position;
+    }
+
+    function next() {
+        ++$this->position;
+    }
+
+    function valid() {
+        return isset($this->_db_objects[$this->position]);
+    }
+
 }
