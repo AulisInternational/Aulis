@@ -49,6 +49,7 @@ $load_functions = array('blog', 'cache', 'core', 'database', 'global', 'hash', '
 // The database will be set up below this line
 au_setup_database();
 
+
 // Get the settings
 $setting = au_get_settings();
 
