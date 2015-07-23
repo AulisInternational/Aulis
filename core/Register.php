@@ -354,7 +354,7 @@ function au_register(){
 	}
 
 	// Okay, load this app's template
-	au_load_template('Register');
+	au_load_template('Register', false);
 	
 	// Show the registration template
 	au_template_register($reg_data, (!empty($registration_complete) ? true : ''));

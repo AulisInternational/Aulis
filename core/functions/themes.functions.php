@@ -73,7 +73,7 @@ function au_load_theme_settings(){
 
 }
 
-function au_load_template($template){
+function au_load_template($template, $execute_function = true){
 
 	// Global setting
 	global $setting;
@@ -108,10 +108,11 @@ function au_load_template($template){
 	$function = 'au_template_' . $template;
 
 	// We need to know whether we can exectute the template's main function
-	if(!function_exists($function))
+	if($execute_function == true and !function_exists($function))
 		return au_fatal_error(3, "The template '$template' ('" . $filename . "') should have a function called '$function();', this function was not found.");
 	
 	// We can execute our function, hooray	
+	if($execute_function == true)
 		return call_user_func($function);
 		
 }

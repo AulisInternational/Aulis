@@ -88,6 +88,10 @@ function au_query($original_sql, $force_no_cache = false, $force_no_count = fals
 	$cache_file = au_get_path_from_root('cache/queries/'.$hash.'.cache');
 	$cache_time = $setting['query_caching_time'];
 
+	// If we are not writable, we have to run the query without cache
+	if(!is_writable($cache_file))
+		return $aulis["db"]->query($sql);
+
 	// We need to see if there are any queries like these done within the query_cache_time
 	if(file_exists($cache_file)){
 		
