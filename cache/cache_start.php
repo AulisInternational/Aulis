@@ -21,7 +21,7 @@ $cache_blacklist = array('');
 // Get the request hash
 $hash = md5('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 $cache_folder = au_get_path_from_root('cache/output');
-$cache_file = au_get_path_from_root('cache/output'.$hash.'.cache');
+$cache_file = au_get_path_from_root('cache/output/'.$hash.'.cache');
 $cache_time = $setting['caching_time'];
 
 // We need to if our cache file exists
