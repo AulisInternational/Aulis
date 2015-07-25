@@ -18,7 +18,7 @@ if(!defined('aulis'))
 	header("Location: index.php");
 
 // This function will try to load the theme and returns whether or not that succeeded. 
-function au_load_theme($theme){
+function au_load_theme($theme, $admin = false){
 
 	// Our base_template needs access to $aulis too, you know?
 	global $aulis, $setting;
@@ -31,7 +31,11 @@ function au_load_theme($theme){
 		$return_false = true;
 
 	// Let's put our path to base_template.php in a beautiful variable
-	$filename = au_get_path_from_root('themes/' . $theme . '/base_template.php');
+	$filename = au_get_path_from_root('themes/' . $theme . ($admin ? '/admin_template.php' : '/base_template.php'));
+
+	// If we need to load the admin template, we need to check wether it exists... if it doesn't we need to change the path the the hannover file
+	if($admin and !file_exists($filename))
+		$filename = au_get_path_from_root('themes/hannover/admin_template.php');
 
 	// Does our theme have a base_template, if it doesn't we don't even have to try.
 	if(!file_exists($filename))

@@ -20,9 +20,13 @@ function au_template_blog_sidebar(){
 	// Our template needs the big $aulis
 	global $aulis;
 
+	$search_value = '';
+	if(isset($saulis['blog_search']))
+		$search_value = $aulis['blog_search'];
+
 	return au_out('<div class="blog_sidebar">
 			' . au_blog_sidebar_about() . '
-			' . au_blog_sidebar_search() . '
+			' . au_blog_sidebar_search($search_value) . '
 			' . au_blog_sidebar_categories() . '
 		</div>');
 
@@ -30,9 +34,6 @@ function au_template_blog_sidebar(){
 
 function au_blog_sidebar_search($value = ''){
 
-	// Do we need to show the previous search query?
-	if(isset($_GET['search']))
-		$value = $_GET['search'];
 
 	// The form
 	$search_form =  '<form method="POST" action="' . au_url('?app=blogindex') . '">

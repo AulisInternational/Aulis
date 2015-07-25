@@ -25,7 +25,7 @@ if(!defined('aulis'))
 	
 global $setting;
 
-$setting['sub_files'] = array('blog');
+$setting['sub_files'] = array('blog', 'admin');
 	
 // Some basic information about the language itself
 define('LANGUAGE_NAME', 'English (US)');

@@ -55,3 +55,6 @@ $aulis['page']['transfer'] = '';
 // Important paths!
 $aulis['root_path'] = dirname(__FILE__);
 $aulis['absolute_path'] = "http://localhost/Aulis/";
+
+// What functions do index.php and Admin.php need?
+$aulis['load_functions'] = array('blog', 'cache', 'core', 'database', 'global', 'hash', 'languages', 'menu', 'output', 'pagination', 'sessions', 'settings', 'themes', 'user');

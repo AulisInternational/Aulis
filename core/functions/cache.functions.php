@@ -18,11 +18,14 @@ if(!defined('aulis'))
 	header("Location: index.php");
 
 // This will just delete all cache files in a certain section
-function au_force_clean_cache($section){
+function au_force_clean_cache(){
 
 	global $aulis;
 
-	foreach(glob($aulis['root_path'] . '/cache/' . $section . '/*.cache') as $filename)
+	foreach(glob($aulis['root_path'] . '/cache/queries/*.cache') as $filename)
+		unlink($filename);
+
+	foreach(glob($aulis['root_path'] . '/cache/queries/*.cache') as $filename)
 		unlink($filename);
 	
 }

@@ -73,8 +73,10 @@ function au_show_blogindex(){
 		}
 
 		// Do we maybe need to unclean the search string?
-		if(isset($_GET['search']) && isset($_GET['rewrite']))
-			$aulis['blog_search'] = urldecode(str_replace("+", " ", $_GET['search']));
+		if(isset($_GET['search']) && isset($_GET['rewrite'])){
+			$aulis['blog_search'] = str_replace("+", " ", $_GET['search']);
+			$aulis['blog_search'] = str_replace("-plus-", "+", $aulis['blog_search']);
+		}
 
 		// We need to decode it instead, if it exists, though
 		else if(isset($_GET['search']))

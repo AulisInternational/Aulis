@@ -31,6 +31,9 @@ function au_string_ends_with($haystack, $needle) {
 // This function cleans a string for clean url usage
 function au_string_clean($string, $plus = '+'){
 
+	// We want to escape the plus sign
+	$string = str_replace('+', '-plus-', $string);
+
 	// We want it lowercase
 	$string = strtolower($string);
 
@@ -39,9 +42,6 @@ function au_string_clean($string, $plus = '+'){
 
 	// We want little plus signs in stead of spaces
 	$string = str_replace(" ", $plus, $string);
-
-	// Now we want to encode it
-	$string = urlencode($string);
 
 	// Return the whole thing
 	return $string;

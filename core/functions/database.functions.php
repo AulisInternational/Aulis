@@ -77,7 +77,8 @@ function au_query($original_sql, $force_no_cache = false, $force_no_count = fals
 
 	// If this is not a select query, it will change something, therefore the cache needs to be cleaned
 	if(!au_string_starts_with($sql, "SELECT"))
-		au_force_clean_cache('queries');
+		au_force_clean_cache();
+
 
 	// Only select queries can be cached
 	if(!au_string_starts_with($sql, "SELECT"))
