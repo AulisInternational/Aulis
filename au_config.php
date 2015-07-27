@@ -17,6 +17,11 @@
 if(!defined('aulis'))
 	header("Location: index.php");
 
+// DEBUG <1.1 ALPHA 1> [These constants are only used for debugging]
+define("DEBUG_SHOW_QUERIES", false); // Functionality is in au_query, REMEMBER TO TURN OFF!!
+define("DEBUG_SHOW_PREFORMANCE", true); // Functionality is in base_template.php, REMEMBER TO TURN OFF!!
+define("DEBUG_FORCE_DISABLE_CACHE", true); // Functionality is in base_template.php, REMEMBER TO TURN OFF!!
+
 // Making a global array
 global $aulis;
 $aulis = array();

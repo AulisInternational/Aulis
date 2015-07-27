@@ -43,6 +43,14 @@
   font-style: normal;
 }
 
+/* Housestyle font "overpass" */
+@font-face {
+  font-family: 'DinPro';
+  src: url('../fonts/dinpro.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* Basic elements */
 
 html {overflow-y: scroll;
@@ -548,6 +556,7 @@ footer
 
 .blog_preview_page_title h1{
 	font-size: 25px;
+	font-family: DinPro!important;
 	display: inline;
 }
 
@@ -573,7 +582,7 @@ footer
 	.blog_preview_wrapper h1{
 		margin-bottom: -2px;
 		font-size: 23px;
-
+	font-family: DinPro!important;
 	}
 
 		.blog_preview_wrapper h1 a{

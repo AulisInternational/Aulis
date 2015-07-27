@@ -198,16 +198,25 @@ div.topbar{
 
 }
 
-div.topbar img.logo{
-	height: 30px;
-	width: auto;
-	float: right;
-}
+	div.topbar img.logo{
+		height: 30px;
+		width: auto;
+		float: right;
+	}
 
+
+	div.topbar h1{
+		display: block;
+		width:100%;
+		text-align: center;
+		float: right;
+	}
 
 div.icon-menu{
-	width: 5%;
+	width: 60px;
+	margin-top: 40px;
 	position: fixed;
+	padding: 5px;
 	height: 100%;
 	background: #111;
 }
@@ -219,7 +228,7 @@ div.side-menu{
 	margin-top: 40px;
 	background: #333;
 	height: 100%;
-	left: 5%;
+	left: 60px;
 	position: fixed;
 	top: 0;
 	padding: 30px;

@@ -58,7 +58,7 @@ function au_menu() {
 		),
 		'admincp' => array(
 			'text' => MENU_ADMIN,
-			'link' => 'Admin.php',
+			'link' => au_url('Admin.php'),
 			'visible' => true,
 			'active' => ($aulis['active'] == 'admincp' ? 1 : 0),
 			'target' => '_self',

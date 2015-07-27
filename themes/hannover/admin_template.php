@@ -34,12 +34,15 @@ echo '<!DOCTYPE html>
   </head>
   <body class="admin">
   	<div class="topbar">
-          <a class="button" href="index.php">' . au_icon('arrow_left', 12) . ' ' . ADMIN_BACK_TO_SITE . '</a>
+          <a class="button" href="index.php">' . au_icon('arrow_left', 12) . ' ' . ADMIN_BACK_TO_SITE . '</a> 
+          <h1>' . au_icon('gear', 24) . ' Administration Dashboard</h1>
           <img class="logo" alt="[au]lis" src="' . $aulis['absolute_path'] . 'themes/hannover/images/logo.svg" />  
        <br class="clear" /> 
     </div>
   <div class="icon-menu">
-  aaa
+      <div class="icon-stack">
+        <a href="#">' . au_icon('house_full', 32, 'white') . '</a>
+      </div>
       <br class="clear" />
   </div>
   <div class="side-menu">
