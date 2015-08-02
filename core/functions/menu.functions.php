@@ -48,6 +48,14 @@ function au_menu() {
 			'target' => '_self',
 			'type' => 1,
 		),
+		'login' => array(
+			'text' => MENU_LOGIN,
+			'link' => au_url('?app=login'),
+			'visible' => true,
+			'active' => ($aulis['active'] == 'login' ? 1 : 0),
+			'target' => '_self',
+			'type' => 1,
+		),
 		'register' => array(
 			'text' => MENU_REGISTER,
 			'link' => au_url('?app=register'),

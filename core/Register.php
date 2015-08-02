@@ -10,7 +10,7 @@
 || * File information * 
 ||		-> Register.php
 | 		-> // This file contains the functions that handle the user registration process
-|| 		-> Last change: July, 2015
+|| 		-> Last change: August, 2015
 */
 
 // We can't access this file, if not from index.php, so let's check

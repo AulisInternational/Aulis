@@ -728,6 +728,8 @@ td#agreement {
 	border-bottom: 1px solid #D3D3D3;
 	border-left: 1px solid #D3D3D3;
 	border-right: 1px solid #D3D3D3;
+	font-size: 12px;
+	font-family: Verdana, Calibri, Arial;
 }
 
 .error {

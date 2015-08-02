@@ -6,12 +6,12 @@
 || Developed by:	 	Robert Monden
 						Thomas de Roo
 || License: 			MIT
-|| Version: 			0.01
+|| Version: 			1.1 Alpha 1
 ||
 ||------------------------------------------------
 || ENGLISH TRANSLATION
 ||------------------------------------------------
-|| Software version:	0.01
+|| Software version:	1.1 Alpha 1
 || Version:				1.0.0
 || Dialect:				American English
 || Translators:			Thomas de Roo
@@ -92,6 +92,12 @@ define('MENU_FORUM', 'Forum');
 define('MENU_ADMIN', 'Admin CP');
 define('MENU_MOD', 'Security');
 define('MENU_REGISTER', 'Sign up');
+define('MENU_LOGIN', 'Log in');
+
+// Page titles
+define('TITLE_FORUM', 'Forum');
+define('TITLE_LOGIN', 'Log in');
+define('TITLE_REGISTER', 'Register');
 
 // The registration page
 define('REGISTER', 'Register new account');
@@ -136,3 +142,19 @@ define('REGISTER_DONE_DESC', 'Your account was successfully registered. You are 
 define('REGISTER_TOO_YOUNG', 'Unfortunately we are not able to register your account, due to the minimum age being ' . $setting['minimum_age']);
 define('REGISTER_QUESTION_WRONG', 'The answer to the following registration question was incorrect: ');
 define('REGISTER_QUESTION_FRAUD', 'Please fill in all registration questions.');
+
+// Let's log in
+define('LOGIN', 'Forum login');
+define('LOGIN_USERNAME', 'Username:');
+define('LOGIN_PASSWORD', 'Password:');
+define('LOGIN_SUBMIT', 'Login');
+define('LOGIN_ACTIVATE_ACCOUNT', 'Activate my account');
+define('LOGIN_RESET_PASSWORD', 'I forgot my password');
+define('LOGIN_NO_USERNAME', 'Please enter your username.');
+define('LOGIN_NO_PASSWORD', 'Please enter your password.');
+define('LOGIN_USERNAME_NO_HTML', 'Usernames can\'t contain HTML.');
+define('LOGIN_FOREVER', 'Stay logged in forever');
+define('LOGIN_PASSWORD_FAIL', 'The entered password was incorrect. Please try again.');
+define('LOGIN_SUCCESS_TITLE', 'Login successful');
+define('LOGIN_SUCCESS', 'You have successfully logged in. Please click on the link below to proceed.');
+define('LOGIN_LINK', 'Click here to proceed to the board index');

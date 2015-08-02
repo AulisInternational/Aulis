@@ -6,7 +6,7 @@
 || Developed by: 	Robert Monden
 					Thomas de Roo
 || License: 		MIT
-|| Version: 		0.01
+|| Version: 		1.1 Alpha 1
 || * File information * 
 ||		-> _CoreArray.php
 | 		-> // This file contains the information about all actions our main index.php can preform. 
@@ -38,7 +38,7 @@ $aulis['apps'] = array(
 		'load_file' => true,
 		'execute_function' => true,
 		'section' => 'forum',
-		'title' => '',
+		'title' => TITLE_FORUM,
 	),
 	'blogindex' => array(
 		'core' => 'BlogIndex.php',
@@ -74,6 +74,15 @@ $aulis['apps'] = array(
 		'load_file' => true,
 		'execute_function' => true,
 		'section' => 'register',
-		'title' => '',
+		'title' => TITLE_REGISTER,
+	),
+	'login' => array(
+		'core' => 'Login.php',
+		'function' => 'au_login',
+		'maintenance' => true,
+		'load_file' => true,
+		'execute_function' => true,
+		'section' => 'login',
+		'title' => TITLE_LOGIN,
 	),
 );
