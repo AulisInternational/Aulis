@@ -40,10 +40,10 @@ function au_hash($input, $extra_data = '') {
 }
 
 // This function is for use with a password, a username and a registration date
-function au_hash_password($password, $user_name, $user_regdate){
+function au_hash_password($password, $user_name, $user_actcode){
 
 	// Let's make the $extra_data
-	$extra_data = $user_name . ":" . $user_regdate;
+	$extra_data = $user_name . ":" . $user_actcode;
 
 	// Now let's hash this thing
 	return au_hash($password, $extra_data);

@@ -177,16 +177,19 @@ class au_class_cached_query implements Iterator {
    }
 
    function fetchObject(){
-   		return $this->current();
+   		return $this->current(true);
    }
 
     function rewind() {
         $this->position = -1;
     }
 
-    function current() {
+    function current($object = false) {
     	$this->next();
-        return @$this->_db_objects[$this->position];
+    	if($object)
+        	return @$this->_db_objects[$this->position];
+        else
+        	return @get_object_vars($this->_db_objects[$this->position]);
     }
 
     function key() {

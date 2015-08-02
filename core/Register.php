@@ -244,7 +244,7 @@ function au_register(){
 			if(empty($errormsg)) {
 			
 				// Hash the password
-				$register['password'] = au_hash($register['password']);
+				$register['password'] = au_hash_password($register['password'], $register['username'], $register['activation_code']);
 				
 				// Create a joint birthdate string
 				$register['birthdate'] = $register['month'] . '/' . $register['day'] . '/' . $register['year'];
